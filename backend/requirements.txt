@@ -1,0 +1,22 @@
+Django==5.1
+djangorestframework==3.15.2
+django-cors-headers==4.4.0
+djangorestframework-simplejwt==5.3.1
+django-redis
+python-decouple
+psycopg2
+dj-database-url
+whitenoise
+gunicorn
+uvicorn
+requests
+Pillow
+mysqlclient
+python-decouple
+
+# Run these in Prod for PostgreSQL, Redis Support
+
+# sudo apt-get update
+# sudo apt-get install libpq-dev
+# sudo apt-get install redis-server
+
