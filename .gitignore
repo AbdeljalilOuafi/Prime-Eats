@@ -129,6 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+restaurants.json
 
 # Spyder project settings
 .spyderproject
