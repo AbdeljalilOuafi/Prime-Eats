@@ -1,0 +1,844 @@
+[
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.69998629999999,
+                "lng": -1.9188002
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.7012663802915,
+                    "lng": -1.917444569708499
+                },
+                "southwest": {
+                    "lat": 34.6985684197085,
+                    "lng": -1.920142530291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Ch'hiwat Albahr",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 2160,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/117116754524622833006\">Mohamed Hajji</a>"
+                ],
+                "photo_reference": "AWYs27y4-AB-OxDkvQhu0WptqWyGL6VbbudRQ-4wr0Ibamh8XFAQEJ_k4UsZBnMv7vwLOJy_oJ-Sdex8oR3fybcPcgr00ypQuFNnnlZ9Fuvf0Bef9L93RJ0OfmRXcNHXTuxRmhmByh6hizLfxm9GeZMsn11CVhGc8fLzQ9DHlWyrUfCwTNIi",
+                "width": 3840
+            }
+        ],
+        "place_id": "ChIJdbubbppkeA0RljYMk-sSGxk",
+        "rating": 4.3,
+        "reference": "ChIJdbubbppkeA0RljYMk-sSGxk",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 10,
+        "vicinity": "M3XJ+XFW, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6989406,
+                "lng": -1.9138842
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.7002654302915,
+                    "lng": -1.912627269708498
+                },
+                "southwest": {
+                    "lat": 34.6975674697085,
+                    "lng": -1.915325230291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Azadin",
+        "place_id": "ChIJ5_iwGxpleA0R5fbXpnAbGN4",
+        "rating": 3,
+        "reference": "ChIJ5_iwGxpleA0R5fbXpnAbGN4",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 1,
+        "vicinity": "M3XP+FCW, Rue Ennour, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.7029255,
+                "lng": -1.9200818
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.70430838029149,
+                    "lng": -1.918737219708498
+                },
+                "southwest": {
+                    "lat": 34.7016104197085,
+                    "lng": -1.921435180291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Snack foody",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 1956,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/114319917586935771020\">Fatima AZAHAF</a>"
+                ],
+                "photo_reference": "AWYs27xwNV9BDOxz--RvdTvQ8KtaEr3RP-iDy3ECypue2lZKWmmtRwMf-K_mk6BaEeND75PJKw_qGvlS_tMF5XWGgECnQm0-4FsAA7aY6uaTv2Fn_ocK0Npxwi13oNMiOK2BjPTTcKodwXbi_H1KV81tB6yFsqypVQqMZuPHjDhvNkbdiHNc",
+                "width": 4128
+            }
+        ],
+        "place_id": "ChIJJZyRRw9leA0R8ZRWhOBgXss",
+        "rating": 3.5,
+        "reference": "ChIJJZyRRw9leA0R8ZRWhOBgXss",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 4,
+        "vicinity": "P33H+5XF, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.7022139,
+                "lng": -1.913272
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.7036008802915,
+                    "lng": -1.911848569708498
+                },
+                "southwest": {
+                    "lat": 34.7009029197085,
+                    "lng": -1.914546530291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Laiterie bettioui.محلبة بطيوي",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 1920,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/116294713587750261916\">MOHAMMED M</a>"
+                ],
+                "photo_reference": "AWYs27w9OpDogREpFar5c2FW8Ke481Ab4FT_dksujKPYYVTQBTgBH21otwtmmX417QVXZN76zj1iiJeJalV6AyZLZM1I0m86tRJ3xv5VMZTi3X1VX593fHtQjg4Kjz9f-HDIXgvuOerr4Ai04qEjpRfFcBS10IzGRnd_yy-_cfZSiqv7GFmB",
+                "width": 1080
+            }
+        ],
+        "place_id": "ChIJdYB1cF5leA0RdOuoSy7zGEI",
+        "rating": 4.2,
+        "reference": "ChIJdYB1cF5leA0RdOuoSy7zGEI",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 45,
+        "vicinity": "P32P+VMQ, Rue Mansour Dahbi, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6961284,
+                "lng": -1.9192543
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6974791802915,
+                    "lng": -1.917850069708498
+                },
+                "southwest": {
+                    "lat": 34.6947812197085,
+                    "lng": -1.920548030291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Snack Oscar",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 3264,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/108075331210893965422\">Snack Oscar</a>"
+                ],
+                "photo_reference": "AWYs27wXdT_XSbO5Kw4GNFGTs-HMSlbWiFoEDy7cd-HkXWgfXTl3p1aepmJsYQld2laQ4U98vf1InSFNG5fJ7TsoHuy9RE8RbSh3oCWbGGDJkUJQFZLtI24sJZyUfIrxXu1vH63_bgs3PmDtHd4gukay7K4mczbxYStxWSBN_duSNvaN06if",
+                "width": 1504
+            }
+        ],
+        "place_id": "ChIJC0EARB1leA0RQ4uXFRxBysQ",
+        "plus_code": {
+            "compound_code": "M3WJ+F7 Oujda, Morocco",
+            "global_code": "8C6WM3WJ+F7"
+        },
+        "rating": 5,
+        "reference": "ChIJC0EARB1leA0RQ4uXFRxBysQ",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 5,
+        "vicinity": "فلاج الطوبة, شارع مولاي الحسن الرقم 136, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.7017044,
+                "lng": -1.9109333
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.7030280802915,
+                    "lng": -1.909511969708498
+                },
+                "southwest": {
+                    "lat": 34.7003301197085,
+                    "lng": -1.912209930291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Yahya chewaya",
+        "place_id": "ChIJH1gV7Q5leA0RVnLf91gU7_U",
+        "rating": 5,
+        "reference": "ChIJH1gV7Q5leA0RVnLf91gU7_U",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 4,
+        "vicinity": "P32Q+MJP, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.7027736,
+                "lng": -1.9111231
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.7041180802915,
+                    "lng": -1.909776519708498
+                },
+                "southwest": {
+                    "lat": 34.7014201197085,
+                    "lng": -1.912474480291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "سناك حومتي",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 342,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/116841893358443342521\">سناك حومتي</a>"
+                ],
+                "photo_reference": "AWYs27xxR0kvIPYG6RNIDvnHSR8TTsvdRDACbLf-HpG7zT0eb1D9PvTHIvtOdcG-REezSnJWgiN4gHQJx2ZFvnV1SMAK6JP9fHEDZ1qau_vpmqc-WHh2SeNE13fsHP9FcIwplIqrBzeUNTkJySqap1YIaXVccDEVGwr-wuArzXI6YCIPT2M9",
+                "width": 740
+            }
+        ],
+        "place_id": "ChIJ0WrPfF1leA0R6jHhEmasHtw",
+        "plus_code": {
+            "compound_code": "P33Q+4H Oujda, Morocco",
+            "global_code": "8C6WP33Q+4H"
+        },
+        "rating": 5,
+        "reference": "ChIJ0WrPfF1leA0R6jHhEmasHtw",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 2,
+        "vicinity": "n°9 Rue 119, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6941524,
+                "lng": -1.9190654
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6955426802915,
+                    "lng": -1.917720669708498
+                },
+                "southwest": {
+                    "lat": 34.6928447197085,
+                    "lng": -1.920418630291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Brimo Chicken",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 3024,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/108082207368791596438\">Salim Bofari</a>"
+                ],
+                "photo_reference": "AWYs27wqzzQyUUIODR2ZvLu1UkQPFFmV4Lo0iXlVWBXsxuHo_hAt3KQY9UbwsHqeqOrTjmFCxMtyYIUXk__RXBZ8gl1m2VU-n2Kb0c3w2UNHOMKaCG831Sw9V9QI-fW6emzkfjJUmFQskYFA2S3IKxkw3AwqFYCiX5aDHDlsxiYiGtIhwEF1",
+                "width": 4032
+            }
+        ],
+        "place_id": "ChIJ78Wc3rpkeA0RvT7qF6icGtw",
+        "plus_code": {
+            "compound_code": "M3VJ+M9 Oujda, Morocco",
+            "global_code": "8C6WM3VJ+M9"
+        },
+        "rating": 3.6,
+        "reference": "ChIJ78Wc3rpkeA0RvT7qF6icGtw",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 358,
+        "vicinity": "19 bd le prince héritier moulay el hassan, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.69404619999999,
+                "lng": -1.9190122
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.69540148029149,
+                    "lng": -1.917613869708498
+                },
+                "southwest": {
+                    "lat": 34.69270351970849,
+                    "lng": -1.920311830291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "عصائر ومثلجات عند نعمة",
+        "place_id": "ChIJXa6Q8otleA0RTKf8XeP6HhM",
+        "reference": "ChIJXa6Q8otleA0RTKf8XeP6HhM",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "vicinity": "M3VJ+J99, Boulevard Prince Heritier Moulay El Hassan, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6934137,
+                "lng": -1.9184708
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6947490302915,
+                    "lng": -1.917196869708498
+                },
+                "southwest": {
+                    "lat": 34.6920510697085,
+                    "lng": -1.919894830291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Snack Galaxy",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 1080,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/110794156280529536667\">Azerty123 Azerty123</a>"
+                ],
+                "photo_reference": "AWYs27y3nJU9iFBUySmr-3xv_pSDuawEF2vQmEPnFJGSpcuIaBi4LIRC7S5__ys5IaVBQZef_WhVd3ZyJ5uMSOf8s8NsjFBoB4dObWySfrj-uUtBbNsa4lrD6lr1xgcKPwUZjfnw8gp63V6ttlcpUteNcgsbsGnAS7T4THQ0urb1ylHYDtE7",
+                "width": 1920
+            }
+        ],
+        "place_id": "ChIJvdqqcphkeA0RJtKpIC_u9xo",
+        "plus_code": {
+            "compound_code": "M3VJ+9J Oujda, Morocco",
+            "global_code": "8C6WM3VJ+9J"
+        },
+        "rating": 4.5,
+        "reference": "ChIJvdqqcphkeA0RJtKpIC_u9xo",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 30,
+        "vicinity": "Oujda"
+    },
+    {
+        "business_status": "CLOSED_TEMPORARILY",
+        "geometry": {
+            "location": {
+                "lat": 34.69743009999999,
+                "lng": -1.9096642
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6987523802915,
+                    "lng": -1.908373919708498
+                },
+                "southwest": {
+                    "lat": 34.6960544197085,
+                    "lng": -1.911071880291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Snack angad",
+        "permanently_closed": true,
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/113831446786058269168\">WyZis_</a>"
+                ],
+                "photo_reference": "AWYs27wyP92hLpd985n1SC_c683QRe9UPDDSRU5ncJcM0B9qShdbU8QIIYUYPqyzx2iYCfmwT8uO9ltdUzKH6ksbnJuEhf7urGnZc1h2MC1izVl7sjoWezL9GczyLfMM3ljJ3M28_xuUTifZeSJ-livuntnpe8uikJGJwBWVUKxGwy0s8dxp",
+                "width": 2268
+            }
+        ],
+        "place_id": "ChIJP-keuFljeA0R2VTwlKjK8qA",
+        "rating": 4,
+        "reference": "ChIJP-keuFljeA0R2VTwlKjK8qA",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 1,
+        "vicinity": "M3WR+X4G, Rue Mansour Dahbi, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6933236,
+                "lng": -1.9178297
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6946492802915,
+                    "lng": -1.916444219708498
+                },
+                "southwest": {
+                    "lat": 34.6919513197085,
+                    "lng": -1.919142180291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Mazillia Food",
+        "photos": [
+            {
+                "height": 1080,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/104677615396999516966\">Mohammed Ettouil</a>"
+                ],
+                "photo_reference": "AWYs27wANQXeE7G0AZY9vZlAq9cohtANMaMIBSa5yhp4EkQhZ1l5iD8YQG6vGpedp7J9Y-Yp5xbExB34fxLSfNwLLIkTjx6xbEqid0XmOqnLLHGleR85-hPiMpO3Pt26Y80H9zQwEBAy_0Z1s7qaDY3WxnOf1GMFaGMra5WEQHfOZt2m_JnG",
+                "width": 1920
+            }
+        ],
+        "place_id": "ChIJcb4xU1BleA0R7810kRK5SZ4",
+        "rating": 5,
+        "reference": "ChIJcb4xU1BleA0R7810kRK5SZ4",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 1,
+        "vicinity": "M3VJ+8WQ, Rue Assadiyine, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6974388,
+                "lng": -1.9095976
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6987484302915,
+                    "lng": -1.908335069708498
+                },
+                "southwest": {
+                    "lat": 34.6960504697085,
+                    "lng": -1.911033030291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Gargote Driss KARAN",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 3120,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/114223060287954914760\">Fyy Dt</a>"
+                ],
+                "photo_reference": "AWYs27xitOjXu2NkL0mW5BrCFnXN6k8SrsFyhBEEUHK01hgrc5Ehi1BOE6JrT7_Yyls_Edo4syzB_Y1ihHLdYHF5rfuASRnsyrpDr07XGQA26qwsTUzUyTInw_2qIW76KhZXpJF85DgttJDYmhCTGbbDjLTReUKtbGEicM-zP4LPougkxUCa",
+                "width": 4160
+            }
+        ],
+        "place_id": "ChIJdWQC1vJjeA0RIWLDAhCX124",
+        "plus_code": {
+            "compound_code": "M3WR+X5 Oujda, Morocco",
+            "global_code": "8C6WM3WR+X5"
+        },
+        "reference": "ChIJdWQC1vJjeA0RIWLDAhCX124",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "vicinity": "Rue Mansour Dahbi, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.69323389999999,
+                "lng": -1.9176753
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.69460718029149,
+                    "lng": -1.916364419708498
+                },
+                "southwest": {
+                    "lat": 34.69190921970849,
+                    "lng": -1.919062380291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Mr Chef : Fast Food",
+        "photos": [
+            {
+                "height": 3456,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/106124083964765475420\">Hasnae EL mqami</a>"
+                ],
+                "photo_reference": "AWYs27zn1q1qpgnFWeuijlrZg1Qc23xHWnxLfYLEu664Y7anxdTJ4ILB2_uhEvfuedOBR39eYx5dE0dQ3I-FNSZ8P99tVueoQOznyvVIYLV5aUIO57LE01_VSqg3a7uDth07hf6G0jPRXTGrjOOY9weHtktJVYwFfxxC_tSYJ_d1xLkwI-S2",
+                "width": 4608
+            }
+        ],
+        "place_id": "ChIJ_5JGBq9leA0RWKtb68FuyzI",
+        "rating": 4,
+        "reference": "ChIJ_5JGBq9leA0RWKtb68FuyzI",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 55,
+        "vicinity": "M3VJ+7WW, Rue Assadiyine, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6932418,
+                "lng": -1.9184525
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6945797802915,
+                    "lng": -1.917165369708498
+                },
+                "southwest": {
+                    "lat": 34.6918818197085,
+                    "lng": -1.919863330291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Kebab one",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 1750,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/112167683506212781386\">Kebab One</a>"
+                ],
+                "photo_reference": "AWYs27wNxq5FCK_Cl5gryJQQiSjL1796U1RsD480asNCBRJ_RHlSkhIufoGPiCT7n_sTeA7YX2V2hr5rBYtY4AfkmUT3qUH8JTEJKgFV0Jwmo4TDl0FlRTGI_Jd3KRg0dGhq7eXk757zmle9AsJc5WnqxUWSB3hDK-GtOADz1NOVrxAK6DML",
+                "width": 1290
+            }
+        ],
+        "place_id": "ChIJlyAgagBleA0RT2a7G8QVaYc",
+        "rating": 5,
+        "reference": "ChIJlyAgagBleA0RT2a7G8QVaYc",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 9,
+        "vicinity": "M3VJ+8JF, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6926671,
+                "lng": -1.9180323
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6940387802915,
+                    "lng": -1.916744569708499
+                },
+                "southwest": {
+                    "lat": 34.69134081970851,
+                    "lng": -1.919442530291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "رواح كول",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 3000,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/108443911432830689394\">Nafissa El</a>"
+                ],
+                "photo_reference": "AWYs27wejZPPAg9EBKJ5Fyz4zpiOe1kQdWNPimZ33dm4HTQHAhKC2HrENov4OGfcFc2q6Iz0ycTKmf3blywstoxnZTx45UiC3wqd3TDUvdEKS6qNBWg6cxF8SfrdEWp2cM_SiAEGsGDmMsjLb5m8Z9O5QQMgoKS0iv0bELjtLJbIe1no8VUQ",
+                "width": 4000
+            }
+        ],
+        "place_id": "ChIJV1Zd2e9leA0RFppQBCbzVaY",
+        "plus_code": {
+            "compound_code": "M3VJ+3Q Oujda, Morocco",
+            "global_code": "8C6WM3VJ+3Q"
+        },
+        "rating": 3.6,
+        "reference": "ChIJV1Zd2e9leA0RFppQBCbzVaY",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 98,
+        "vicinity": "8 bd Saadyines Mohammdi Oujda Sidi Driss El Qadi, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.6924517,
+                "lng": -1.9197712
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.6937103302915,
+                    "lng": -1.918416269708498
+                },
+                "southwest": {
+                    "lat": 34.6910123697085,
+                    "lng": -1.921114230291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Grin Restaurant",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 2280,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/114942312186688572571\">Restaurant GRIN</a>"
+                ],
+                "photo_reference": "AWYs27yxnQUYMOOaX8jPqE7KkRW5HajSvf2zHbwDz9Ebh3bLn-YEotaVjEjTiqgYQNBydOw_KbtqI5BS7fv3d-zeId2iYaE2NiM2URo-cqs6te0zzdcUSHaxeQjrpznpn8FTEXSZa7r8m56I7S2qDh8LoBhT2oC_4dqJdsyhCCCZ_0LSphbS",
+                "width": 1080
+            }
+        ],
+        "place_id": "ChIJ-WnyTQRleA0R3YFGqMJyJPQ",
+        "plus_code": {
+            "compound_code": "M3RJ+X3 Oujda, Morocco",
+            "global_code": "8C6WM3RJ+X3"
+        },
+        "rating": 3,
+        "reference": "ChIJ-WnyTQRleA0R3YFGqMJyJPQ",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 2,
+        "vicinity": "n°30, Rue Al Alaouiyine, Oujda"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 34.7080364,
+                "lng": -1.9198456
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 34.7093802802915,
+                    "lng": -1.918558619708498
+                },
+                "southwest": {
+                    "lat": 34.7066823197085,
+                    "lng": -1.921256580291502
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Snack Isly",
+        "photos": [
+            {
+                "height": 1440,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/111216919917990240354\">Youssef Elwalid</a>"
+                ],
+                "photo_reference": "AWYs27zJUJdYmQ63kYrOKsts0ZKsu_6hl6hK7sE6gJY0372V4v3kUQr_T8i_ymTLFYI94IPCmLPvtKhRNiS2PcEdu0PfLfvGHTvbMLR3Cp4ov5STLv_MM5LbVMlak25y5TAY5Wg_se3fA1qlEBHKlvZWmQ4sj1YSqWemrf_acP7NpPKhvwal",
+                "width": 1080
+            }
+        ],
+        "place_id": "ChIJRwqlBABleA0R79kM8DddSH4",
+        "plus_code": {
+            "compound_code": "P35J+63 Oujda, Morocco",
+            "global_code": "8C6WP35J+63"
+        },
+        "rating": 5,
+        "reference": "ChIJRwqlBABleA0R79kM8DddSH4",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 1,
+        "vicinity": "76 Boulevard Prince Heritier Moulay El Hassan, Oujda"
+    }
+]
