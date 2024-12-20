@@ -262,63 +262,57 @@ MENUS = {
                 'name': 'Nachos',
                 'description': "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
                 'price': 8.00,
-                'image_url': ''
+                'image_url': 'https://iambaker.net/wp-content/uploads/2019/07/chili-cheese-nacho-final-500x500.jpg'
             },
             {
                 'name': 'Guacamole',
                 'description': "Creamy avocado dip mixed with lime, cilantro, and onions, served with tortilla chips.",
                 'price': 7.00,
-                'image_url': ''
+                'image_url': 'https://img.taste.com.au/eAW0Y3k4/taste/2016/11/vegetarian-nachos-with-guacamole-86796-1.jpeg'
             },
             {
                 'name': 'Quesadillas',
                 'description': "Flour tortillas filled with cheese and grilled until crispy, served with salsa.",
                 'price': 9.00,
-                'image_url': ''
+                'image_url': 'https://i.ytimg.com/vi/RuJZIpeo7JU/maxresdefault.jpg'
             },
             {
                 'name': 'Queso Fundido',
                 'description': "Melted cheese dip served with warm tortillas for dipping.",
                 'price': 10.00,
-                'image_url': ''
+                'image_url': 'https://www.daringgourmet.com/wp-content/uploads/2023/08/Queso-Fundido-Recipe-5.jpg'
             },
             {
                 'name': 'Elote',
                 'description': "Grilled corn on the cob topped with mayonnaise, cheese, chili powder, and lime.",
                 'price': 5.00,
-                'image_url': ''
+                'image_url': 'https://stellanspice.com/wp-content/uploads/2022/03/IMG_7816-scaled.jpeg'
             }
         ],
             'Main Courses': [
             {
                 'name': 'Tacos',
                 'description': "Soft or hard shell tacos filled with your choice of meat, topped with lettuce and salsa.",
-                'price': 10.00,
-                'image_url': ''
+                'price': 4.00,
+                'image_url': 'https://www.restalamaison.ch/images/thumbnails/717/512/detailed/12/tacos_euro_kebab_xzre-j6.jpg'
             },
             {
                 'name': 'Burrito',
                 'description': "Large flour tortilla filled with rice, beans, meat, and toppings of your choice.",
                 'price': 11.00,
-                'image_url': ''
+                'image_url': 'https://i0.wp.com/sonoratortillas.ca/wp-content/uploads/2022/12/image-13.jpeg?fit=2120%2C1414&ssl=1'
             },
             {
                 'name': 'Enchiladas',
                 'description': "Corn tortillas rolled around a filling and covered in red or green sauce.",
                 'price': 12.00,
-                'image_url': ''
+                'image_url': 'https://thecookingjar.com/wp-content/uploads/2024/02/beef-enchiladas-7.jpg'
             },
             {
                 'name': 'Fajitas',
                 'description': "Grilled meat served with sautéed peppers and onions, served with tortillas.",
                 'price': 14.00,
-                'image_url': ''
-            },
-            {
-                'name': 'Chiles Rellenos',
-                'description': "Stuffed poblano peppers filled with cheese or meat and battered before frying.",
-                'price': 13.00,
-                'image_url': ''
+                'image_url': 'https://tmbidigitalassetsazure.blob.core.windows.net/rms3-prod/attachments/37/300x300/exps18411_FP1641517D186.jpg'
             }
             ]
         },
@@ -329,31 +323,31 @@ MENUS = {
                 'name': 'Samosas',
                 'description': "Crispy pastry filled with spiced potatoes and peas, served with mint chutney.",
                 'price': 6.00,
-                'image_url': ''
+                'image_url': 'https://www.sainsburysmagazine.co.uk/uploads/media/720x770/06/12266-samosas.jpg?v=1-0'
             },
             {
                 'name': 'Pakoras',
                 'description': "Vegetables dipped in chickpea batter and deep-fried until crispy.",
                 'price': 5.00,
-                'image_url': ''
+                'image_url': 'https://www.recipetineats.com/tachyon/2021/05/Pakora_1-SQ1.jpg'
             },
             {
                 'name': 'Chaat',
                 'description': "A savory snack made from potatoes, chickpeas, and spices topped with yogurt and chutneys.",
                 'price': 7.00,
-                'image_url': ''
+                'image_url': 'https://www.madhuseverydayindian.com/wp-content/uploads/2021/05/chana-chaat-with-yogurt.jpg'
             },
             {
                 'name': 'Papdi Chaat',
                 'description': "Crispy dough wafers topped with potatoes, chickpeas, yogurt, and tamarind chutney.",
                 'price': 8.00,
-                'image_url': ''
+                'image_url': 'https://oforest.co/wp-content/uploads/2024/02/papdi-chaat-with-mahuaa-powder-recipe-and-finished-result.jpg'
             },
             {
                 'name': 'Onion Bhaji',
                 'description': "Spiced onion fritters deep-fried until golden brown.",
                 'price': 6.50,
-                'image_url': ''
+                'image_url': 'https://www.kitchensanctuary.com/wp-content/uploads/2021/01/Onion-Bhaji-square-FS-23.jpg'
             }
             ],
             'Curries': [
@@ -361,31 +355,31 @@ MENUS = {
                  "name": "Butter Chicken",
                  "description": "Tender chicken cooked in a creamy tomato sauce with spices.",
                  "price": 14.00,
-                 "image_url": ''
+                 "image_url": 'https://feelgoodfoodie.net/wp-content/uploads/2024/02/Easy-Butter-Chicken-TIMG.jpg'
              },
              {
                  "name": "Palak Paneer",
                  "description": "Spinach curry cooked with paneer cheese and spices.",
                  "price": 12.00,
-                 "image_url": ''
+                 "image_url": 'https://healthynibblesandbits.com/wp-content/uploads/2020/01/Saag-Paneer-FF.jpg'
              },
              {
                  "name": "Chicken Tikka Masala",
                  "description": "Grilled chicken pieces in a rich and creamy tomato sauce.",
                  "price": 13.00,
-                 "image_url": ''
+                 "image_url": 'https://www.skinnytaste.com/wp-content/uploads/2011/06/Chicken-Tikka-Masala-15.jpg'
              },
              {
                  "name": "Rogan Josh",
                  "description": "Slow-cooked lamb in a fragrant curry sauce.",
                  "price": 15.00,
-                 "image_url": ''
+                 "image_url": 'https://beesbites.com.au/wp-content/uploads/2021/01/Lamb-Rogan-Josh-blog.jpg'
              },
              {
                  "name": "Vindaloo",
                  "description": "Spicy curry made with marinated meat in vinegar and spices.",
                  "price": 14.50,
-                 "image_url": ''
+                 "image_url": 'https://cravinghomecooked.com/wp-content/uploads/2024/08/chicken-vindaloo-1-17.jpg'
              }
             ]
         },
@@ -396,31 +390,31 @@ MENUS = {
             'name': 'California Roll',
             'description': "A sushi roll filled with imitation crab, avocado, and cucumber.",
             'price': 10.00,
-            'image_url': ''
+            'image_url': 'https://images.immediate.co.uk/production/volatile/sites/30/2024/01/California-roll-a87199c.jpg'
         },
         {
             'name': 'Spicy Tuna Roll',
             'description': "A sushi roll with spicy tuna, cucumber, and avocado.",
             'price': 12.00,
-            'image_url': ''
+            'image_url': 'https://veganeverytime.com/wp-content/uploads/2024/04/vegan-spicy-tuna-roll-3.jpg'
         },
         {
             'name': 'Salmon Nigiri',
             'description': "Sliced fresh salmon served over vinegared rice.",
             'price': 8.00,
-            'image_url': ''
+            'image_url': 'https://aisforappleau.com/wp-content/uploads/2023/07/how-to-make-sushi-salmon-nigiri-6.jpg'
         },
         {
             'name': 'Dragon Roll',
             'description': "A sushi roll topped with eel and avocado, resembling a dragon.",
             'price': 14.00,
-            'image_url': ''
+            'image_url': 'https://www.afarmgirlsdabbles.com/wp-content/uploads/2022/10/Dragon-Roll38797s_1400.jpg'
         },
         {
             'name': 'Vegetarian Roll',
             'description': "A sushi roll filled with assorted vegetables and avocado.",
             'price': 9.00,
-            'image_url': ''
+            'image_url': 'https://www.justonecookbook.com/wp-content/uploads/2023/05/Vegetarian-Sushi-Rolls-9725-IV.jpg'
         }
         ],
         'Hot Dishes': [
@@ -428,31 +422,31 @@ MENUS = {
             'name': 'Ramen',
             'description': "Noodles served in a rich broth with toppings like pork, egg, and green onions.",
             'price': 12.00,
-            'image_url': ''
+            'image_url': 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/17eefccc0612317aa9f2ce1fbaae56cc/Derivates/3740e0c14b97c50890905a1961b9eb542959cc06.jpg'
         },
         {
             'name': 'Udon',
             'description': "Thick wheat noodles served in a savory broth with vegetables and protein.",
             'price': 11.00,
-            'image_url': ''
+            'image_url': 'https://www.1001recettes.net/wp-content/uploads/2024/06/1717716606_recette-de-yaki-udon-au-boeuf-nouilles-sautees-japonaises-faciles-1024x701.jpg'
         },
         {
             'name': 'Tempura',
             'description': "Battered and deep-fried vegetables or shrimp served with dipping sauce.",
             'price': 10.00,
-            'image_url': ''
+            'image_url': 'https://www.kyosushi.com/wp-content/uploads/2024/06/tempura-crevette.png'
         },
         {
             'name': 'Teriyaki Chicken',
             'description': "Grilled chicken glazed with teriyaki sauce, served with rice and vegetables.",
             'price': 13.00,
-            'image_url': ''
+            'image_url': 'https://www.aheadofthyme.com/wp-content/uploads/2021/12/teriyaki-chicken-3.jpg'
         },
         {
             'name': 'Tonkatsu',
             'description': "Breaded and deep-fried pork cutlet served with tonkatsu sauce.",
             'price': 14.00,
-            'image_url': ''
+            'image_url': 'https://cdn.pratico-pratiques.com/app/uploads/sites/4/2018/08/30190656/porc-tonkatsu-a-l-erable-550x550.jpeg'
         }
         ]
         },
@@ -463,31 +457,31 @@ MENUS = {
                     'name': 'Bulgogi',
                     'description': "Marinated beef grilled to perfection, served with rice and vegetables.",
                     'price': 15.00,
-                    'image_url': ''
+                    'image_url': 'https://girlfridaycookingco.com/wp-content/uploads/2023/04/korean-beef-bulgogi-1080.png'
                 },
                 {
                     'name': 'Kalbi',
                     'description': "Grilled short ribs marinated in a sweet soy sauce mixture.",
                     'price': 17.00,
-                    'image_url': ''
+                    'image_url': 'https://www.chewoutloud.com/wp-content/uploads/2023/07/kalbi-beef-short-ribs-vertical.jpg'
                 },
                 {
                     'name': 'Pork Belly',
                     'description': "Grilled slices of pork belly served with dipping sauce.",
                     'price': 16.00,
-                    'image_url': ''
+                    'image_url': 'https://hot-thai-kitchen.com/wp-content/uploads/2024/01/fish-sauce-pork-belly-sq.jpg'
                 },
                 {
                     'name': 'Spicy Chicken',
                     'description': "Grilled chicken marinated in a spicy gochujang sauce.",
                     'price': 14.00,
-                    'image_url': ''
+                    'image_url': 'https://thenovicechefblog.com/wp-content/uploads/2020/03/Sticky-Chicken-Tenders-1.jpg'
                 },
                 {
                     'name': 'Beef Ribs',
                     'description': "Tender beef ribs marinated and grilled to perfection.",
                     'price': 18.00,
-                    'image_url': ''
+                    'image_url': 'https://www.alphafoodie.com/wp-content/uploads/2023/06/Oven-Baked-Beef-Short-Ribs-square.jpeg'
                 }
             ],
             'Stews': [
@@ -495,31 +489,31 @@ MENUS = {
                     "name": "Kimchi Jjigae",
                     "description": "A spicy stew made with kimchi, tofu, and pork or tuna.",
                     "price": 10.00,
-                    "image_url": ''
+                    "image_url": 'https://www.beyondkimchee.com/wp-content/uploads/2022/04/Kimchi-Jjigae-thumbnail.jpg'
                 },
                 {
                     "name": "Sundubu-jjigae",
                     "description": "Soft tofu stew made with vegetables, seafood, or meat in a spicy broth.",
                     "price": 11.00,
-                    "image_url": ''
+                    "image_url": 'https://images.services.kitchenstories.io/DD34fUFvoVRqI5v3ThL1nzjsn2g=/3840x0/filters:quality(85)/images.kitchenstories.io/wagtailOriginalImages/R2468-photo-final-1.jpg'
                 },
                 {
                     "name": "Doenjang-jjigae",
                     "description": "Fermented soybean paste stew with vegetables and tofu.",
                     "price": 9.00,
-                    "image_url": ''
+                    "image_url": 'https://mykoreankitchen.com/wp-content/uploads/2020/02/1.-Doenjang-Jjigae.jpg'
                 },
                 {
                     "name": "Budae-jjigae",
                     "description": "Army base stew loaded with sausage, spam, tofu, and noodles.",
                     "price": 12.00,
-                    "image_url": ''
+                    "image_url": 'https://www.spoonforkbacon.com/wp-content/uploads/2023/02/Korean-army-stew-recipe-card.jpg'
                 },
                 {
                     "name": "Galbi-jjim",
                     "description": "Braised beef short ribs cooked in a sweet soy sauce broth.",
                     "price": 16.00,
-                    "image_url": ''
+                    "image_url": 'https://www.spoonforkbacon.com/wp-content/uploads/2021/08/galbi_jjim-recipe-card.jpg'
                 }
             ]
             },
