@@ -1,5 +1,6 @@
 import logging
 from django.core.cache import cache
+from django.conf import settings
 from .keywords import CUISINE_KEYWORDS
 from .chains import CHAINS
 from .menus import MENUS
@@ -8,6 +9,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Restaurant, FetchRestaurant, ChainRestaurant
 from .serializers import RestaurantSerializer, ChainRestaurantSerializer
+import os
+import random
+
+
 
 class RestaurantDataService:
     def __init__(self, google_api_key=None):
@@ -157,16 +162,25 @@ class RestaurantDataService:
                 if chain:
                     restaurants.append(chain)
             else:
-                # TODO: fetch the restaurant image url here
+                if r.get("photos") and len(r["photos"]) > 0 and r["photos"][0].get("photo_reference"):
+                    try:
+                        image_url = self.fetch_and_save_place_photo(r['photos'][0]['photo_reference'])
+                    except Exception as e:
+                        image_url = ""
+                        self.logger.warning(f"Error Fetching photo: {e}")
+                else:
+                    image_url = ""
+
                 restaurant = Restaurant.objects.create(
                     name=r["name"],
                     latitude=r["geometry"]["location"]["lat"],
                     longitude=r["geometry"]["location"]["lng"],
                     rounded_coordinates=rounded_coords,
                     address=r.get("address", "No address available"),
-                    rating=r.get("rating"),
+                    rating=r.get("rating", random.uniform(2, 5)),
                     source=source,
-                    menu=self.generate_menu(self._infer_cuisine(r["name"], r.get("types", [])))
+                    menu=self.generate_menu(self._infer_cuisine(r["name"], r.get("types", []))),
+                    image_url=image_url
                 )
                 restaurants.append(restaurant)
 
@@ -197,8 +211,7 @@ class RestaurantDataService:
 
         name = name.lower()
 
-        if name and name in " ".join(chain.lower() for chain in CHAINS): #Use chains.keys here to make CHAINS a hashmap
-                                                                         #with the value being the menu, then use this data for creating ChainRestraunts objects and saving to the table
+        if name and name in " ".join(chain.lower() for chain in CHAINS):
             return True
         return False
 
@@ -239,7 +252,7 @@ class RestaurantDataService:
         return 'Unknown'
 
 
-    def generate_menu(cuisine_type: str):
+    def generate_menu(self, cuisine_type):
         # (Previous menu dictionary remains the same)
 
         # Menu selection logic
@@ -255,4 +268,41 @@ class RestaurantDataService:
 
         return menu
 
+    def fetch_and_save_place_photo(self, photo_reference):
+        """
+        Fetches a photo from Google Places API and saves it to the 'restaurants/restaurants_images' directory.
 
+        Args:
+            photo_reference (str): The photo reference from the Places API.
+            api_key (str): Your Google API key.
+
+        Returns:
+            str: The URL of the saved image.
+        """
+        base_url = "https://maps.googleapis.com/maps/api/place/photo"
+        params = {
+            "photo_reference": photo_reference,
+            "maxwidth": 400,
+            "key": self.google_api_key
+        }
+
+        # Make the API request
+        response = requests.get(base_url, params=params)
+        response.raise_for_status()
+
+        # Define the directory for saving images
+        image_dir = settings.MEDIA_ROOT
+        os.makedirs(image_dir, exist_ok=True)  # Create the directory if it doesn't exist
+
+        # Save the image file
+        image_name = f"{photo_reference}.jpg"
+        image_path = os.path.join(image_dir, image_name)
+
+        with open(image_path, "wb") as image_file:
+            image_file.write(response.content)
+
+        # Return the URL to the saved image
+        relative_path = os.path.join(image_name)
+        photo_url = f"{settings.MEDIA_URL}{relative_path}"
+        full_url = f"http://127.0.0.1:8000{photo_url}" #Use a variable for the domain instead of hardcoding localhost
+        return full_url

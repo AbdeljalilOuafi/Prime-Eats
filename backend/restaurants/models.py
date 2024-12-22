@@ -11,7 +11,7 @@ class Restaurant(models.Model):
     rating = models.FloatField(null=True, blank=True)
     source = models.CharField(max_length=50)  # 'google', 'yelp', or 'faker'
     menu = models.JSONField(null=True, blank=True)  # Store the menu as JSON
-
+    image_url = models.CharField(max_length=500, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -26,4 +26,5 @@ class FetchRestaurant(models.Model):
 
 class ChainRestaurant(models.Model):
     name = models.CharField(max_length=255, unique=True, db_index=True)
+    image_url = models.CharField(max_length=500, null=True, blank=True)
     menu = models.JSONField()

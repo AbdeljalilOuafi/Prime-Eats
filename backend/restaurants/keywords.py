@@ -29,7 +29,7 @@ CUISINE_KEYWORDS = {
         'taj', 'mumbai', 'delhi', 'bombay', 'india', 'indian', 'punjabi', 'saffron', 'spice',
         'tandoor', 'dhaba', 'chaat', 'indian',
         # Google Places types
-        'indian_restaurant', 'restaurant', 'meal_takeaway'
+        'indian_restaurant', 'meal_takeaway'
     ],
     'Japanese': [
         'sushi', 'ramen', 'teriyaki', 'tempura', 'miso', 'yakitori', 'gyoza', 'katsu', 'udon',
