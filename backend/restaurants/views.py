@@ -21,6 +21,15 @@ class RestaurantListView(APIView):
             # 1. Extract parameters from request
             latitude = float(request.query_params.get("latitude"))
             longitude = float(request.query_params.get("longitude"))
+            radius = request.query_params.get("radius")
+
+            if radius:
+                try:
+                    radius = float(radius)  # Convert radius to float
+                except ValueError:
+                    return Response({'error': 'Invalid radius. Please provide a valid numeric value.'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                radius = 1000
 
             if not latitude or not longitude:
                 return Response({'error': 'No location was provided'}, status=status.HTTP_400_BAD_REQUEST)
@@ -33,15 +42,8 @@ class RestaurantListView(APIView):
             )
 
         service = RestaurantDataService(config('GOOGLE_API_KEY'))
-        return service.get_restaurants(latitude, longitude)
+        return service.get_restaurants(latitude, longitude, radius)
 
 
 
 
-
-class ReturnParams(APIView):
-    def get(self, request, *args, **kwargs):
-        name = request.query_params.get("name")
-        if name:
-            return Response({'success': f'Your name is {name}'})
-        return Response({'error':'No params were found'})
