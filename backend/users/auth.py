@@ -142,7 +142,7 @@ class ClerkAuthentication(authentication.BaseAuthentication):
         token = self.get_token(request)
 
         if not token:
-            raise AuthenticationFailed('No Token was Provided.')
+            return None
 
         try:
             # Verify the token
