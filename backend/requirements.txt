@@ -4,7 +4,7 @@ django-cors-headers==4.4.0
 djangorestframework-simplejwt==5.3.1
 django-redis
 python-decouple
-psycopg2
+# psycopg2
 dj-database-url
 whitenoise
 gunicorn
@@ -20,4 +20,6 @@ cryptography
 # sudo apt-get update
 # sudo apt-get install libpq-dev
 # sudo apt-get install redis-server
-
+# sudo apt install python3.10-dev
+# sudo apt install libmysqlclient-dev
+# sudo apt install pkg-config
