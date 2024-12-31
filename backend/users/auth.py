@@ -1,67 +1,22 @@
-# #!/usr/bin/env python3
-# """auth module"""
-
-# from django.contrib.auth import get_user_model
-# from rest_framework import authentication
-# from rest_framework.exceptions import AuthenticationFailed
-# import requests
-# import uuid
-# import os
-# import sys
-# import django
-
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# # Set up Django settings
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
-# django.setup()
-
-# User = get_user_model()
-
-# class ClerkAuthentication(authentication.BaseAuthentication):
-
-#     def authenticate(self, request):
-#         # Get the token from the Authorization header
-
-#         auth_header = request.META.get('HTTP_AUTHORIZATION')
-#         if not auth_header or not auth_header.startswith('Bearer '):
-#             raise AuthenticationFailed('Not Authenticated, Are you sure the token value starts with Bearer?')
-#         # token = auth_header.split(' ')[1]
-#         token = auth_header.split(' ')[1]
-
-#         try:
-#             # Verify the token with Clerk's API, This implementation should use JWTS/Pem public key according to documentation
-#             response = requests.get(
-#                 'https://api.clerk.dev/v1/me',
-#                 headers={'Authorization': f'Bearer {token}'}
-#             )
-
-#             if response.status_code != 200:
-#                 raise AuthenticationFailed('Invalid token')
-
-#             clerk_user = response.json()
-
-#             # Get or create user based on Clerk ID
-#             user, created = User.objects.get_or_create(
-#                 clerk_id=clerk_user['id'],
-#                 defaults={
-#                     'username': clerk_user['id'],  # or email, or whatever you prefer
-#                     'email': clerk_user['email_addresses'][0]['email_address'],
-#                     # Set other fields as needed
-#                 }
-#             )
-#             return (user, None)
-
-#         except Exception as e:
-#             raise AuthenticationFailed('Invalid token')
-
+#!/usr/bin/env python3
+"""auth module"""
 
 from django.contrib.auth import get_user_model
 from rest_framework import authentication
 from rest_framework.exceptions import AuthenticationFailed
-from jwt import decode, InvalidTokenError
+from jwt import decode, InvalidTokenError, get_unverified_header
+
 from decouple import config
-import time
+from django.core.cache import cache
+from cryptography.hazmat.primitives.serialization import load_pem_public_key
+from cryptography.hazmat.backends import default_backend
+from jwt import decode, get_unverified_header
+import requests
+from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicNumbers
+from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+from base64 import urlsafe_b64decode
+import random
+
 
 
 User = get_user_model()
@@ -71,6 +26,13 @@ class ClerkAuthentication(authentication.BaseAuthentication):
     Custom authentication class for Clerk JWT verification
     Use with DRF's IsAuthenticated permission class
     """
+    def __init__(self):
+        self.PERMITTED_ORIGINS = [
+            'http://localhost:3000',
+            'http://localhost:8000',
+            'http://localhost:5173',
+            #Add production domain name here
+        ]
 
     def get_token(self, request):
         """Extract token from either cookie or Authorization header"""
@@ -84,55 +46,78 @@ class ClerkAuthentication(authentication.BaseAuthentication):
                 token = auth_header.split(' ')[1]
             else:
                 return None
-
         return token
 
     def verify_token(self, token):
-        """Verify the JWT token using Clerk's public key"""
-        # public_key = """-----BEGIN PUBLIC KEY-----
-        # MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtjuB+q5pkx7aKbkUGjZw
-        # 6zn7ZRjUbC2LDAx+HAXUvrtk4KHTVUFyo20xzF4hN91vWq1EAUBH50NaylK6/hQw
-        # erMw20kHnijXksqzeb3YGJEW020NmbRzmlFGDzQDUr2+a9NcsvBdHMHkuywiStns
-        # eVDjGBOuCCmCILKmaAgzkPNur2QcdfvWyaTvPjNmMvoaAg4mJCum/LZt0FlzRGBg
-        # 3JBAw6lZSWArQJEUp0rKoscHj2Q9qATawR4nPbBnLT/3qi6S9kBZKg19lznNcqNT
-        # ewbsyzieSCd/+DosXJsDq+Mr5+GUbrD3W3wKnoaiToqFnHsoIOaJT/6zB/FDHWh4
-        # OwIDAQAB
-        # -----END PUBLIC KEY-----"""
-
-        public_key = config('CLERK_PUBLIC_KEY')
-        PERMITTED_ORIGINS = [
-            'http://localhost:3000',
-            'http://localhost:8000',
-            'http://localhost:5173'
-            # Add react vite port here
-            ]
-
+        """Verify the JWT token using Clerk's JWKS"""
         try:
-            # Decode and verify the token
+            # Get key ID from token header
+            token_headers = get_unverified_header(token)
+            kid = token_headers.get('kid')
+
+            if not kid:
+                raise AuthenticationFailed('No key ID found in token header')
+
+            # Fetch JWKS
+            clerk_secret_key = config('CLERK_SECRET_KEY')
+            headers = {
+                'Authorization': f'Bearer {clerk_secret_key}'
+            }
+
+            jwks_url = 'https://api.clerk.com/v1/jwks'
+            jwks_response = requests.get(jwks_url, headers=headers)
+
+            if not jwks_response.ok:
+                raise AuthenticationFailed(f'Failed to fetch JWKS: {jwks_response.text}')
+
+            jwks = jwks_response.json()
+
+            # Find matching key
+            public_key = None
+            for key in jwks['keys']:
+                if key['kid'] == kid:
+                    if key['kty'] != 'RSA':
+                        raise AuthenticationFailed('Unsupported key type')
+
+                    def decode_base64(data):
+                        pad = b'=' * (-len(data) % 4)
+                        return urlsafe_b64decode(data.encode('ascii') + pad)
+
+                    # Extract the modulus and exponent
+                    e_decoded = int.from_bytes(decode_base64(key['e']), byteorder='big')
+                    n_decoded = int.from_bytes(decode_base64(key['n']), byteorder='big')
+
+                    # Create RSA public key
+                    numbers = RSAPublicNumbers(e_decoded, n_decoded)
+                    public_key = numbers.public_key(default_backend())
+                    break
+
+            if not public_key:
+                raise AuthenticationFailed('No matching key found in JWKS')
+
+            # Verify token using the public key directly
             decoded = decode(
                 token,
-                public_key,
+                key=public_key,  # Use the public key object directly
                 algorithms=['RS256'],
-                options={'verify_exp': True}
+                options={'verify_exp': False}
             )
 
-            # Validate token timing
-            current_time = int(time.time())
-            if decoded.get('exp') < current_time:
-                raise AuthenticationFailed('Token has expired')
-            if decoded.get('nbf') and decoded.get('nbf') > current_time:
-                raise AuthenticationFailed('Token is not yet valid')
+            # Rest of your validation logic
+            # current_time = int(time.time())
+            # if decoded.get('exp') < current_time:
+            #     raise AuthenticationFailed('Token has expired')
+            # if decoded.get('nbf') and decoded.get('nbf') > current_time:
+            #     raise AuthenticationFailed('Token is not yet valid')
 
-            # Validate authorized party (azp)
             azp = decoded.get('azp')
-            if azp and azp not in PERMITTED_ORIGINS:
+            if azp and azp not in self.PERMITTED_ORIGINS:
                 raise AuthenticationFailed('Invalid authorized party')
 
             return decoded
 
-        except InvalidTokenError as e:
-            raise AuthenticationFailed(f'Invalid token: {str(e)}')
         except Exception as e:
+            print(f"Detailed error in verify_token: {str(e)}")
             raise AuthenticationFailed(f'Token verification failed: {str(e)}')
 
     def authenticate(self, request):
@@ -142,7 +127,7 @@ class ClerkAuthentication(authentication.BaseAuthentication):
         token = self.get_token(request)
 
         if not token:
-            raise AuthenticationFailed('No Token was Provided.')
+            return None  # Return None which would default to AnonymousUser
 
         try:
             # Verify the token
@@ -150,33 +135,71 @@ class ClerkAuthentication(authentication.BaseAuthentication):
 
             # Get user info from token claims
             user_id = decoded.get('sub')  # Clerk uses 'sub' for user ID
-            email = decoded.get('email')
 
             if not user_id:
                 raise AuthenticationFailed('Invalid token: missing user ID')
 
-            # Get or create user based on Clerk ID
-            user, created = User.objects.get_or_create(
-                clerk_id=user_id,
-                defaults={
-                    'username': user_id,  # or email, or whatever you prefer
-                    'email': email,
-                    # Set other fields as needed
-                }
-            )
-
-            if created:
-                # Fetch and Populate user.profile here
-                pass
-
-            return (user, None)  # Authentication successful
+            # Check cache or database for an existing user
+            user = self.get_or_create_user(user_id)
+            return (user, None) # Successful Authentication
 
         except AuthenticationFailed as e:
             raise AuthenticationFailed(f'Authentication failed: {str(e)}')
 
-    def authenticate_header(self, request):
-        """
-        Return a string to be used as the value of the `WWW-Authenticate`
-        header in a `401 Unauthenticated` response
-        """
-        return 'Bearer realm="api"'
+    def get_or_create_user(self, user_id):
+        """Fetch or create a user based on Clerk user_id."""
+        # Check cache first
+        cached_user = cache.get(f'user_{user_id}')
+        if cached_user:
+            return cached_user
+
+        # Query database
+        try:
+            user = User.objects.get(clerk_id=user_id)
+            cache.set(f'user_{user_id}', user, timeout=3600)  # Cache for 1 hour
+            return user
+        except User.DoesNotExist:
+            # Fetch user info from Clerk and create the user
+            return self.fetch_and_create_user(user_id)
+
+    def fetch_and_create_user(self, user_id):
+        #Fetch User data
+        clerk_secret_key = config('CLERK_SECRET_KEY')
+        headers = {'Authorization': f'Bearer {clerk_secret_key}'}
+        user_info_url = f"https://api.clerk.dev/v1/users/{user_id}"
+        response = requests.get(user_info_url, headers=headers)
+
+        if not response.ok:
+            raise AuthenticationFailed("Failed to fetch user info from Clerk")
+
+        user_data = response.json()
+        email_addresses = user_data.get('email_addresses', [])
+        primary_email = next(
+            (email.get('email_address') for email in email_addresses if email.get('id') == user_data.get('primary_email_address_id')),
+            None
+        )
+        if not primary_email:
+            raise AuthenticationFailed('Primary email is missing from Clerk data')
+
+        username = user_data.get('username') or f"{user_id[:8]}"
+        while User.objects.filter(username=username).exists():
+            random_number = random.randint(1, 100)
+            username += str(random_number)
+
+        if user_data.get('has_image'):
+            image_url = user_data.get('image_url')
+        else:
+            image_url = ""
+
+
+        user = User.objects.create(
+            clerk_id=user_id,
+            email=primary_email,
+            username=username,
+            profile_image_url=image_url,
+        )
+
+        # Cache the newly created user
+        cache.set(f'user_{user_id}', user, timeout=3600)  # Cache for 1 hour
+
+        return user
