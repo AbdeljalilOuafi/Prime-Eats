@@ -1,10 +1,12 @@
 import { useEffect, useCallback } from "react";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useClerk } from "@clerk/clerk-react";
 import { setAuthToken } from "../services/api";
 
 export const useClerkAuth = () => {
-  const { getToken, isLoaded, clerk } = useAuth();
+  const { getToken, isLoaded } = useAuth();
+  const clerk = useClerk();
 
+  // Wrap setupAuth in useCallback to memoize it
   const setupAuth = useCallback(async () => {
     try {
       const token = await getToken({ template: "code" });
@@ -14,29 +16,26 @@ export const useClerkAuth = () => {
     }
   }, [getToken]);
 
+  // Fetch token when the component mounts or when isLoaded changes
   useEffect(() => {
     if (isLoaded) {
       setupAuth();
     }
   }, [isLoaded, setupAuth]);
 
+  // Listen for session changes
   useEffect(() => {
-    const handleSessionChange = () => {
-      getToken({ template: "code" })
-        .then((token) => setAuthToken(token))
-        .catch((error) => console.error("Error updating token:", error));
-    };
+    if (!clerk || !clerk.watchSession) return;
 
-    // Listen for session changes
-    const subscription = clerk.client.on('session_updated', handleSessionChange);
+    const unsubscribe = clerk.watchSession((session) => {
+      if (session) {
+        setupAuth();
+      }
+    });
 
-    // Initial token setup
-    setupAuth();
-
+    // Cleanup the listener
     return () => {
-      // Clean up the listener
-      subscription.unsubscribe();
+      unsubscribe();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clerk.client, setupAuth]);
+  }, [clerk, setupAuth]);
 };

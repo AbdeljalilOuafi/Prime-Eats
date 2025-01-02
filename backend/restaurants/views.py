@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .utils import RestaurantDataService
 from decouple import config
+from rest_framework.permissions import AllowAny
 
 class RestaurantListView(APIView):
     """
@@ -13,6 +14,7 @@ class RestaurantListView(APIView):
     3. Fetch from Google API or Yelp if no data exists.
     4. Generate fake fallback data as a last resort.
     """
+    permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
         try:

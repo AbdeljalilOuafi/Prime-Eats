@@ -1,9 +1,12 @@
-import { ShoppingBag } from "lucide-react";
-import logo from "../assets/logo/prime-logo-3.gif";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext/CartContext";
 import { Link } from "react-router-dom";
+import { ShoppingBag } from "lucide-react";
 import { SignInButton, SignOutButton, useUser } from "@clerk/clerk-react";
+import logo from "../assets/logo/prime-logo-3.gif";
 
-export default function Navbar() {
+const Navbar = () => {
+  const { cart, openCart } = useContext(CartContext);
   const { isSignedIn } = useUser();
 
   return (
@@ -13,7 +16,6 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-4">
             <img src={logo} alt="PrimeEats Logo" className="h-16 w-auto" />
           </Link>
-          
           <div className="flex items-center gap-6">
             {isSignedIn ? (
               <SignOutButton>
@@ -28,12 +30,22 @@ export default function Navbar() {
                 </button>
               </SignInButton>
             )}
-            <Link to="/cart" className="p-2 rounded-full bg-yellow-400 text-black hover:bg-yellow-500">
+            <button
+              className="relative p-2 rounded-full bg-yellow-400 text-black hover:bg-yellow-500"
+              onClick={openCart}
+            >
               <ShoppingBag className="w-5 h-5" />
-            </Link>
+              {cart.length > 0 && (
+                <span className="absolute -top-1 -right-1 text-xs bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
+                  {cart.length}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;
