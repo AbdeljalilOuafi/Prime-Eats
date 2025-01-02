@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { SignIn, SignUp, RedirectToSignIn, useUser } from "@clerk/clerk-react";
 import HomePage from "./pages/HomePage";
 import MenuPage from "./pages/MenuPage";
-import CartPage from "./pages/CartPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderTrackingPage from "./pages/OrderTrackingPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import Footer from "./components/Footer";
-import { CartProvider } from "./context/CartContext/CartContext";
+import { CartProvider } from "./context/CartContext/CartContext"; // Import CartProvider
 import { AddressProvider } from "./context/AddressContext/AddressContext";
 import RestaurantsPage from "./pages/RestaurantsPage";
 import PropTypes from "prop-types";
 import { useClerkAuth } from "./hooks/useClerkAuth";
+import { useEffect } from "react";
 import AboutPage from "./Components/About/AboutPage";
 import FAQPage from "./Components/FAQ/FAQPage";
 import FAQSection from "./Components/FAQ/FAQSection";
@@ -33,10 +33,23 @@ ProtectedRoute.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-function App() {
+function AppContent() {
+  const navigate = useNavigate(); // Move useNavigate here
+  const { isSignedIn } = useUser(); // Get the user's authentication status
+
+  useEffect(() => {
+    const prevUrl = sessionStorage.getItem("prevUrl");
+    if (prevUrl) {
+      sessionStorage.removeItem("prevUrl"); // Clear the stored URL
+      navigate(prevUrl); // Redirect to the previous URL
+    }
+  }, [navigate]);
+
   useClerkAuth();
+
   return (
-      <CartProvider>
+
+    <CartProvider isSignedIn={isSignedIn} navigate={navigate}> {/* Wrap with CartProvider */}
         <AddressProvider>
           <Router>
             <Routes>
@@ -81,6 +94,12 @@ function App() {
   );
 }
 
-
+function App() {
+  return (
+    <Router>
+      <AppContent /> {/* Render AppContent inside Router */}
+    </Router>
+  );
+}
 
 export default App;
