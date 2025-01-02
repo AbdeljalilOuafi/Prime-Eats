@@ -7,7 +7,7 @@ from .menus import MENUS
 import requests
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Restaurant, FetchRestaurant, ChainRestaurant
+from .models import Restaurant, FetchRestaurant, ChainRestaurant, CuisineType
 from .serializers import RestaurantSerializer, ChainRestaurantSerializer
 import os
 import random
@@ -171,6 +171,11 @@ class RestaurantDataService:
                 else:
                     image_url = ""
 
+                # Infer cuisine type
+                cuisine_name = self._infer_cuisine(r["name"], r.get("types", []))
+                cuisine_type, _ = CuisineType.objects.get_or_create(name=cuisine_name)
+
+                # Create restaurant
                 restaurant = Restaurant.objects.create(
                     name=r["name"],
                     latitude=r["geometry"]["location"]["lat"],
@@ -179,7 +184,7 @@ class RestaurantDataService:
                     address=r.get("address", "No address available"),
                     rating=r.get("rating", random.uniform(2, 5)),
                     source=source,
-                    menu=self.generate_menu(self._infer_cuisine(r["name"], r.get("types", []))),
+                    cuisine_type=cuisine_type,
                     image_url=image_url
                 )
                 restaurants.append(restaurant)
