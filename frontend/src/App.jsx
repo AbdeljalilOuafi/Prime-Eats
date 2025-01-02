@@ -5,21 +5,22 @@ import MenuPage from "./pages/MenuPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderTrackingPage from "./pages/OrderTrackingPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./context/CartContext/CartContext"; // Import CartProvider
 import { AddressProvider } from "./context/AddressContext/AddressContext";
 import RestaurantsPage from "./pages/RestaurantsPage";
 import PropTypes from "prop-types";
 import { useClerkAuth } from "./hooks/useClerkAuth";
 import { useEffect } from "react";
-import AboutPage from "./Components/About/AboutPage";
-import FAQPage from "./Components/FAQ/FAQPage";
-import FAQSection from "./Components/FAQ/FAQSection";
-import ContactPage from "./Components/Contact/ContactPage";
-import TermsConditions from "./Components/Terms&Conditions/Terms&Conditions";
-import UpdateTitle from "./Components/UpdateTitle";
-import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy";
-import CookiesPolicy from "./Components/CookiesPolicy/CookiesPolicy";
+import AboutPage from "./components/About/AboutPage";
+import FAQPage from "./components/FAQ/FAQPage";
+import FAQSection from "./components/FAQ/FAQSection";
+import ContactPage from "./components/Contact/ContactPage";
+import TermsConditions from "./components/Terms&Conditions/Terms&Conditions";
+import UpdateTitle from "./components/UpdateTitle";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
+import CookiesPolicy from "./components/CookiesPolicy/CookiesPolicy";
+import CartPage from "./pages/CartPage";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
