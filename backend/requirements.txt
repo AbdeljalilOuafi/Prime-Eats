@@ -13,6 +13,7 @@ requests
 Pillow
 mysqlclient
 python-decouple
+cryptography
 
 # Run these in Prod for PostgreSQL, Redis Support
 

@@ -15,7 +15,7 @@ class RestaurantListView(APIView):
     4. Generate fake fallback data as a last resort.
     """
     permission_classes = [AllowAny]
-
+    
     def get(self, request, *args, **kwargs):
         try:
             # 1. Extract parameters from request
