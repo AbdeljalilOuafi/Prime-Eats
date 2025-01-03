@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-User = get_user_model()
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
@@ -24,11 +23,14 @@ class CuisineType(models.Model):
         return self.name
 
 class Menu(models.Model):
-    cuisine_type = models.OneToOneField(CuisineType, on_delete=models.CASCADE, related_name='menu')
+    cuisine_type = models.OneToOneField(CuisineType, on_delete=models.CASCADE, related_name='menu', null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    name = models.CharField(max_length=255, null=True, blank=True)  # Added for chain restaurant menus
 
     def __str__(self):
-        return f"{self.cuisine_type.name} Menu"
+        if self.cuisine_type:
+            return f"{self.cuisine_type.name} Menu"
+        return f"{self.name} Menu"
 
 class Category(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
@@ -38,7 +40,8 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        return f"{self.menu.cuisine_type.name} - {self.name}"
+        menu_name = self.menu.cuisine_type.name if self.menu.cuisine_type else self.menu.name
+        return f"{menu_name} - {self.name}"
 
 class MenuItem(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -49,13 +52,17 @@ class MenuItem(models.Model):
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.name} ({self.category.menu.cuisine_type.name})"
+        menu_name = self.category.menu.cuisine_type.name if self.category.menu.cuisine_type else self.category.menu.name
+        return f"{self.name} ({menu_name})"
 
 
 class ChainRestaurant(models.Model):
     name = models.CharField(max_length=255, unique=True, db_index=True)
     image_url = models.CharField(max_length=500, null=True, blank=True)
-    menu = models.JSONField()
+    menu = models.OneToOneField(Menu, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 class FetchRestaurant(models.Model):
     rounded_coordinates = models.CharField(max_length=50, db_index=True)

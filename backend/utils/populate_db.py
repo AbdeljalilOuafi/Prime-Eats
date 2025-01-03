@@ -46,6 +46,44 @@ def migrate_menu_data():
                     price=item['price'],
                     image_url=item['image_url']
                 )
+                
+                
+def migrate_chain_restaurants():
+    for chain_name, chain_data in CHAINS.items():
+            # Create or get the menu
+            menu = Menu.objects.create(
+                name=f"{chain_name} Menu",
+                is_active=True
+            )
+
+            # Create or get the chain restaurant
+            chain_restaurant, created = ChainRestaurant.objects.get_or_create(
+                name=chain_name,
+                defaults={
+                    'image_url': chain_data.get('image_url'),
+                    'menu': menu
+                }
+            )
+
+            # Create categories and menu items
+            for category_name, items in chain_data.items():
+                if category_name != 'image_url':  # Skip the image_url entry
+                    category = Category.objects.create(
+                        menu=menu,
+                        name=category_name
+                    )
+
+                    # Create menu items
+                    for item in items:
+                        MenuItem.objects.create(
+                            category=category,
+                            name=item['name'],
+                            description=item['description'],
+                            price=item['price'],
+                            image_url=item.get('image_url'),
+                            is_available=True
+                        )
+            print(f'Successfully created menu for {chain_name}') 
 
 def populate_db():
     # Run makemigrations and migrate commands
@@ -57,12 +95,7 @@ def populate_db():
 
     # Populate the database with chain restaurants
     print("Populating chain restaurants...")
-    for restaurant_name, menu_data in CHAINS.items():
-        ChainRestaurant.objects.create(
-            name=restaurant_name,
-            menu=menu_data,
-            image_url=menu_data.get('image_url')
-        )
+    migrate_chain_restaurants()
 
     print("Populating Menus...")
     migrate_menu_data()
