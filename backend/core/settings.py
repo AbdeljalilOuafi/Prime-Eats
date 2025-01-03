@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'restaurants',
     'users',
     'orders',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -182,3 +183,5 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
+PAYPAL_MODE = 'sandbox'
