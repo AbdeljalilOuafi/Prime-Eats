@@ -35,6 +35,8 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 
 class ChainRestaurantSerializer(serializers.ModelSerializer):
+    menu = MenuSerializer()
+
     class Meta:
         model = ChainRestaurant
-        fields = ['name', 'menu']
+        fields = ['id', 'name', 'image_url', 'menu']
