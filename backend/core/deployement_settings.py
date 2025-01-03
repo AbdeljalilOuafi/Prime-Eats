@@ -59,3 +59,4 @@ DATABASES = {
     )
 }
 
+PAYPAL_MODE = 'live'
