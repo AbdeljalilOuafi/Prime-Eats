@@ -4,6 +4,7 @@ import django.db.models.deletion
 from django.db import migrations, models
 
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -34,10 +35,3 @@ class Migration(migrations.Migration):
             name='cuisine_type',
             field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='menu', to='restaurants.cuisinetype'),
         ),
-        migrations.DeleteModel(
-            name='Order',
-        ),
-        migrations.DeleteModel(
-            name='OrderItem',
-        ),
-    ]

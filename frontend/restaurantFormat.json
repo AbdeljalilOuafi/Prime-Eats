@@ -1,0 +1,1188 @@
+{
+    "restaurants": [
+        {
+            "id": 38,
+            "name": "Buffalo Grill Beauvais Tille",
+            "latitude": 49.4526483,
+            "longitude": 2.096966000000001,
+            "address": "No address available",
+            "rating": 4.0,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27wCnxHhpk2URlp_0JlWvckt-0g0H0FCdQe990FtiDdA2cuCPlbP__0YI8rDvvWn7pjNJr9Njamkh2T05FyQLJhecbfhxs6K1SHmCtjZlNJ-RPGV8xnIZtJcIJDKJl-v9P_lUY6WXUhYfWGFq4vXPD13dE_kGmLLbQ_mcu8aaaWl2YJh.jpg",
+            "menu": {
+                "id": 4,
+                "categories": [
+                    {
+                        "id": 11,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 49,
+                                "name": "Samosas",
+                                "description": "Crispy pastry filled with spiced potatoes and peas, served with mint chutney.",
+                                "price": "6.00",
+                                "image_url": "https://www.sainsburysmagazine.co.uk/uploads/media/720x770/06/12266-samosas.jpg?v=1-0",
+                                "is_available": true
+                            },
+                            {
+                                "id": 50,
+                                "name": "Pakoras",
+                                "description": "Vegetables dipped in chickpea batter and deep-fried until crispy.",
+                                "price": "5.00",
+                                "image_url": "https://www.recipetineats.com/tachyon/2021/05/Pakora_1-SQ1.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 51,
+                                "name": "Chaat",
+                                "description": "A savory snack made from potatoes, chickpeas, and spices topped with yogurt and chutneys.",
+                                "price": "7.00",
+                                "image_url": "https://www.madhuseverydayindian.com/wp-content/uploads/2021/05/chana-chaat-with-yogurt.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 52,
+                                "name": "Papdi Chaat",
+                                "description": "Crispy dough wafers topped with potatoes, chickpeas, yogurt, and tamarind chutney.",
+                                "price": "8.00",
+                                "image_url": "https://oforest.co/wp-content/uploads/2024/02/papdi-chaat-with-mahuaa-powder-recipe-and-finished-result.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 53,
+                                "name": "Onion Bhaji",
+                                "description": "Spiced onion fritters deep-fried until golden brown.",
+                                "price": "6.50",
+                                "image_url": "https://www.kitchensanctuary.com/wp-content/uploads/2021/01/Onion-Bhaji-square-FS-23.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 12,
+                        "name": "Curries",
+                        "items": [
+                            {
+                                "id": 54,
+                                "name": "Butter Chicken",
+                                "description": "Tender chicken cooked in a creamy tomato sauce with spices.",
+                                "price": "14.00",
+                                "image_url": "https://feelgoodfoodie.net/wp-content/uploads/2024/02/Easy-Butter-Chicken-TIMG.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 55,
+                                "name": "Palak Paneer",
+                                "description": "Spinach curry cooked with paneer cheese and spices.",
+                                "price": "12.00",
+                                "image_url": "https://healthynibblesandbits.com/wp-content/uploads/2020/01/Saag-Paneer-FF.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 56,
+                                "name": "Chicken Tikka Masala",
+                                "description": "Grilled chicken pieces in a rich and creamy tomato sauce.",
+                                "price": "13.00",
+                                "image_url": "https://www.skinnytaste.com/wp-content/uploads/2011/06/Chicken-Tikka-Masala-15.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 57,
+                                "name": "Rogan Josh",
+                                "description": "Slow-cooked lamb in a fragrant curry sauce.",
+                                "price": "15.00",
+                                "image_url": "https://beesbites.com.au/wp-content/uploads/2021/01/Lamb-Rogan-Josh-blog.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 58,
+                                "name": "Vindaloo",
+                                "description": "Spicy curry made with marinated meat in vinegar and spices.",
+                                "price": "14.50",
+                                "image_url": "https://cravinghomecooked.com/wp-content/uploads/2024/08/chicken-vindaloo-1-17.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 39,
+            "name": "Café du Nord",
+            "latitude": 49.4659582,
+            "longitude": 2.1100503,
+            "address": "No address available",
+            "rating": 4.4,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27zEhlkmK2omK-w3nhia4PIn8XXtzkn9kkYESQIFsARW6MCWuNmv5osxhR9gyUO8tcMZEdtIhysSr9bveltFKn925a5sg0n59uElmCohBqNUxeLzURTvXgBhaW4qZVJzTA3ynXHow4T6ePKEumm-0QQLQw3h5jWylpqD7t19FRVbNyU.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 40,
+            "name": "Café Kiosque",
+            "latitude": 49.45446800000001,
+            "longitude": 2.111511,
+            "address": "No address available",
+            "rating": 4.7,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27wrsY1zZW4CnEb8P1ZKgxHGqoRbYqgkJJFmwc5g10VKcysYFdos2yqRxhycOjsIvF3ZaNBxM2cjMGRKgBWdtS0VVvel4Qjl023sqPdOnUt1rFvWAq7m2MHO34Gsm_phTRftBnYIFAMlOSqWKLvP4bDOTlDsA0WTnb5YkX-cUn-aQBkr.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 41,
+            "name": "PAUL",
+            "latitude": 49.459027,
+            "longitude": 2.111666,
+            "address": "No address available",
+            "rating": 4.6,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27zt5hlWtpY0UnDaRM1A_MulWyVLrDFUm365d6i2Tt-hAgeJy1fvSCrocMG4tAYjSgY8H75NOJ8Yjx7V5sVoF6BaBnn01TNyL8Rh6mq9gZx6dyVFJcdJrO5IT_wFu07ZBF1dLxNz_nea0S91CCLcpjWgFouIicTViJdltJVYz36h_Vo.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 42,
+            "name": "PAUL",
+            "latitude": 49.45963760000001,
+            "longitude": 2.1140425,
+            "address": "No address available",
+            "rating": 4.4,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27zbOjdqrF17hv92_QOObBR4e2HyqlSLg9Vh9KeoqpzWcptxk9_hcilVaamEc2DqPdR1Tz3zkBlDrRv-6PSu27g1hJ7llBm163F9eBAfg8vxHM-SMBwqr5rcxM24vz-1GN4ADZLQbK2Ak6uSuI8SCKrzmgjcRd-EM1ta72wYliCZWVq2.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 43,
+            "name": "Le Faubourg Brasserie Restaurant",
+            "latitude": 49.45997879999999,
+            "longitude": 2.1141544,
+            "address": "No address available",
+            "rating": 3.1,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27yTdkQ_x3qiVjqgtIuoTnXVN3ObSJwf0t-KW2lskAJx6CI7vc0x4MoeSz6Qz2DgKp9GO-s3lf9t4YF2trn8sBC-fHjukk-vGXYSO2ZMjgY30_hk8_gbgYF8-1y_tbCv6ibGeylPdhU_hnj01xpMX5vhJsBv_-1CJuOf0qjAhuRg6oyL.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 44,
+            "name": "Trib's",
+            "latitude": 49.4599054,
+            "longitude": 2.1145433,
+            "address": "No address available",
+            "rating": 1.8,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27wYI7vYQzyv5C_-YlQmWV54ApWMnHHZ6vKYGpon1EvQ5WO6ma9wrKYgvovv_oy37TywHvS7JUyyPGa901_zmbxbv3Vpo-gbJ9diBmQoFc-zbdVyYkSWCjmcNsuFgJTIVR2t3Rs_IEHmI9oWyoGn1NomQkGNKna88Y_GXbIkL8ZxN3gE.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 45,
+            "name": "Yummy",
+            "latitude": 49.4529735,
+            "longitude": 2.0969672,
+            "address": "No address available",
+            "rating": 3.8,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27y7WweWRvo7Vnsy_CtAyJotd4suF5LKMAgML7PxS3D9nuI27_-6N14JbakFp4g33lXQ1BuvI0cjxZYTeg-WN52IxRGvh2eCx0wC-PtL7UA_8RwgaEV_Y19u6NmZGPKBqPXLsysoe0vL7kjnYTYSunfO9aNb_O3eAaOV5VtV-wXtch66.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 46,
+            "name": "Au Comptoir",
+            "latitude": 49.4529735,
+            "longitude": 2.0969672,
+            "address": "No address available",
+            "rating": 3.9,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27ygpB8j2QNYuw8I64g1kLB2NsiWAY6Y3T7rN1Z-MyyD-P1eqtmSL_NsBl6k8Tygd5EeEO91b6gnr8AGe2J85__WYZsPf4XLncUy5XdEXVpK14yc7BmMZ-2rMNtQjaYjEmTQNZQI7rl5HRnzIJY8nAjyGuhjobWM96RIAQZJzelLK5J9.jpg",
+            "menu": {
+                "id": 20,
+                "categories": [
+                    {
+                        "id": 43,
+                        "name": "Appetizers",
+                        "items": [
+                            {
+                                "id": 209,
+                                "name": "Nachos",
+                                "description": "Crispy tortilla chips topped with melted cheese, jalapeños, and served with salsa.",
+                                "price": "8.00",
+                                "image_url": "https://www.allrecipes.com/thmb/iMna9iDYAPle85vbGvZcGe-0_yQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/26924-restuarant-style-nachos-dmfs-4x3-1356-1525-0feb4e8024d74fd6ac3c1cbd15442c1d.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 210,
+                                "name": "Chicken Wings",
+                                "description": "Spicy chicken wings served with blue cheese dressing.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqu3QxZ-kZ_OgJbld4gHaCR1fJXYdYJGGufA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 211,
+                                "name": "Mozzarella Sticks",
+                                "description": "Breaded and fried mozzarella cheese served with marinara sauce.",
+                                "price": "7.50",
+                                "image_url": "https://www.fifteenspatulas.com/wp-content/uploads/2013/02/Homemade-Mozzarella-Sticks-Fifteen-Spatulas.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 212,
+                                "name": "Caesar Salad",
+                                "description": "Romaine lettuce tossed with Caesar dressing, croutons, and Parmesan cheese.",
+                                "price": "9.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUO7I6p5hcfCMYa6URocjt0M1RzVEsf5fHg&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 213,
+                                "name": "Garlic Bread",
+                                "description": "Toasted bread topped with garlic butter and herbs.",
+                                "price": "5.00",
+                                "image_url": "https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-4.jpg",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 44,
+                        "name": "Main Courses",
+                        "items": [
+                            {
+                                "id": 214,
+                                "name": "Classic Burger",
+                                "description": "Juicy beef patty topped with lettuce, tomato, and cheese.",
+                                "price": "10.50",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 215,
+                                "name": "Margherita Pizza",
+                                "description": "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
+                                "price": "12.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1bdKKaTySsc4t8ahzTXQIG87Ls_J8ph907w&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 216,
+                                "name": "Grilled Chicken",
+                                "description": "Marinated grilled chicken breast served with vegetables.",
+                                "price": "13.00",
+                                "image_url": "https://leitesculinaria.com/wp-content/uploads/2015/06/whole-grilled-chicken.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 217,
+                                "name": "Fish and Chips",
+                                "description": "Battered fish served with fries and tartar sauce.",
+                                "price": "14.00",
+                                "image_url": "https://www.francoislambert.one/cdn/shop/articles/fish_and_chips.jpg?v=1728066282",
+                                "is_available": true
+                            },
+                            {
+                                "id": 218,
+                                "name": "Pasta Alfredo",
+                                "description": "Fettuccine pasta in a creamy Alfredo sauce topped with Parmesan cheese.",
+                                "price": "11.00",
+                                "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg?resize=768,574",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 47,
+            "name": "Restaurant chez Georges",
+            "latitude": 49.44705090000001,
+            "longitude": 2.1000277,
+            "address": "No address available",
+            "rating": 4.8,
+            "image_url": "http://127.0.0.1:8000/media/AWYs27xOhvhEUAf0aMDtUkns-VDv5GhX9H-ijTY1UgMWR9Rk2kX1VAPRVhoNvoe6BsQG5B7LMkPp4EdaZhV78nW1ljPiDFC33I2Lzp3tljNn-FTDmi_KbOPrfuR8sO7g3gSY5Rn6n0Qu93huKFMloIJNNT95CUUApkbKgPhpSKZj73-q0Bok.jpg",
+            "menu": {
+                "id": 13,
+                "categories": [
+                    {
+                        "id": 29,
+                        "name": "Pho",
+                        "items": [
+                            {
+                                "id": 139,
+                                "name": "Beef Pho",
+                                "description": "Noodle soup made from beef broth.",
+                                "price": "10.00",
+                                "image_url": "https://www.simplyrecipes.com/thmb/6NSfqz9vDog4Ct97ZKaEeG5ByFs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__04__Beef-Pho-LEAD-2-afc6b6a9144947fb9d72070d7ea8c95c.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 140,
+                                "name": "Chicken Pho",
+                                "description": "Noodle soup made from chicken broth.",
+                                "price": "10.00",
+                                "image_url": "https://www.foodandwine.com/thmb/NpvuFzYVBmhs5G9VoqdQ5m4kMuM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chicken-pho-14-FT-RECIPE1222-b82ecb87d5fa4bf0af1b4468c807a560.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 141,
+                                "name": "Vegetarian Pho",
+                                "description": "Noodle soup made from vegetable broth.",
+                                "price": "9.00",
+                                "image_url": "https://fullofplants.com/wp-content/uploads/2022/08/how-to-make-the-best-vegan-pho-vietnamese-inspired-noodle-soup-thumb.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 142,
+                                "name": "Seafood Pho",
+                                "description": "Noodle soup made from seafood broth.",
+                                "price": "11.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpAFURovbEOnhLPIidCnpi5ryyLlA1Wcf7AA&s",
+                                "is_available": true
+                            },
+                            {
+                                "id": 143,
+                                "name": "Pho Ga",
+                                "description": "Chicken noodle soup.",
+                                "price": "10.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRDxkeFuiFDpVZyWjF2f0teXeiDW8ecKJcUQ&s",
+                                "is_available": true
+                            }
+                        ]
+                    },
+                    {
+                        "id": 30,
+                        "name": "Rolls",
+                        "items": [
+                            {
+                                "id": 144,
+                                "name": "Spring Rolls",
+                                "description": "Crispy rolls filled with vegetables.",
+                                "price": "6.00",
+                                "image_url": "https://zenaskitchen.com/wp-content/uploads/2022/02/Pork-Vegetable-Spring-Rolls.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 145,
+                                "name": "Fresh Summer Rolls",
+                                "description": "Rice paper rolls filled with shrimp or vegetables.",
+                                "price": "7.00",
+                                "image_url": "https://healthynibblesandbits.com/wp-content/uploads/2020/02/Vietnamese-Spring-Rolls-Recipe-Card.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 146,
+                                "name": "Fried Spring Rolls",
+                                "description": "Deep-fried rolls filled with meat or vegetables.",
+                                "price": "8.00",
+                                "image_url": "",
+                                "is_available": true
+                            },
+                            {
+                                "id": 147,
+                                "name": "Shrimp Rolls",
+                                "description": "Shrimp wrapped in rice paper.",
+                                "price": "9.00",
+                                "image_url": "https://redhousespice.com/wp-content/uploads/2021/12/whole-spring-rolls-and-halved-ones-scaled.jpg",
+                                "is_available": true
+                            },
+                            {
+                                "id": 148,
+                                "name": "Tofu Rolls",
+                                "description": "Tofu wrapped in rice paper.",
+                                "price": "8.00",
+                                "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPxtiK3poesu8BRkiL40lTzr-bLoSd54kT7g&s",
+                                "is_available": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "chain_restaurants": [
+        {
+            "name": "McDonald's",
+            "menu": {
+                "Burgers": [
+                    {
+                        "name": "Big Mac",
+                        "description": "Two all-beef patties, special sauce, lettuce, cheese, pickles, onions on a sesame seed bun",
+                        "price": 6.99,
+                        "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/db710e7bca43fe41f5547033e72e3a05ce8fbf9dd1075bedd86ef318cd148a81?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjoyNjAsImhlaWdodCI6MjYwfX1d"
+                    },
+                    {
+                        "name": "Big Tasty",
+                        "description": "Large beef patty with special Big Tasty sauce, lettuce, tomato, and cheese",
+                        "price": 7.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4080.png"
+                    },
+                    {
+                        "name": "Double Cheeseburger",
+                        "description": "Two beef patties, two slices of cheese, lettuce, pickles, onions, ketchup, and mustard on a sesame seed bun",
+                        "price": 5.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4040.png"
+                    },
+                    {
+                        "name": "McRoyal",
+                        "description": "Quarter pound beef patty with lettuce, tomatoes, mayo, and cheese",
+                        "price": 6.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4066.png"
+                    },
+                    {
+                        "name": "McChicken™",
+                        "description": "Crispy chicken breast coated in breading, topped with lettuce and mayonnaise, served on a sesame seed bun",
+                        "price": 3.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4100.png"
+                    }
+                ],
+                "Happy Meal™": [
+                    {
+                        "name": "Happy Meal™ Hamburger",
+                        "description": "A classic hamburger with a beef patty, pickles, onions, ketchup, and mustard on a sesame seed bun.",
+                        "price": 3.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4003.png"
+                    },
+                    {
+                        "name": "Happy Meal™ Cheeseburger",
+                        "description": "A cheeseburger featuring a beef patty, a slice of cheese, pickles, onions, ketchup, and mustard on a sesame seed bun.",
+                        "price": 4.29,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4013.png"
+                    },
+                    {
+                        "name": "Happy Meal™ Chickenburger",
+                        "description": "A crispy chicken sandwich with lettuce and mayonnaise on a sesame seed bun.",
+                        "price": 4.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4032.png"
+                    }
+                ],
+                "Desserts": [
+                    {
+                        "name": "McFlurry™ Baci®",
+                        "description": "Creamy vanilla soft serve mixed with Baci® chocolate pieces.",
+                        "price": 3.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-9329.png"
+                    },
+                    {
+                        "name": "McFlurry™ M&M's®",
+                        "description": "Vanilla soft serve blended with colorful M&M's® candies.",
+                        "price": 3.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4710.png"
+                    },
+                    {
+                        "name": "McFlurry™ Nature",
+                        "description": "A refreshing blend of vanilla soft serve with natural ingredients.",
+                        "price": 3.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4712.png"
+                    },
+                    {
+                        "name": "McFlurry™ KitKat®",
+                        "description": "Vanilla soft serve mixed with crunchy KitKat® chocolate pieces.",
+                        "price": 3.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4713.png"
+                    },
+                    {
+                        "name": "McFlurry™ Oréo®",
+                        "description": "Creamy vanilla soft serve swirled with crushed Oreo® cookies.",
+                        "price": 3.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4868.png"
+                    },
+                    {
+                        "name": "Strawberry Donut",
+                        "description": "A fluffy donut filled with sweet strawberry jam and topped with icing.",
+                        "price": 1.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-5088.png"
+                    }
+                ],
+                "Drinks": [
+                    {
+                        "name": "Strawberry Milkshake",
+                        "description": "Creamy milkshake blended with strawberry flavor and topped with whipped cream.",
+                        "price": 3.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4723.png"
+                    },
+                    {
+                        "name": "Vanilla Milkshake",
+                        "description": "Rich and creamy vanilla milkshake topped with whipped cream.",
+                        "price": 3.49,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4728.png"
+                    },
+                    {
+                        "name": "Small Coca Cola",
+                        "description": "Refreshing Coca-Cola served cold in a small cup.",
+                        "price": 1.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4580.png"
+                    },
+                    {
+                        "name": "Small Sprite",
+                        "description": "Crisp and refreshing Sprite served cold in a small cup.",
+                        "price": 1.99,
+                        "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4592.png"
+                    }
+                ],
+                "image_url": "https://glovo.dhmedia.io/image/stores-glovo/stores/df067052f39f0c1bdceabdaefd9899c9500c59f91edaf03244b32ef925019808?t=W3siYXV0byI6eyJxIjoibG93In19LHsicmVzaXplIjp7ImhlaWdodCI6MjI1fX1d"
+            }
+        }
+    ]
+}
