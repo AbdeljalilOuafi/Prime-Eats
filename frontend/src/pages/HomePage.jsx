@@ -5,15 +5,13 @@ import HeroSection from "../components/HeroSection";
 import Navbar from "../components/Navbar";
 
 const HomePage = () => {
-  // const { address } = useContext(AddressContext); // Access address from context
   const [error, setError] = useState(""); // State to handle errors
   const navigate = useNavigate(); // Hook for navigation
 
-  // Function to handle fetched restaurants
   const handleRestaurantsFetched = (data) => {
-    if (data.restaurants && data.restaurants.length > 0) {
+    if ((data.restaurants && data.restaurants.length > 0) || (data.chain_restaurants && data.chain_restaurants.length > 0)) {
       setError("");
-      navigate("/restaurants", { state: { restaurants: data.restaurants } }); // Redirect with data
+      navigate("/restaurants", { state: { data } }); // Pass both restaurants and chain restaurants
     } else {
       setError("No restaurants found near this address."); // Set error message
     }
@@ -21,15 +19,10 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Navbar component */}
       <Navbar />
-
-      {/* Hero section with address input */}
       <HeroSection>
         <AddressInput onRestaurantsFetched={handleRestaurantsFetched} />
       </HeroSection>
-
-      {/* Display an error message if no restaurants are found */}
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}
     </div>
   );

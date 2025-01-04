@@ -5,7 +5,7 @@ import MenuPage from "./pages/MenuPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderTrackingPage from "./pages/OrderTrackingPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./context/CartContext/CartContext";
 import { AddressProvider } from "./context/AddressContext/AddressContext";
 import RestaurantsPage from "./pages/RestaurantsPage";
@@ -18,7 +18,7 @@ import ContactPage from "./components/Contact/ContactPage";
 import TermsConditions from "./components/Terms&Conditions/Terms&Conditions";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import CookiesPolicy from "./components/CookiesPolicy/CookiesPolicy";
-import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -54,7 +54,7 @@ function AppContent() {
           {/* Public routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/restaurants" element={<RestaurantsPage />} />
-          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/menu/:restaurantId" element={<MenuPage />} />
           <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
           <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
           <Route path="/aboutPage" element={<AboutPage />} />
@@ -66,10 +66,10 @@ function AppContent() {
           
           {/* Protected routes */}
           <Route
-            path="/cart"
+            path="/checkout"
             element={
               <ProtectedRoute>
-                <CartPage />
+                <CheckoutPage />
               </ProtectedRoute>
             }
           />
@@ -98,7 +98,7 @@ function AppContent() {
             }
           />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </AddressProvider>
     </CartProvider>
   );

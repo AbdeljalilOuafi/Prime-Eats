@@ -1,9 +1,30 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext/CartContext";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CartPopup = () => {
-  const { cart, removeFromCart, closeCart, proceedToPayment } = useContext(CartContext);
+  const { cart, removeFromCart, closeCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+
+  const handleCheckout = () => {
+    closeCart();
+    navigate('/checkout');
+  };
+  // Helper function to safely format price
+  const formatPrice = (price) => {
+    const numPrice = Number(price);
+    return !isNaN(numPrice) ? numPrice.toFixed(2) : "0.00";
+  };
+
+  // Helper function to calculate total
+  const calculateTotal = (items) => {
+    return items.reduce((sum, item) => {
+      const itemPrice = Number(item.price);
+      return sum + (!isNaN(itemPrice) ? itemPrice : 0);
+    }, 0);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -21,7 +42,7 @@ const CartPopup = () => {
                 <li key={index} className="flex justify-between items-center py-2 border-b">
                   <div>
                     <p className="font-medium">{item.name}</p>
-                    <p className="text-sm text-gray-600">${item.price?.toFixed(2)}</p>
+                    <p className="text-sm text-gray-600">${formatPrice(item.price)}</p>
                   </div>
                   <button 
                     onClick={() => removeFromCart(item.id)}
@@ -34,13 +55,13 @@ const CartPopup = () => {
             </ul>
             <div className="mt-4 pt-4 border-t">
               <p className="font-bold text-lg mb-4">
-                Total: ${cart.reduce((sum, item) => sum + (item.price || 0), 0).toFixed(2)}
+                Total: ${formatPrice(calculateTotal(cart))}
               </p>
               <button
                 className="block w-full bg-yellow-400 text-black p-2 rounded-md hover:bg-yellow-500"
-                onClick={proceedToPayment}
+                onClick={handleCheckout}
               >
-                Proceed to Payment
+                Proceed to Checkout
               </button>
             </div>
           </div>
