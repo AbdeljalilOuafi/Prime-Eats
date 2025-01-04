@@ -75,6 +75,7 @@ class PayPalService:
             return access_token
 
         try:
+            print(f"PAYPAL_CLIENT_ID: {PAYPAL_CLIENT_ID}\nPAYPAL_SECRET:{PAYPAL_SECRET}")
             response = requests.post(
                 f'{PAYPAL_API_BASE_URL}/v1/oauth2/token',
                 headers={
@@ -93,6 +94,7 @@ class PayPalService:
             expires_in = int(data.get('expires_in', 32400))  # Default 9 hours
             cache.set(cache_key, access_token, expires_in - 300)  # Cache for 5 minutes less than expiry
 
+            print(f"Access Token: {access_token}")
             return access_token
         except requests.exceptions.RequestException as e:
             logger.error(f"Failed to obtain PayPal access token: {str(e)}")
@@ -130,7 +132,13 @@ class CreatePayPalOrderView(APIView):
                 'description': f'Order #{order.id} from {order.restaurant.name}',
                 'amount': {
                     'currency_code': 'USD',
-                    'value': str(order.total_amount)
+                    'value': str(order.total_amount),
+                    'breakdown': {
+                        'item_total': {
+                            'currency_code': 'USD',
+                            'value': str(order.total_amount)
+                        }
+                    }
                 },
                 'items': [{
                     'name': item.menu_item.name,
@@ -139,7 +147,7 @@ class CreatePayPalOrderView(APIView):
                         'currency_code': 'USD',
                         'value': str(item.unit_price)
                     }
-                } for item in order.items.all()]  # Using the related_name from OrderItem
+                } for item in order.items.all()]
             }]
         }
 
@@ -151,6 +159,9 @@ class CreatePayPalOrderView(APIView):
             },
             json=payload
         )
+        
+        if response.status_code != 200:
+            logger.error(f"PayPal API Error Response: {response.text}")
 
         response.raise_for_status()
         return JsonResponse({'paypal_order_id': response.json()['id']})

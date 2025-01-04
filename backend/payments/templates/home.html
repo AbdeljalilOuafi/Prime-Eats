@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complete Your Order</title>
     <!-- Load PayPal's SDK with components=buttons -->
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&components=buttons"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AartfsAJihC78lPm8_kFqloOD0PwsFiiHQL2YmCYwMOAgaKc268HkeQiX8DyGQOGEalVATpZwBUSLWex&components=buttons"></script>
     <style>
         .error-message {
             color: #dc3545;
@@ -65,12 +65,13 @@
             }
 
             async createPayPalOrder() {
+                const token = "eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDExMUFBQSIsImtpZCI6Imluc18ycW83dEFXNE1vOXh2cmxvZXBrMUdmOXdyWXEiLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwOi8vbG9jYWxob3N0OjUxNzMiLCJleHAiOjE3MzU2NDY3MjUsImZ2YSI6WzEsLTFdLCJpYXQiOjE3MzU2NDY2NjUsImlzcyI6Imh0dHBzOi8vZmFpci1ncm91cGVyLTI1LmNsZXJrLmFjY291bnRzLmRldiIsIm5iZiI6MTczNTY0NjY1NSwic2lkIjoic2Vzc18ycXl0VG1RMTV3OHpjSUR6QlVMQ2Y2TFVXcUIiLCJzdWIiOiJ1c2VyXzJxeXRUaWppZTNCQk9vWWZuS3R0dDBGTXRkZSJ9.Ca1RoUwCOoGBUo-inl7uzyMVoynf_N_ZBB774yMslH13_zIIF-C0HrT6Xh2yjuMDa3kfcK2GNpGgnYWTwOeA8R1TM2pKRx0IONL60OD0yJKIzwQISZDWNacKaZlYYlWaOEAoIJtCbnBXkVYIuQho4VS7hpfgj53NCrzR4tAdGkkCi3efiVfPYqggtqrWRgS-oMPDEN2IihF9yx7FOcVPzjL3SlrZRv6Uwp72aZZIdA2FQMUY1kvgLCSt1w0subXrFMt5S2j6Ahkk_Lqt6n3tmIkiQj8Mp-M2QOejrNAxowJ5uj1R1tlVS8tmUREfo57Rg3pZSoSIT46h7Bn7VB8Klg"
                 try {
-                    const response = await fetch('/api/payments/create-paypal-order/', {
+                    const response = await fetch('http://localhost:8000/api/payments/create-paypal-order/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                            'Authorization': `Bearer ${token}`
                         },
                         body: JSON.stringify({
                             order_id: this.orderData.order_id
@@ -91,12 +92,13 @@
             }
 
             async capturePayment() {
+                const token = "eyJhbGciOiJSUzI1NiIsImNhdCI6ImNsX0I3ZDRQRDExMUFBQSIsImtpZCI6Imluc18ycW83dEFXNE1vOXh2cmxvZXBrMUdmOXdyWXEiLCJ0eXAiOiJKV1QifQ.eyJhenAiOiJodHRwOi8vbG9jYWxob3N0OjUxNzMiLCJleHAiOjE3MzU2NDY3MjUsImZ2YSI6WzEsLTFdLCJpYXQiOjE3MzU2NDY2NjUsImlzcyI6Imh0dHBzOi8vZmFpci1ncm91cGVyLTI1LmNsZXJrLmFjY291bnRzLmRldiIsIm5iZiI6MTczNTY0NjY1NSwic2lkIjoic2Vzc18ycXl0VG1RMTV3OHpjSUR6QlVMQ2Y2TFVXcUIiLCJzdWIiOiJ1c2VyXzJxeXRUaWppZTNCQk9vWWZuS3R0dDBGTXRkZSJ9.Ca1RoUwCOoGBUo-inl7uzyMVoynf_N_ZBB774yMslH13_zIIF-C0HrT6Xh2yjuMDa3kfcK2GNpGgnYWTwOeA8R1TM2pKRx0IONL60OD0yJKIzwQISZDWNacKaZlYYlWaOEAoIJtCbnBXkVYIuQho4VS7hpfgj53NCrzR4tAdGkkCi3efiVfPYqggtqrWRgS-oMPDEN2IihF9yx7FOcVPzjL3SlrZRv6Uwp72aZZIdA2FQMUY1kvgLCSt1w0subXrFMt5S2j6Ahkk_Lqt6n3tmIkiQj8Mp-M2QOejrNAxowJ5uj1R1tlVS8tmUREfo57Rg3pZSoSIT46h7Bn7VB8Klg"
                 try {
-                    const response = await fetch('/api/payments/capture-paypal-order/', {
+                    const response = await fetch('http://localhost:8000/api/payments/capture-paypal-order/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                            'Authorization': `Bearer ${token}`
                         },
                         body: JSON.stringify({
                             order_id: this.orderData.order_id,
@@ -106,7 +108,11 @@
 
                     const data = await response.json();
                     if (data.status === 'success') {
-                        window.location.href = `/orders/${this.orderData.order_id}/confirmation/`;
+
+                        //Send User to tracking page here
+                         
+                        console.log('Payment was successful!')
+                        console.log(data.order_status)
                     } else {
                         throw new Error(data.message || 'Payment failed');
                     }
