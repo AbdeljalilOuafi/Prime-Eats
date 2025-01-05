@@ -1,4 +1,3 @@
-// MenuPage.jsx
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { useContext, useMemo, useState, useEffect } from "react";
 import PropTypes from "prop-types";
@@ -6,10 +5,20 @@ import { CartContext } from "../context/CartContext/CartContext";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 
-const MenuItem = ({ item, onAddToCart }) => {
+const MenuItem = ({ item, restaurantId, restaurant, onAddToCart }) => {
   const price = typeof item.price === 'string' 
     ? parseFloat(item.price) 
     : item.price;
+
+  const handleAddToCart = () => {
+    // Add restaurant info to the item before adding to cart
+    const itemWithRestaurant = {
+      ...item,
+      restaurantId: restaurantId,
+      restaurantName: restaurant?.name || 'Unknown Restaurant'
+    };
+    onAddToCart(itemWithRestaurant);
+  };
 
   return (
     <motion.div 
@@ -46,7 +55,7 @@ const MenuItem = ({ item, onAddToCart }) => {
             className="px-4 py-2 bg-yellow-400 text-black rounded-lg
               hover:bg-yellow-500 transition-colors duration-200
               disabled:opacity-50 disabled:cursor-not-allowed"
-            onClick={() => onAddToCart(item)}
+            onClick={handleAddToCart}
             disabled={item.is_available === false}
           >
             Add to Cart
@@ -66,6 +75,8 @@ MenuItem.propTypes = {
     image_url: PropTypes.string,
     is_available: PropTypes.bool
   }).isRequired,
+  restaurantId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  restaurant: PropTypes.object.isRequired,
   onAddToCart: PropTypes.func.isRequired
 };
 
@@ -206,6 +217,8 @@ const MenuPage = () => {
                 <MenuItem 
                   key={item.id || item.name} 
                   item={item}
+                  restaurantId={restaurantId}
+                  restaurant={restaurant}
                   onAddToCart={addToCart}
                 />
               ))}

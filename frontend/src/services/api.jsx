@@ -11,29 +11,54 @@ const api = axios.create({
 export const setAuthToken = (token) => {
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    console.log("Token being set:", `Bearer ${token.substring(0, 10)}...`); // Log first 10 chars for safety
-    console.log("Current headers after setting:", api.defaults.headers.common);
+    // console.log("Token being set:", `Bearer ${token.substring(0, 10)}...`); // Log first 10 chars for safety
+    // console.log("Current headers after setting:", api.defaults.headers.common);
   } else {
     delete api.defaults.headers.common["Authorization"];
     console.log("Token was cleared - no token provided");
   }
 };
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error("API Error:", error.response || error.message);
-    return Promise.reject(error);
-  }
-);
 
+
+// Add request interceptor for debugging
 api.interceptors.request.use(
   (config) => {
-    console.log('Request Headers:', config.headers);
+    // Log the full request details
+    console.log('Outgoing Request:', {
+      url: config.url,
+      method: config.method,
+      baseURL: config.baseURL,
+      headers: config.headers,
+      data: config.data
+    });
     return config;
   },
   (error) => {
     return Promise.reject(error);
   }
 );
+
+// Add response interceptor for debugging
+api.interceptors.response.use(
+  (response) => {
+    console.log('Response received:', {
+      status: response.status,
+      data: response.data,
+      headers: response.headers
+    });
+    return response;
+  },
+  (error) => {
+    console.error('API Error:', {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+      config: error.config
+    });
+    return Promise.reject(error);
+  }
+);
+
+
 
 export default api;

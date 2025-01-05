@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import MenuPage from "./pages/MenuPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderTrackingPage from "./pages/OrderTrackingPage";
-import ConfirmationPage from "./pages/ConfirmationPage";
+// import ConfirmationPage from "./pages/ConfirmationPage";
 // import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./context/CartContext/CartContext";
 import { AddressProvider } from "./context/AddressContext/AddressContext";
@@ -89,14 +89,14 @@ function AppContent() {
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/confirmation"
             element={
               <ProtectedRoute>
                 <ConfirmationPage />
               </ProtectedRoute>
             }
-          />
+          /> */}
         </Routes>
         {/* <Footer /> */}
       </AddressProvider>

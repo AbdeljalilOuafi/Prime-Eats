@@ -1,16 +1,18 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext/CartContext';
+import { AddressContext } from '../context/AddressContext/AddressContext';
 import Navbar from '../components/Navbar';
 import api from '../services/api';
 
 const CheckoutPage = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, deliveryInfo } = useContext(CartContext);
+  const { address } = useContext(AddressContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Redirect to cart if cart is empty
+  // Redirect to restaurants if cart is empty
   useEffect(() => {
     if (cart.length === 0) {
       navigate('/restaurants');
@@ -31,85 +33,93 @@ const CheckoutPage = () => {
     }, 0);
   };
 
-  // Helper function to group cart items by restaurant
-  const groupByRestaurant = () => {
-    return cart.reduce((grouped, item) => {
-      const restaurantId = item.restaurantId;
-      if (!grouped[restaurantId]) {
-        grouped[restaurantId] = {
-          restaurantName: item.restaurantName || 'Unknown Restaurant',
-          items: []
-        };
-      }
-      grouped[restaurantId].items.push(item);
-      return grouped;
-    }, {});
-  };
-
-  const formatOrderItems = () => {
-    const itemsByRestaurant = cart.reduce((acc, item) => {
-      const restaurantId = item.restaurantId;
-      if (!acc[restaurantId]) {
-        acc[restaurantId] = [];
-      }
-      
-      const existingItem = acc[restaurantId].find(i => i.item_id === item.id);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        acc[restaurantId].push({
-          item_id: item.id,
-          quantity: 1,
-          price: item.price
-        });
-      }
-      
-      return acc;
-    }, {});
-
-    return itemsByRestaurant;
-  };
-
   const handleCheckout = async () => {
     try {
       setIsLoading(true);
       setError(null);
 
-      const formattedOrders = formatOrderItems();
-      const orderPromises = Object.entries(formattedOrders).map(([restaurantId, items]) => {
-        return api.post('/orders/create/', {
-          restaurant_id: parseInt(restaurantId),
-          items: items,
-          total_amount: items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+      if (!address.fullAddress) {
+        throw new Error('Delivery address is required');
+      }
+
+      const formattedOrders = cart.reduce((acc, item) => {
+        if (!item.restaurantId) {
+          console.error('Missing restaurantId for item:', item);
+          return acc;
+        }
+
+        const restaurantId = parseInt(item.restaurantId);
+        
+        if (!acc[restaurantId]) {
+          acc[restaurantId] = {
+            restaurant_id: restaurantId,
+            items: [],
+            delivery_address: address.fullAddress,
+            delivery_latitude: address.latitude,
+            delivery_longitude: address.longitude
+          };
+        }
+        
+        if (!item.id) {
+          console.error('Missing item.id for item:', item);
+          return acc;
+        }
+
+        acc[restaurantId].items.push({
+          item_id: parseInt(item.id),
+          quantity: 1
         });
+        
+        return acc;
+      }, {});
+
+      const orderPayloads = Object.values(formattedOrders);
+
+      if (orderPayloads.length === 0) {
+        throw new Error('No valid orders to process');
+      }
+
+      const orderPromises = orderPayloads.map(async orderPayload => {
+        try {
+          const response = await api.post('/orders/create/', orderPayload);
+          return response;
+        } catch (error) {
+          console.error('Error for restaurant', orderPayload.restaurant_id, ':', error.response?.data);
+          throw error;
+        }
       });
 
       const results = await Promise.all(orderPromises);
       
       const orders = results.map(result => ({
-        orderId: result.data.order_id,
+        order_id: result.data.order_id,
         totalAmount: result.data.total_amount,
         status: result.data.status,
-        restaurantId: result.data.restaurant_id
+        isPaid: result.data.is_paid,
+        message: result.data.message
       }));
 
-      // Navigate to payment page with order information
+      // Navigate to payment with all necessary information
       navigate('/payment', {
         state: {
-          orders,
-          totalAmount: calculateTotal(cart)
+          orders: orders,
+          totalAmount: calculateTotal(cart),
+          deliveryAddress: address.fullAddress,
+          deliveryLocation: {
+            lat: address.latitude,
+            lng: address.longitude
+          },
+          restaurantLocation: deliveryInfo.restaurantLocation
         }
       });
 
     } catch (err) {
       console.error('Checkout error:', err);
-      setError(err.response?.data?.message || 'Failed to process checkout. Please try again.');
+      setError(err.message || 'Failed to process checkout. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
-
-  const restaurantGroups = groupByRestaurant();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -123,26 +133,25 @@ const CheckoutPage = () => {
           </div>
         )}
 
+        {/* Delivery Address Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="text-xl font-semibold mb-4">Delivery Address</h2>
+          <p className="text-gray-700">
+            {address.fullAddress || 'No delivery address set'}
+          </p>
+        </div>
+
+        {/* Order Summary Section */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           
-          {Object.entries(restaurantGroups).map(([restaurantId, group]) => (
-            <div key={restaurantId} className="mb-6 last:mb-0">
-              <h3 className="font-medium text-lg mb-3 text-gray-800">
-                {group.restaurantName}
-              </h3>
-              
-              <div className="space-y-3">
-                {group.items.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center py-2 border-b">
-                    <div>
-                      <p className="font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-600">${formatPrice(item.price)}</p>
-                    </div>
-                    <p className="text-gray-600">Quantity: 1</p>
-                  </div>
-                ))}
+          {cart.map((item, index) => (
+            <div key={index} className="flex justify-between items-center py-2 border-b">
+              <div>
+                <p className="font-medium">{item.name}</p>
+                <p className="text-sm text-gray-600">${formatPrice(item.price)}</p>
               </div>
+              <p className="text-gray-600">Quantity: 1</p>
             </div>
           ))}
           
@@ -156,9 +165,9 @@ const CheckoutPage = () => {
 
         <button
           onClick={handleCheckout}
-          disabled={isLoading}
+          disabled={isLoading || !address.fullAddress}
           className={`w-full bg-yellow-400 text-black py-3 rounded-md font-semibold
-            ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-500'}`}
+            ${(isLoading || !address.fullAddress) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-500'}`}
         >
           {isLoading ? 'Processing...' : 'Proceed to Payment'}
         </button>
