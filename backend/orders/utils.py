@@ -8,7 +8,7 @@ def send_mail(email, subject, content):
   resend.api_key = config('RESEND_API_KEY')
 
   r = resend.Emails.send({
-    "from": "support@primeeats.live",
+    "from": "PrimeEats@primeeats.live",
     "to": email,
     "subject": subject,
     "html": content

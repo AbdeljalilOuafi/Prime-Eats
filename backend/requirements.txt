@@ -15,6 +15,7 @@ mysqlclient
 python-decouple
 cryptography
 resend
+celery
 # Run these in Prod for PostgreSQL, Redis Support
 
 # sudo apt-get update
