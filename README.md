@@ -83,7 +83,6 @@ npm run dev
 - Mobile application (iOS & Android)
 - Multi-language support
 - International payment integration
-- Advanced restaurant management system
 
 ## Deployment 🌐
 Coming soon
