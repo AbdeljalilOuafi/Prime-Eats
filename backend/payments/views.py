@@ -127,6 +127,57 @@ class CreatePayPalOrderView(APIView):
         PayPalService.validate_order_status(order)
         access_token = PayPalService.get_access_token()
 
+        # For demo orders with ALX coupon
+        if order.coupon_code == "ALX":
+            items = list(order.items.all())
+            # If there's only one item
+            if len(items) == 1:
+                items_payload = [{
+                    'name': items[0].menu_item.name,
+                    'quantity': '1',  # Force quantity to 1
+                    'unit_amount': {
+                        'currency_code': 'USD',
+                        'value': '0.01'
+                    }
+                }]
+            else:
+                # Multiple items: first item $0.01, rest $0
+                items_payload = []
+                for i, item in enumerate(items):
+                    if i == 0:
+                        items_payload.append({
+                            'name': item.menu_item.name,
+                            'quantity': '1',  # Force quantity to 1
+                            'unit_amount': {
+                                'currency_code': 'USD',
+                                'value': '0.01'
+                            }
+                        })
+                    else:
+                        # For remaining items
+                        items_payload.append({
+                            'name': item.menu_item.name,
+                            'quantity': '1',  # Force quantity to 1
+                            'unit_amount': {
+                                'currency_code': 'USD',
+                                'value': '0.00'
+                            }
+                        })
+            
+            paypal_amount = '0.01'
+            
+        else:
+            # Normal order - use actual prices
+            items_payload = [{
+                'name': item.menu_item.name,
+                'quantity': str(item.quantity),
+                'unit_amount': {
+                    'currency_code': 'USD',
+                    'value': str(item.unit_price)
+                }
+            } for item in order.items.all()]
+            paypal_amount = str(order.total_amount)
+
         payload = {
             'intent': 'CAPTURE',
             'purchase_units': [{
@@ -134,22 +185,15 @@ class CreatePayPalOrderView(APIView):
                 'description': f'Order #{order.id} from {order.restaurant.name}',
                 'amount': {
                     'currency_code': 'USD',
-                    'value': str(order.total_amount),
+                    'value': paypal_amount,
                     'breakdown': {
                         'item_total': {
                             'currency_code': 'USD',
-                            'value': str(order.total_amount)
+                            'value': paypal_amount
                         }
                     }
                 },
-                'items': [{
-                    'name': item.menu_item.name,
-                    'quantity': str(item.quantity),
-                    'unit_amount': {
-                        'currency_code': 'USD',
-                        'value': str(item.unit_price)
-                    }
-                } for item in order.items.all()]
+                'items': items_payload
             }]
         }
 

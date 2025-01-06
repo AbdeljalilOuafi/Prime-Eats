@@ -13,7 +13,8 @@ class CreateOrderView(APIView):
     def post(self, request):
         try:
             restaurant_id = request.data.get('restaurant_id')
-            items = request.data.get('items', [])  # Expected format: [{"item_id": 1, "quantity": 2}]
+            items = request.data.get('items', [])
+            coupon_code = request.data.get('coupon_code')  # Get coupon code from request
 
             try:
                 restaurant = Restaurant.objects.get(id=restaurant_id)
@@ -49,13 +50,24 @@ class CreateOrderView(APIView):
                     'total_price': item_total
                 })
 
+            # Store original amount before discount
+            original_amount = total_amount
+
+            # Apply coupon code if valid
+            is_demo_order = coupon_code == "ALX"
+            if is_demo_order:
+                # Set to minimum amount for PayPal testing (e.g., $0.01)
+                total_amount = Decimal('0.01')
+
             with transaction.atomic():
                 order = Order.objects.create(
                     user=request.user,
                     restaurant=restaurant,
                     total_amount=total_amount,
+                    original_amount=original_amount,  # Store original amount
                     status='pending',
-                    is_paid=False
+                    is_paid=False,
+                    coupon_code=coupon_code if is_demo_order else None
                 )
 
                 order_items = [
@@ -73,9 +85,11 @@ class CreateOrderView(APIView):
             return Response({
                 "message": "Order created successfully",
                 "order_id": order.id,
-                "total_amount": total_amount,
+                "original_amount": original_amount,
+                "final_amount": total_amount,
                 "status": order.status,
-                "is_paid": order.is_paid
+                "is_paid": order.is_paid,
+                "coupon_applied": is_demo_order
             }, status=status.HTTP_201_CREATED)
 
         except Exception as e:

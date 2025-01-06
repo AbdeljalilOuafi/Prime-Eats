@@ -20,6 +20,10 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    coupon_code = models.CharField(max_length=50, null=True, blank=True)
+    original_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+
+
 
     def __str__(self):
         return f"Order #{self.id} - {self.restaurant.name}"
