@@ -30,10 +30,10 @@ To run this project, you need:
 ## Installation 💻
 
 1. Clone the repository
-\`\`\`bash
+```bash
 git clone https://github.com/yourusername/primeeats.git
 cd primeeats
-\`\`\`
+```
 
 2. Backend setup
 \`\`\`bash
