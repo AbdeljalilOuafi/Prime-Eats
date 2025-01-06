@@ -32,7 +32,7 @@ To run this project, you need:
 1. Clone the repository
 ```bash
 git clone https://github.com/AbdeljalilOuafi/Prime-Eats
-cd primeeats
+cd Prime-Eats
 ```
 
 2. Backend setup
