@@ -4,6 +4,8 @@ from rest_framework import status
 from .utils import RestaurantDataService
 from decouple import config
 from rest_framework.permissions import AllowAny
+from .models import ChainRestaurant
+from .serializers import ChainRestaurantSerializer
 
 class RestaurantListView(APIView):
     """
@@ -15,7 +17,7 @@ class RestaurantListView(APIView):
     4. Generate fake fallback data as a last resort.
     """
     permission_classes = [AllowAny]
-    
+
     def get(self, request, *args, **kwargs):
         try:
             # 1. Extract parameters from request
@@ -44,6 +46,16 @@ class RestaurantListView(APIView):
         service = RestaurantDataService(config('GOOGLE_API_KEY'))
         return service.get_restaurants(latitude, longitude, radius)
 
-
+class ChainRestaurantListView(APIView):
+    """
+    API endpoint that returns all chain restaurants.
+    """
+    def get(self, request):
+        chain_restaurants = ChainRestaurant.objects.all()
+        chains_data = ChainRestaurantSerializer(chain_restaurants, many=True).data
+        if chains_data:
+            return Response(chains_data, status=status.HTTP_200_OK)
+        else:
+            return Response({"error":"No data was found! Are you sure the database is populated ?"})
 
 
