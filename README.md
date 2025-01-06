@@ -31,37 +31,47 @@ To run this project, you need:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/primeeats.git
+git clone https://github.com/AbdeljalilOuafi/Prime-Eats
 cd primeeats
 ```
 
 2. Backend setup
-\`\`\`bash
+```bash
 # Create virtual environment
 python -m venv venv
+```
 
 # Activate virtual environment
 # On Windows
+```
 .\\venv\\Scripts\\activate
+```
 # On Unix or MacOS
+```
 source venv/bin/activate
+```
 
 # Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
 # Run migrations
+```bash
 python manage.py migrate
+```
 
 # Start server
+```bash
 python manage.py runserver
-\`\`\`
+```
 
 3. Frontend setup
-\`\`\`bash
+```bash
 cd frontend
 npm install
 npm run dev
-\`\`\`
+```
 
 ## Team 👥
 - Badr Bouzagui
@@ -72,7 +82,6 @@ npm run dev
 ## Future Features 🚀
 - Mobile application (iOS & Android)
 - Multi-language support
-- Real-time order tracking
 - International payment integration
 - Advanced restaurant management system
 
@@ -83,4 +92,4 @@ Coming soon
 This project is MIT licensed.
 
 ---
-Made with ❤️ by the PrimeEats Team
+Made with ❤️ by the Students in ALX SE Team
