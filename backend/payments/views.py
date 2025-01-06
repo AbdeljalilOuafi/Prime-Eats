@@ -13,6 +13,8 @@ from decouple import config
 from django.core.cache import cache
 import json
 from django.shortcuts import render
+from orders.tasks import send_order_confirmation_email
+
 
 
 # Configure logging
@@ -198,7 +200,13 @@ class CapturePayPalOrderView(APIView):
             order.is_paid = True
             order.status = 'confirmed'  # Update status after successful payment
             order.save()
-
+            
+            # Queue the confirmation email task
+            send_order_confirmation_email.delay(
+                order_id=order.id,
+                email=request.user.email
+            )
+            
             # Log successful payment
             logger.info(f"Payment completed for order {order.id}")
 

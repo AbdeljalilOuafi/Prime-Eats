@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .order-details {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .restaurant-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .total-amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Order Confirmation</h1>
+    </div>
+
+    <p>Hi {{ order.user.username }},</p>
+
+    <p>Thank you for your order! Your payment has been successfully processed.</p>
+
+    <div class="order-details">
+        <p><strong>Order Number:</strong> #{{ order.id }}</p>
+        <p><strong>Date:</strong> {{ order.created_at|date:"F j, Y, g:i a" }}</p>
+        <p class="restaurant-name">{{ order.restaurant.name }}</p>
+        <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+        <p class="total-amount">Total Amount: ${{ order.total_amount }}</p>
+    </div>
+
+    <p>You can track your order status through your account on PrimeEats.</p>
+
+    <div class="footer">
+        <p>If you have any questions, please contact our support team.</p>
+        <p>Best regards,<br>The PrimeEats Team</p>
+    </div>
+</body>
+</html>
