@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/f
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#1a202c] text-gray-300">
+    <footer className="relative w-full bg-[#1a202c] text-gray-300 mt-[15%] mb-0">
       {/* Curved top shape */}
       <div className="absolute -top-24 left-0 w-full overflow-hidden">
         <svg    
