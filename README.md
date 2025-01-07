@@ -92,4 +92,4 @@ Coming soon
 This project is MIT licensed.
 
 ---
-Made with ❤️ by the Students in ALX SE Team
+Made with ❤️ by the Students in ALX SE
