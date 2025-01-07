@@ -11,6 +11,7 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [couponCode, setCouponCode] = useState('');
 
   // Redirect to restaurants if cart is empty
   useEffect(() => {
@@ -56,7 +57,8 @@ const CheckoutPage = () => {
             items: [],
             delivery_address: address.fullAddress,
             delivery_latitude: address.latitude,
-            delivery_longitude: address.longitude
+            delivery_longitude: address.longitude,
+            coupon_code: couponCode // Add coupon code to the order payload
           };
         }
         
@@ -94,12 +96,13 @@ const CheckoutPage = () => {
       const orders = results.map(result => ({
         order_id: result.data.order_id,
         totalAmount: result.data.total_amount,
+        originalAmount: result.data.original_amount, 
+        finalAmount: result.data.final_amount,      
         status: result.data.status,
         isPaid: result.data.is_paid,
         message: result.data.message
       }));
 
-      // Navigate to payment with all necessary information
       navigate('/payment', {
         state: {
           orders: orders,
@@ -109,7 +112,8 @@ const CheckoutPage = () => {
             lat: address.latitude,
             lng: address.longitude
           },
-          restaurantLocation: deliveryInfo.restaurantLocation
+          restaurantLocation: deliveryInfo.restaurantLocation,
+          couponCode: couponCode // Pass coupon code to payment page
         }
       });
 
@@ -139,6 +143,27 @@ const CheckoutPage = () => {
           <p className="text-gray-700">
             {address.fullAddress || 'No delivery address set'}
           </p>
+        </div>
+
+        {/* Coupon Code Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="text-xl font-semibold mb-4">Coupon Code</h2>
+            {/* Button to Autofill Coupon Code */}
+          <button
+            onClick={() => setCouponCode("ALX")}
+            className="bg-green-600 text-white py-2 px-4 rounded-md mb-4 hover:bg-green-500 transition"
+          >
+            Use Coupon Code: ALX
+          </button>
+          <div className="flex gap-4">
+            <input
+              type="text"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
+              placeholder="Enter coupon code"
+              className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
         </div>
 
         {/* Order Summary Section */}

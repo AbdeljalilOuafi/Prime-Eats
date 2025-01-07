@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import RestaurantCard from "../components/RestaurantCard";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
+import TiltRestaurantCard from "../components/TiltRestaurantCard";
 
 const RestaurantsPage = () => {
   const location = useLocation();
@@ -65,7 +65,7 @@ const RestaurantsPage = () => {
                   onClick={() => handleRestaurantClick(restaurant, false)}
                   className="cursor-pointer transform hover:scale-105 transition-transform duration-300"
                 >
-                  <RestaurantCard 
+                  <TiltRestaurantCard 
                     restaurant={restaurant}
                     isChain={false}
                   />
@@ -91,9 +91,9 @@ const RestaurantsPage = () => {
                   onClick={() => handleRestaurantClick(chain, true)}
                   className="cursor-pointer transform hover:scale-105 transition-transform duration-300"
                 >
-                  <RestaurantCard 
+                  <TiltRestaurantCard 
                     restaurant={chain}
-                    isChain={true}
+                    isChain={false}
                   />
                 </motion.div>
               ))}
