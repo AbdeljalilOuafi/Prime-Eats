@@ -1,10 +1,10 @@
 import React from 'react';
 
 const stats = [
-  { number: '100', label: 'Restaurant Partners' },
-  { number: '0', label: 'Happy Customers' },
-  { number: '0', label: 'Deliveries Made' },
-  { number: '3+', label: 'Cities Served' }
+  { number: '500', label: 'Restaurant Partners' },
+  { number: '999+', label: 'Happy Customers' },
+  { number: '999+', label: 'Deliveries Made' },
+  { number: 'Global', label: 'Cities Served' }
 ];
 
 export default function StatsSection() {

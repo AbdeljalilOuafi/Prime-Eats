@@ -15,9 +15,6 @@ export default function AboutPage() {
       <MissionSection />
       <StatsSection />
       <TeamSection />
-      <div className="pt-16 pb-0 bg-gray-50">
-        <Footer />
-      </div>
     </div>
   );
 };
