@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "What if there's an issue with my order?",
-    answer: "Our customer service team is available 24/7. You can report any issues through the app or website, and we'll make it right immediately."
+    answer: "Our customer service team is available 24/7. You can report any issues through the website, and we'll make it right immediately."
   },
   {
     question: "Do you have a minimum order amount?",
