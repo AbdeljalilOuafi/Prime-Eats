@@ -5,11 +5,11 @@ export default function AboutHero() {
   return (
     <div className="relative bg-white">
       {/* Hero Image Section */}
-      <div className="relative h-[95vh] m-0 w-full rounded-br-[100%] rounded-bl-[100%] overflow-hidden ps-200">
+      <div className="relative h-[75vh] m-0 w-full overflow-hidden ps-200">
         <img
           src="./images/navbar-aboutpage.png"
-          alt="AboutPage"
-          className="absolute top-0 left-0 h-full w-full object-cover"
+          alt="Full Image"
+          className="object-contain w-full h-auto"
         />
       </div>
 
