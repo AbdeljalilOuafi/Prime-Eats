@@ -14,13 +14,13 @@ const team = [
   {
     name: 'Ouafi Abdeljalil',
     role: 'Backend Developer',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'
-},
-{
+    image: 'https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&w=400&q=80'
+  },
+  {
     name: 'Soukaina megdani',
     role: 'Backend Developer',
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80'
-} 
+  }
 ];
 
 export default function TeamSection() {
