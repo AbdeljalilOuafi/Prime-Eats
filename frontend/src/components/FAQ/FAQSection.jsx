@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     question: "What are the delivery fees?",
-    answer: "Delivery fees vary by restaurant and distance. The exact fee will be shown before you place your order. PrimePlus members get free delivery on eligible orders."
+    answer: "Delivery is free for all orders, with no additional charges."
   },
   {
     question: "How long does delivery take?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "What if there's an issue with my order?",
-    answer: "Our customer service team is available 24/7. You can report any issues through the app or website, and we'll make it right immediately."
+    answer: "Our customer service team is available 24/7. You can report any issues through the website, and we'll make it right immediately."
   },
   {
     question: "Do you have a minimum order amount?",

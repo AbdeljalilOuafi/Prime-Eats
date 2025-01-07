@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/f
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#1a202c] text-gray-300">
+    <footer className="relative w-full bg-[#1a202c] text-gray-300 mt-[15%] mb-0">
       {/* Curved top shape */}
       <div className="absolute -top-24 left-0 w-full overflow-hidden">
         <svg    
@@ -20,14 +20,14 @@ export default function Footer() {
 
       {/* Footer content */}
       <div className="container mx-auto pt-4 pb-8">
-        <div className="flex justify-center items-center gap-4">
-          <div className="relative bottom-20 mt-4 text-2xl font-bold text-yellow-500">
+        <div className="flex justify-around gap-4">
+          <div className="relative bottom-20 mt-4 text-xl sm:text-2xl font-bold text-yellow-500">
             PrimeEats
           </div>
         </div>
-        <div className=" flex justify-around gap-4">
+        <div className="flex justify-around gap-4">
           {/* Links of interest */}
-          <div>
+          <div className="flex flex-col p-0 m-1.5">
             <h3 className="text-lg font-semibold mb-4">Links of interest</h3>
             <ul className="space-y-4">
               <li>
@@ -64,8 +64,8 @@ export default function Footer() {
           </div>
 
           {/* Follow us */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 m-3 relative">Follow us</h3>
+          <div className="mr-5 p-0">
+            <h3 className="text-lg font-semibold mb-4 relative">Follow us</h3>
             <ul className="space-y-4">
               <li>
                 <a 
@@ -73,9 +73,9 @@ export default function Footer() {
                     target="_blank" 
                     className="flex items-center hover:text-white relative group"
                   >
-                    <FaFacebookF className="m-2" />
+                    <FaFacebookF className="mr-2 text-sm sm:text-lg" />
                     <span>Facebook</span>
-                    <span className="absolute right-0 left-2 bottom-0 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+                    <span className="absolute right-0 left-0 bottom-0 top-7 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
                 </a>
               </li>
               <li>
@@ -83,9 +83,9 @@ export default function Footer() {
                     href="https://github.com/AbdeljalilOuafi/Prime-Eats" 
                     target="_blank" 
                     className="flex items-center hover:text-white relative group">
-                      <FaTwitter className="m-2" />
+                      <FaTwitter className="mr-2" />
                       <span>Twitter</span>
-                      <span className="absolute right-5 left-2 bottom-0 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+                      <span className="absolute right-5 left-0 bottom-0 top-7 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
                 </a>
               </li>
               <li>
@@ -93,9 +93,9 @@ export default function Footer() {
                     href="https://github.com/AbdeljalilOuafi/Prime-Eats" 
                     target="_blank" 
                     className="flex items-center hover:text-white relative group">
-                      <FaInstagram className="m-2" />
+                      <FaInstagram className="mr-2" />
                       <span>Instagram</span>
-                      <span className="absolute right-0 left-2 bottom-0 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+                      <span className="absolute right-0 left-0 bottom-0 top-7 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
                 </a>
               </li>
               <li>
@@ -103,9 +103,9 @@ export default function Footer() {
                     href="https://github.com/AbdeljalilOuafi/Prime-Eats" 
                     target="_blank"
                     className="flex items-center hover:text-white relative group">
-                      <FaLinkedinIn className="m-2" />
+                      <FaLinkedinIn className="mr-2" />
                       <span>Linkedin</span>
-                      <span className="absolute right-2 left-2 bottom-0 h-0.5 scale-x-0 bg-white transform trasition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+                      <span className="absolute right-2 left-0 bottom-0 top-7 h-0.5 scale-x-0 bg-white transform trasition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
                 </a>
               </li>
             </ul>
