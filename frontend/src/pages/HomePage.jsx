@@ -3,17 +3,19 @@ import { useNavigate } from "react-router-dom";
 import AddressInput from "../components/AddressInput";
 import HeroSection from "../components/HeroSection";
 import Navbar from "../components/Navbar";
+import ServiceIntro from "../components/ServiceIntro";
+import ChainRestaurantSlider from "../components/ChainRestaurantSlider";
 
 const HomePage = () => {
-  const [error, setError] = useState(""); // State to handle errors
-  const navigate = useNavigate(); // Hook for navigation
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRestaurantsFetched = (data) => {
-    if ((data.restaurants && data.restaurants.length > 0) || (data.chain_restaurants && data.chain_restaurants.length > 0)) {
+    if ((data.restaurants?.length > 0) || (data.chain_restaurants?.length > 0)) {
       setError("");
-      navigate("/restaurants", { state: { data } }); // Pass both restaurants and chain restaurants
+      navigate("/restaurants", { state: { data } });
     } else {
-      setError("No restaurants found near this address."); // Set error message
+      setError("No restaurants found near this address.");
     }
   };
 
@@ -24,6 +26,8 @@ const HomePage = () => {
         <AddressInput onRestaurantsFetched={handleRestaurantsFetched} />
       </HeroSection>
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+      <ChainRestaurantSlider />
+      <ServiceIntro />
     </div>
   );
 };

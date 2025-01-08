@@ -19,6 +19,7 @@ import TermsConditions from "./components/Terms&Conditions/Terms&Conditions";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import CookiesPolicy from "./components/CookiesPolicy/CookiesPolicy";
 import CheckoutPage from "./pages/CheckoutPage";
+import { Toaster } from "./components/ui/toaster";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -108,6 +109,7 @@ function App() {
   return (
     <Router>
       <AppContent />
+      <Toaster /> 
     </Router>
   );
 }

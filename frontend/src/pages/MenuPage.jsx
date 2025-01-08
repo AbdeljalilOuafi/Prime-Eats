@@ -1,23 +1,42 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { useContext, useMemo, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import { CartContext } from "../context/CartContext/CartContext";
 import Navbar from "../components/Navbar";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useToast } from "../components/ui/toaster";
 
 const MenuItem = ({ item, restaurantId, restaurant, onAddToCart }) => {
+  const [adding, setAdding] = useState(false);
+  const { toast } = useToast();
   const price = typeof item.price === 'string' 
     ? parseFloat(item.price) 
     : item.price;
 
-  const handleAddToCart = () => {
-    // Add restaurant info to the item before adding to cart
-    const itemWithRestaurant = {
-      ...item,
-      restaurantId: restaurantId,
-      restaurantName: restaurant?.name || 'Unknown Restaurant'
-    };
-    onAddToCart(itemWithRestaurant);
+  const handleAddToCart = async () => {
+    setAdding(true);
+    try {
+      const itemWithRestaurant = {
+        ...item,
+        restaurantId,
+        restaurantName: restaurant?.name || 'Unknown Restaurant'
+      };
+      await onAddToCart(itemWithRestaurant);
+      toast({
+        title: "Added to cart",
+        description: `${item.name} has been added to your cart`,
+        duration: 2000,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart",
+        variant: "destructive",
+      });
+      console.error('Error adding item to cart:', error);
+    } finally {
+      setAdding(false);
+    }
   };
 
   return (
@@ -54,11 +73,19 @@ const MenuItem = ({ item, restaurantId, restaurant, onAddToCart }) => {
           <button
             className="px-4 py-2 bg-yellow-400 text-black rounded-lg
               hover:bg-yellow-500 transition-colors duration-200
-              disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled:opacity-50 disabled:cursor-not-allowed
+              flex items-center gap-2"
             onClick={handleAddToCart}
-            disabled={item.is_available === false}
+            disabled={item.is_available === false || adding}
           >
-            Add to Cart
+            {adding ? (
+              <>
+                <div className="h-4 w-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                Adding...
+              </>
+            ) : (
+              'Add to Cart'
+            )}
           </button>
         </div>
       </div>
@@ -142,7 +169,7 @@ const MenuPage = () => {
       <div className="min-h-screen">
         <Navbar />
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
-          <p className="text-xl text-gray-600">Loading restaurant menu...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400" />
         </div>
       </div>
     );
@@ -168,7 +195,7 @@ const MenuPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 py-8 mt-32">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Restaurant Header */}
         <div className="mb-8">
           <div className="relative h-64 rounded-xl overflow-hidden mb-6">
@@ -201,30 +228,33 @@ const MenuPage = () => {
         </div>
 
         {/* Menu Categories */}
-        {menuCategories.map((category, index) => (
-          <motion.section
-            key={category.name || index}
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-              {category.name}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.items.map((item) => (
-                <MenuItem 
-                  key={item.id || item.name} 
-                  item={item}
-                  restaurantId={restaurantId}
-                  restaurant={restaurant}
-                  onAddToCart={addToCart}
-                />
-              ))}
-            </div>
-          </motion.section>
-        ))}
+        <AnimatePresence>
+          {menuCategories.map((category, index) => (
+            <motion.section
+              key={category.name || index}
+              className="mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                {category.name}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.items.map((item) => (
+                  <MenuItem
+                    key={item.id || item.name}
+                    item={item}
+                    restaurantId={restaurantId}
+                    restaurant={restaurant}
+                    onAddToCart={addToCart}
+                  />
+                ))}
+              </div>
+            </motion.section>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

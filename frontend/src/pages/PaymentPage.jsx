@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Alert } from '@/components/ui/alertAlertTitle.tsx';
+import { Alert } from '@/components/ui/alertAlertTitle';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Loader } from 'lucide-react';
 import api from '../services/api';

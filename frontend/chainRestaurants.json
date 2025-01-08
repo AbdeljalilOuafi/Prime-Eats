@@ -1,0 +1,449 @@
+
+// chainRestaurants.json
+[
+    {
+        "id": 1,
+        "name": "McDonald's",
+        "image_url": "https://glovo.dhmedia.io/image/stores-glovo/stores/df067052f39f0c1bdceabdaefd9899c9500c59f91edaf03244b32ef925019808?t=W3siYXV0byI6eyJxIjoibG93In19LHsicmVzaXplIjp7ImhlaWdodCI6MjI1fX1d",
+        "menu": {
+            "id": 1,
+            "categories": [
+                {
+                    "id": 1,
+                    "name": "Burgers",
+                    "items": [
+                        {
+                            "id": 1,
+                            "name": "Big Mac",
+                            "description": "Two all-beef patties, special sauce, lettuce, cheese, pickles, onions on a sesame seed bun",
+                            "price": "6.99",
+                            "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/db710e7bca43fe41f5547033e72e3a05ce8fbf9dd1075bedd86ef318cd148a81?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjoyNjAsImhlaWdodCI6MjYwfX1d",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Happy Meal™",
+                    "items": [
+                        {
+                            "id": 6,
+                            "name": "Happy Meal™ Hamburger",
+                            "description": "A classic hamburger with a beef patty, pickles, onions, ketchup, and mustard on a sesame seed bun.",
+                            "price": "3.99",
+                            "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4003.png",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "Desserts",
+                    "items": [
+                        {
+                            "id": 9,
+                            "name": "McFlurry™ Baci®",
+                            "description": "Creamy vanilla soft serve mixed with Baci® chocolate pieces.",
+                            "price": "3.99",
+                            "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-9329.png",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "Drinks",
+                    "items": [
+                        {
+                            "id": 15,
+                            "name": "Strawberry Milkshake",
+                            "description": "Creamy milkshake blended with strawberry flavor and topped with whipped cream.",
+                            "price": "3.49",
+                            "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4723.png",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "KFC",
+        "image_url": "https://tb-static.uber.com/prod/image-proc/processed_images/f57fb461cfafbbb63b57e8a50c81c5d0/c9252e6c6cd289c588c3381bc77b1dfc.jpeg",
+        "menu": {
+            "id": 2,
+            "categories": [
+                {
+                    "id": 5,
+                    "name": "Chicken",
+                    "items": [
+                        {
+                            "id": 19,
+                            "name": "Original Recipe Chicken",
+                            "description": "Fried chicken pieces seasoned with KFC’s secret blend of 11 herbs and spices.",
+                            "price": "3.49",
+                            "image_url": "https://www.hayaku.ma/cdn/shop/files/9_69dc7224-e207-4e63-8076-cfaea02a9edf_1024x1024@2x.jpg?v=1685802771",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "name": "Sandwiches",
+                    "items": [
+                        {
+                            "id": 23,
+                            "name": "Mighty Zinger",
+                            "description": "2 chicken breast fillets with KFC's Spicy Zinger Recipe, cheese, lettuce, spicy mayo in a round bun.",
+                            "price": "5.99",
+                            "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/a2177165b0af6ae9c62ec8a860a62837f8a871665d6048e5046af594bc470ee9?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjoyNjAsImhlaWdodCI6MjYwfX1d",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 7,
+                    "name": "Big Box Meals",
+                    "items": [
+                        {
+                            "id": 27,
+                            "name": "Mighty Zinger Box",
+                            "description": "A box meal featuring the Mighty Zinger sandwich, crispy fries, and a drink.",
+                            "price": "9.99",
+                            "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/791109f51720ef2176134f3e219131b3d85324c0524966a00f0ade91525335d2?t=W3siYXZpZiI6eyJxIjoibG93In19LHsicmVzaXplIjp7IndpZHRoIjoyNjAsImhlaWdodCI6MjYwfX1d",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 8,
+                    "name": "Drinks",
+                    "items": [
+                        {
+                            "id": 31,
+                            "name": "Small Coca Cola",
+                            "description": "Refreshing Coca-Cola served cold in a small cup.",
+                            "price": "1.99",
+                            "image_url": "https://d25cgfcdeti393.cloudfront.net/JF-4580.png",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "name": "Pizza Hut",
+        "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0nfnVUyEw2DkdCDbNRV5ElbxYaJOEakUcdK5-BoKcxmvsGBUu0uU1J014AAUU6BGGYGToAkFCeDMvW-o6jGeoBjh3gKgURCQv1TWhs6ueWtsJlsbIDAYxdH7kdPyeS6wNoqGVGSHBJd4/s800/pizzahutindonesia.jpg",
+        "menu": {
+            "id": 3,
+            "categories": [
+                {
+                    "id": 9,
+                    "name": "Traditional",
+                    "items": [
+                        {
+                            "id": 33,
+                            "name": "Marina Pizza - Traditional Crust",
+                            "description": "Topped with seafood and spices.",
+                            "price": "9.99",
+                            "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/779646cb058cd784d831f16392c8c00294589c9daddc5f1f141a8127766a31ce?t=W3siYXV0byI6eyJxIjoibG93In19XQ==",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 10,
+                    "name": "Cheesy Crust",
+                    "items": [
+                        {
+                            "id": 39,
+                            "name": "Marina Pizza - Cheesy Crust",
+                            "description": "Topped with seafood and spices.",
+                            "price": "9.99",
+                            "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/779646cb058cd784d831f16392c8c00294589c9daddc5f1f141a8127766a31ce?t=W3siYXV0byI6eyJxIjoibG93In19XQ==",
+                            "is_available": true
+                        },
+                        {
+                            "id": 40,
+                            "name": "Meat Lover's Pizza - Cheesy Crust",
+                            "description": "Traditional crust loaded with pepperoni, Italian sausage, bacon, and cheese.",
+                            "price": "10.49",
+                            "image_url": "https://glovo.dhmedia.io/image/menus-glovo/products/5f19b219df9643a916ffde367966c7429c3b885c806799a64e06ad682a779ca0?t=W3siYXV0byI6eyJxIjoibG93In19XQ==",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 4,
+        "name": "Subway",
+        "image_url": "https://tb-static.uber.com/prod/image-proc/processed_images/6fc5ab9e3adaa71256b0ef5d6619159f/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg",
+        "menu": {
+            "id": 4,
+            "categories": [
+                {
+                    "id": 11,
+                    "name": "Subs",
+                    "items": [
+                        {
+                            "id": 45,
+                            "name": "Italian B.M.T.",
+                            "description": "Pepperoni, salami, and ham with your choice of toppings",
+                            "price": "8.99",
+                            "image_url": "https://mysubway.ro/wp-content/uploads/2019/08/Italian-BMT-02.jpg",
+                            "is_available": true
+                        },
+                        {
+                            "id": 46,
+                            "name": "Tuna",
+                            "description": "Flaked tuna mixed with mayo and your choice of toppings",
+                            "price": "7.99",
+                            "image_url": "https://www.subway.com.hk/wp-content/uploads/2017/08/Tuna-450x450.png",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 12,
+                    "name": "Salads",
+                    "items": [
+                        {
+                            "id": 50,
+                            "name": "Italian B.M.T. Salad",
+                            "description": "Pepperoni, salami, and ham on a bed of fresh vegetables",
+                            "price": "9.99",
+                            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyJ-JhTanzWpvcEgTKIIwymAnooCYlzl5UfA&s",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "name": "Burger King",
+        "image_url": "https://admin.itsnicethat.com/images/sxTAeLCeojRNQh2mcZvVv8TT5LE=/198174/format-webp%7Cwidth-1440/burger_king_rebrand_graphic_design_itsnicethat1.jpg",
+        "menu": {
+            "id": 5,
+            "categories": [
+                {
+                    "id": 13,
+                    "name": "Burgers",
+                    "items": [
+                        {
+                            "id": 52,
+                            "name": "Whopper",
+                            "description": "Quarter pound beef patty with lettuce, tomato, mayo, pickles, and onions",
+                            "price": "6.99",
+                            "image_url": "https://burgerkingfrance.twic.pics/img/products/4/56/4565c2c0-baec-48d9-8493-db196b9b3250_?twic=v1/contain=700x700",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 14,
+                    "name": "Chicken",
+                    "items": [
+                        {
+                            "id": 56,
+                            "name": "Original Chicken Sandwich",
+                            "description": "Long breaded chicken patty with lettuce and mayo",
+                            "price": "5.99",
+                            "image_url": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2024-11/BK-Royal-Crispy-Chicken-Sandwich-mc-1x1-241108-12e194.jpg",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "name": "Dominos",
+        "image_url": "https://www.dreamjob.ma/wp-content/uploads/2022/12/Dominos-Pizza-Emploi-Recrutement.png",
+        "menu": {
+            "id": 6,
+            "categories": [
+                {
+                    "id": 15,
+                    "name": "Pizzas",
+                    "items": [
+                        {
+                            "id": 58,
+                            "name": "Pepperoni Passion",
+                            "description": "Double pepperoni and extra mozzarella cheese",
+                            "price": "14.99",
+                            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQu0GRkZUJ0u84MfImIe4EZhIvmyDzZPoqoQ&s",
+                            "is_available": true
+                        },
+                        {
+                            "id": 59,
+                            "name": "Mighty Meaty",
+                            "description": "Pepperoni, ham, beef, sausage, and bacon",
+                            "price": "16.99",
+                            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu2mexdwW1E7scInxupat76WPBznbQAWhJcA&s",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 16,
+                    "name": "Sides",
+                    "items": [
+                        {
+                            "id": 62,
+                            "name": "Chicken Wings",
+                            "description": "Choice of BBQ, Hot, or Sweet & Sour sauce",
+                            "price": "8.99",
+                            "image_url": "https://www.dominos.com.my/ManagedAssets/MY/product/ECWQ12/MY_ECWQ12_en_hero_12831.jpg?v1833401745",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "name": "Starbucks",
+        "image_url": "https://wallpapers.com/images/featured/starbucks-ack1avygrxnhaxjq.jpg",
+        "menu": {
+            "id": 7,
+            "categories": [
+                {
+                    "id": 17,
+                    "name": "Hot Drinks",
+                    "items": [
+                        {
+                            "id": 64,
+                            "name": "Caffe Latte",
+                            "description": "Espresso with steamed milk",
+                            "price": "4.99",
+                            "image_url": "https://dutchshopper.com/cdn/shop/files/AHI_43545239383631373732.jpg?height=465&pad_color=fff&v=1724291734&width=645",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 18,
+                    "name": "Cold Drinks",
+                    "items": [
+                        {
+                            "id": 67,
+                            "name": "Iced Caffe Latte",
+                            "description": "Espresso with cold milk and ice",
+                            "price": "4.99",
+                            "image_url": "https://m.media-amazon.com/images/I/71FN7iQgQqL.jpg",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "name": "Papa Johns",
+        "image_url": "https://historydraft.com/files/237f5d1a-6b04-4f40-9f7f-4fb0319e0110",
+        "menu": {
+            "id": 8,
+            "categories": [
+                {
+                    "id": 19,
+                    "name": "Pizzas",
+                    "items": [
+                        {
+                            "id": 70,
+                            "name": "The Works",
+                            "description": "Pepperoni, Canadian bacon, spicy Italian sausage, onions, green peppers, mushrooms, and black olives",
+                            "price": "16.99",
+                            "image_url": "https://papajohns.vtexassets.com/arquivos/ids/156193-800-auto?v=637732054493600000&width=800&height=auto&aspect=true",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 20,
+                    "name": "Sides",
+                    "items": [
+                        {
+                            "id": 73,
+                            "name": "Cheesesticks",
+                            "description": "Fresh-baked bread strips covered with cheese and garlic",
+                            "price": "6.99",
+                            "image_url": "https://images.themodernproper.com/billowy-turkey/production/posts/2021/Homemade-Mozzarella-Sticks-9.jpeg?w=1200&q=82&auto=format&fit=crop&dm=1638935116&s=3c6cab3baf5e73086e1c0705b6d92ea3",
+                            "is_available": true
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "name": "Taco Bell",
+        "image_url": "https://assets.turbologo.com/blog/fr/2020/02/19133812/Taco-Bell.png",
+        "menu": {
+            "id": 9,
+            "categories": [
+                {
+                    "id": 21,
+                    "name": "Tacos",
+                    "items": [
+                        {
+                            "id": 75,
+                            "name": "Crunchy Taco",
+                            "description": "Seasoned beef, lettuce, and cheese in a crunchy shell",
+                            "price": "1.99",
+                            "image_url": "https://www.taco-bell.ro/wp-content/uploads/crunchy-taco.png",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 22,
+                    "name": "Burritos",
+                    "items": [
+                        {
+                            "id": 79,
+                            "name": "Bean Burrito",
+                            "description": "Refried beans, cheese, onions, and red sauce",
+                            "price": "2.99",
+                            "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6iyHjdpe-LsHKAGL4H4u3EBoRpXMTZYr3xg&s",
+                            "is_available": true
+                        }
+                    ]
+                },
+                {
+                    "id": 23,
+                    "name": "Sides",
+                    "items": [
+                        {
+                            "id": 83,
+                            "name": "Nachos Supreme",
+                            "description": "Tortilla chips topped with beef, beans, nacho cheese, tomatoes, and sour cream",
+                            "price": "4.49",
+                            "image_url": "https://www.taco-bell.ro/wp-content/uploads/nachos-supreme.png",
+                            "is_available": true
+                        },
+                        {
+                            "id": 84,
+                            "name": "Mexican Pizza",
+                            "description": "Crispy shells layered with beans, beef, pizza sauce, and cheese",
+                            "price": "4.99",
+                            "image_url": "https://www.foodandwine.com/thmb/6sjROTu2gJdKF5aPArtPDndBvHI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Taco-Bell-Mexican-Pizza-Has-Not-Changed-FT-BLOG0522-06490e984de64e77949283682c7433f6.jpg",
+                            "is_available": true
+                        }
+
+                    ]
+                }
+            ]
+        }
+    }
+]
