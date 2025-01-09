@@ -15,6 +15,12 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from decouple import config
+
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -193,3 +199,11 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+# Cloudinary Configuration
+cloudinary.config(
+    cloud_name="dqeyi8yx1",
+    api_key="582353633926898",
+    api_secret=config('CLOUDINARY_API_SECRET'),
+    secure=True,
+)
