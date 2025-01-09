@@ -20,6 +20,7 @@ import cloudinary.uploader
 import cloudinary.api
 from decouple import config
 
+print("Loading NORMAL settings...")
 
 
 
