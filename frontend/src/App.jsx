@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import MenuPage from "./pages/MenuPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderTrackingPage from "./pages/OrderTrackingPage";
-import ConfirmationPage from "./pages/ConfirmationPage";
+// import ConfirmationPage from "./pages/ConfirmationPage";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./context/CartContext/CartContext";
 import { AddressProvider } from "./context/AddressContext/AddressContext";
@@ -18,7 +18,9 @@ import ContactPage from "./components/Contact/ContactPage";
 import TermsConditions from "./components/Terms&Conditions/Terms&Conditions";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import CookiesPolicy from "./components/CookiesPolicy/CookiesPolicy";
-import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import { Toaster } from "./components/ui/toaster";
+import ChainMenu from "./components/ChainMenu";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -54,7 +56,8 @@ function AppContent() {
           {/* Public routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/restaurants" element={<RestaurantsPage />} />
-          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/menu/:restaurantId" element={<MenuPage />} />
+          <Route path="/chain-menu/:id" element={<ChainMenu />} />
           <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
           <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
           <Route path="/aboutPage" element={<AboutPage />} />
@@ -66,10 +69,10 @@ function AppContent() {
           
           {/* Protected routes */}
           <Route
-            path="/cart"
+            path="/checkout"
             element={
               <ProtectedRoute>
-                <CartPage />
+                <CheckoutPage />
               </ProtectedRoute>
             }
           />
@@ -89,14 +92,14 @@ function AppContent() {
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/confirmation"
             element={
               <ProtectedRoute>
                 <ConfirmationPage />
               </ProtectedRoute>
             }
-          />
+          /> */}
         </Routes>
         <Footer />
       </AddressProvider>
@@ -108,6 +111,7 @@ function App() {
   return (
     <Router>
       <AppContent />
+      <Toaster /> 
     </Router>
   );
 }

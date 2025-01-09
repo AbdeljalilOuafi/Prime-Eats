@@ -7,20 +7,38 @@ export const CartContext = createContext();
 export const CartProvider = ({ children, isSignedIn, navigate }) => {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    address: '',
+    location: { lat: null, lng: null },
+    restaurantLocation: { lat: null, lng: null }
+  });
 
   const addToCart = (item) => {
+    // Also store restaurant location when adding items
     setCart([...cart, item]);
+    if (item.restaurantLocation) {
+      setDeliveryInfo(prev => ({
+        ...prev,
+        restaurantLocation: item.restaurantLocation
+      }));
+    }
   };
 
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
   };
 
+  const updateDeliveryInfo = (info) => {
+    setDeliveryInfo(prev => ({
+      ...prev,
+      ...info
+    }));
+  };
+
   const openCart = () => {
     if (isSignedIn) {
       setIsCartOpen(true);
     } else {
-      // Store the current URL before redirecting to login
       sessionStorage.setItem("prevUrl", window.location.pathname);
       navigate("/sign-in");
     }
@@ -30,9 +48,13 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
     setIsCartOpen(false);
   };
 
-  const proceedToPayment = () => {
-    closeCart();
-    navigate("/payment");
+  const clearCart = () => {
+    setCart([]);
+    setDeliveryInfo({
+      address: '',
+      location: { lat: null, lng: null },
+      restaurantLocation: { lat: null, lng: null }
+    });
   };
 
   return (
@@ -42,7 +64,9 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
       removeFromCart, 
       openCart, 
       closeCart,
-      proceedToPayment,
+      deliveryInfo,
+      updateDeliveryInfo,
+      clearCart,
       isCartOpen 
     }}>
       {children}
