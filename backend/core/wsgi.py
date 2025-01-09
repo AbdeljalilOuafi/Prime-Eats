@@ -11,7 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-settings_module = 'core.deployment_settings' if os.environ.get('RENDER') else 'core.settings'
+
+
+# If we're not on localhost/development machine, use deployment settings
+settings_module = 'core.deployement_settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+
 
 application = get_wsgi_application()
