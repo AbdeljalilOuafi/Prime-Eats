@@ -4,7 +4,7 @@ django-cors-headers==4.4.0
 djangorestframework-simplejwt==5.3.1
 django-redis
 python-decouple
-# psycopg2
+psycopg2
 dj-database-url
 whitenoise
 gunicorn
