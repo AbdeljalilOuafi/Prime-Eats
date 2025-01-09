@@ -12,6 +12,7 @@ ALLOWED_HOSTS = [
     'primeeats.live',
     'www.primeeats.live',
     'api.primeeats.live',
+    'prime-eats-backend.onrender.com',  # Add this line
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -19,6 +20,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://primeeats.live',
     'https://www.primeeats.live',
     'https://api.primeeats.live',
+    'https://prime-eats-backend.onrender.com',  # Add this line
 ]
 
 DEBUG = False
@@ -43,6 +45,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://www.primeeats.live',
     'https://api.primeeats.live',
     'https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+    'https://prime-eats-backend.onrender.com',  # Add this line
 ]
 
 STORAGES = {
