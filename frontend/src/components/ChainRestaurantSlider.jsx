@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-//   CarouselNext,
-//   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,20 +16,20 @@ const ChainRestaurantCard = ({ restaurant }) => {
   const navigate = useNavigate();
 
   const handleViewMenu = () => {
-    navigate(`/menu/${restaurant.id}`, {
-      state: { restaurant, isChain: true }
+    navigate(`/chain-menu/${restaurant.id}`, {
+      state: { restaurant }
     });
   };
 
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className="h-full"
+      className="h-full pointer-events-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Card className="h-full w- bg-white shadow-lg hover:shadow-xl transition-all duration-300">
+      <Card className="h-full bg-white/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
         <CardContent className="p-0 h-full flex flex-col">
           <div className="relative h-48 overflow-hidden rounded-t-lg">
             <img
@@ -43,7 +41,7 @@ const ChainRestaurantCard = ({ restaurant }) => {
               }}
             />
           </div>
-          <div className="p-4 flex flex-col flex-grow">
+          <div className="p-4 flex flex-col flex-grow bg-white/50 backdrop-blur-sm">
             <h3 className="text-lg font-semibold mb-2 text-gray-800">
               {restaurant.name}
             </h3>
@@ -96,7 +94,7 @@ const ChainRestaurantSlider = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center py-16">
+      <div className="flex justify-center items-center py-16 pointer-events-auto">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
       </div>
     );
@@ -104,16 +102,16 @@ const ChainRestaurantSlider = () => {
 
   if (error) {
     return (
-      <div className="text-center py-16 text-red-500">
+      <div className="text-center py-16 text-red-500 bg-white/50 backdrop-blur-sm pointer-events-auto">
         {error}
       </div>
     );
   }
 
   return (
-    <section className="py-16 px-4 bg-gray-50">
+    <section className="py-16 px-4 pointer-events-none">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">
+        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 pointer-events-auto bg-white/50 backdrop-blur-sm inline-block px-4 py-2 rounded-lg mx-auto">
           Popular Restaurants
         </h2>
         <Carousel
@@ -138,10 +136,6 @@ const ChainRestaurantSlider = () => {
               ))}
             </AnimatePresence>
           </CarouselContent>
-          {/* <div className="flex justify-end gap-2 mt-4">
-            <CarouselPrevious className="relative right-0 translate-x-0 bg-white hover:bg-gray-100" />
-            <CarouselNext className="relative right-0 translate-x-0 bg-white hover:bg-gray-100" />
-          </div> */}
         </Carousel>
       </div>
     </section>

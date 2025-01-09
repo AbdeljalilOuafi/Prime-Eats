@@ -5,7 +5,7 @@ import MenuPage from "./pages/MenuPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderTrackingPage from "./pages/OrderTrackingPage";
 // import ConfirmationPage from "./pages/ConfirmationPage";
-// import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./context/CartContext/CartContext";
 import { AddressProvider } from "./context/AddressContext/AddressContext";
 import RestaurantsPage from "./pages/RestaurantsPage";
@@ -20,6 +20,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import CookiesPolicy from "./components/CookiesPolicy/CookiesPolicy";
 import CheckoutPage from "./pages/CheckoutPage";
 import { Toaster } from "./components/ui/toaster";
+import ChainMenu from "./components/ChainMenu";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -56,6 +57,7 @@ function AppContent() {
           <Route path="/" element={<HomePage />} />
           <Route path="/restaurants" element={<RestaurantsPage />} />
           <Route path="/menu/:restaurantId" element={<MenuPage />} />
+          <Route path="/chain-menu/:id" element={<ChainMenu />} />
           <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
           <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
           <Route path="/aboutPage" element={<AboutPage />} />
@@ -99,7 +101,7 @@ function AppContent() {
             }
           /> */}
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </AddressProvider>
     </CartProvider>
   );
