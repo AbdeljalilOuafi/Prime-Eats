@@ -14,4 +14,4 @@ apt install -y libmysqlclient-dev
 
 
 # Start Celery worker
-celery -A core worker -l info &
+celery -A core worker -l info --logfile=celery.log --detach
