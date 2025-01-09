@@ -11,7 +11,7 @@ from .models import Restaurant, FetchRestaurant, ChainRestaurant, CuisineType
 from .serializers import RestaurantSerializer, ChainRestaurantSerializer
 import os
 import random
-
+import cloudinary.uploader
 
 
 class RestaurantDataService:
@@ -164,7 +164,7 @@ class RestaurantDataService:
             else:
                 if r.get("photos") and len(r["photos"]) > 0 and r["photos"][0].get("photo_reference"):
                     try:
-                        image_url = self.fetch_and_save_place_photo(r['photos'][0]['photo_reference'])
+                        image_url = self.fetch_and_save_place_photo(r['photos'][0]['photo_reference'], r['name'])
                     except Exception as e:
                         image_url = ""
                         self.logger.warning(f"Error Fetching photo: {e}")
@@ -273,16 +273,15 @@ class RestaurantDataService:
 
         return menu
 
-    def fetch_and_save_place_photo(self, photo_reference):
+    def fetch_and_save_place_photo(self, photo_reference, restaurant_name):
         """
-        Fetches a photo from Google Places API and saves it to the 'restaurants/restaurants_images' directory.
+        Fetches a photo from Google Places API and uploads it to Cloudinary.
 
         Args:
             photo_reference (str): The photo reference from the Places API.
-            api_key (str): Your Google API key.
 
         Returns:
-            str: The URL of the saved image.
+            str: The Cloudinary URL of the uploaded image.
         """
         base_url = "https://maps.googleapis.com/maps/api/place/photo"
         params = {
@@ -295,19 +294,15 @@ class RestaurantDataService:
         response = requests.get(base_url, params=params)
         response.raise_for_status()
 
-        # Define the directory for saving images
-        image_dir = settings.MEDIA_ROOT
-        os.makedirs(image_dir, exist_ok=True)  # Create the directory if it doesn't exist
+        # Upload the image to Cloudinary
+        upload_result = cloudinary.uploader.upload(
+            response.content,
+            folder="restaurants",
+            public_id=restaurant_name,
+            resource_type="auto"  # Important for binary upload
+        )
+        
+        print(f'Image URL: {upload_result["secure_url"]}')
+        # Return the Cloudinary URL
+        return upload_result.get("secure_url")
 
-        # Save the image file
-        image_name = f"{photo_reference}.jpg"
-        image_path = os.path.join(image_dir, image_name)
-
-        with open(image_path, "wb") as image_file:
-            image_file.write(response.content)
-
-        # Return the URL to the saved image
-        relative_path = os.path.join(image_name)
-        photo_url = f"{settings.MEDIA_URL}{relative_path}"
-        full_url = f"http://127.0.0.1:8000{photo_url}" #Use a variable for the domain instead of hardcoding localhost
-        return full_url
