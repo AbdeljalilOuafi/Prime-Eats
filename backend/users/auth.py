@@ -31,7 +31,8 @@ class ClerkAuthentication(authentication.BaseAuthentication):
             'http://localhost:3000',
             'http://localhost:8000',
             'http://localhost:5173',
-            #Add production domain name here
+            'https://primeeats.live'
+            'https://api.primeeats.live'
         ]
 
     def get_token(self, request):

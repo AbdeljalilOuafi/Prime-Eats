@@ -23,13 +23,12 @@ logger = logging.getLogger(__name__)
 # PayPal Configuration
 
 # To switch to production mode, you'll need to:
-# Change PAYPAL_API_BASE_URL to 'https://api-m.paypal.com'
 # Use production PayPal credentials
 # Update the PayPal SDK script URL to remove sandbox mode
 # Implement proper error handling
 # Use dynamic exchange rates if needed
 
-PAYPAL_MODE = getattr(settings, 'PAYPAL_MODE', 'sandbox')  # Change to 'live' for production
+PAYPAL_MODE = getattr(settings, 'PAYPAL_MODE', 'sandbox') 
 PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID')
 PAYPAL_SECRET = config('PAYPAL_SECRET')
 PAYPAL_API_BASE_URL = 'https://api-m.paypal.com' if PAYPAL_MODE == 'live' else 'https://api-m.sandbox.paypal.com'
