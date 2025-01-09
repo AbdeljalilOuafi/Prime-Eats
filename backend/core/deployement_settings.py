@@ -8,14 +8,14 @@ from .settings import *
 from .settings import BASE_DIR
 
 ALLOWED_HOSTS = [
-    'https://prime-eats-backend.onrender.com',
+    os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
     'primeeats.live',
     'www.primeeats.live',
     'api.primeeats.live',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://prime-eats-backend.onrender.com',
+    'https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
     'https://primeeats.live',
     'https://www.primeeats.live',
     'https://api.primeeats.live',
@@ -42,7 +42,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://primeeats.live',
     'https://www.primeeats.live',
     'https://api.primeeats.live',
-    'https://prime-eats-backend.onrender.com',
+    'https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
 ]
 
 STORAGES = {
