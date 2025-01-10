@@ -117,7 +117,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <NavLink
-                  to="/Terms & Conditions"
+                  to="/TermsConditions"
                   target="_blank"
                   className="hover:text-white relative group">
                     <span>Terms & Conditions</span>
@@ -125,7 +125,7 @@ export default function Footer() {
                 </NavLink></li>
               <li>
                 <NavLink
-                    to="/Privacy Policy"
+                    to="/PrivacyPolicy"
                     target="_blank"
                     className="hover:text-white relative group">
                     <span>Privacy Policy</span>
@@ -134,7 +134,7 @@ export default function Footer() {
               </li>
               <li>
                 <NavLink
-                  to="/Cookies Policy"
+                  to="/CookiesPolicy"
                   target="_blank"
                   className="hover:text-white relative group">
                     <span>Cookies Policy</span>
