@@ -33,6 +33,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://api.primeeats.live',
 ]
 
+print(CORS_ALLOWED_ORIGINS)
+
 DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY') #MAKE SECRET_KEY AS ENVIRONMENT VARIABLE IN RENDER
 
