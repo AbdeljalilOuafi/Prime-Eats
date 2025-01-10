@@ -69,7 +69,7 @@ const HomePage = () => {
             rotationRange={25}
             images={images}
           >
-          <section className=" p-32 pt-48 top-0 left-0 right-0 h-[450px] w-full place-content-center bg-gradient-to-r from-orange-600 via-orange-400 to-pink-400 opacity-10">  
+          <section className=" p-32 pt-48 top-0 left-0 right-0 h-[450px] w-full place-content-center bg-gradient-to-r from-orange-500 from-30% via-orange-500  to-orange-600 opacity">  
             <AddressInput onRestaurantsFetched={handleRestaurantsFetched} />
           </section>
           </MouseImageTrail>
