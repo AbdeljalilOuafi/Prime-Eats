@@ -48,7 +48,7 @@ class MenuItem(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image_url = models.CharField(max_length=500, null=True, blank=True)
+    image_url = models.CharField(max_length=2000, null=True, blank=True)
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
