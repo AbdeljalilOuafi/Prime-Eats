@@ -11,7 +11,7 @@ const api = axios.create({
 export const setAuthToken = (token) => {
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    // console.log("Token being set:", `Bearer ${token.substring(0, 10)}...`); // Log first 10 chars for safety
+    console.log("Token being set:", `Bearer ${token}`);
     // console.log("Current headers after setting:", api.defaults.headers.common);
   } else {
     delete api.defaults.headers.common["Authorization"];
