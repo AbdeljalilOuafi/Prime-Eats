@@ -92,6 +92,7 @@ const CheckoutPage = () => {
       });
 
       const results = await Promise.all(orderPromises);
+      console.log('Checkout results:', results);
       
       const orders = results.map(result => ({
         order_id: result.data.order_id,

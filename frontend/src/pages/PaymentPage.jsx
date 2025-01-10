@@ -103,7 +103,7 @@ const PaymentPage = () => {
         document.body.removeChild(existingScript);
       }
 
-      const clientId = "AartfsAJihC78lPm8_kFqloOD0PwsFiiHQL2YmCYwMOAgaKc268HkeQiX8DyGQOGEalVATpZwBUSLWex";
+      const clientId = "Af1Zf3lwK5SBiFtDTiN5H5WOqekN5qjIVYFqQFRdepCT3gPKa3cz_Hgp5ggiqIuLvOr2lGQ46aZl5vTg";
       
       if (!clientId) {
         throw new Error('PayPal client ID is not configured');
@@ -241,7 +241,7 @@ const PaymentPage = () => {
       setOrderDetails({
         orderId: response.data.paypal_order_id,
         originalAmount: response.data.original_amount || location.state.totalAmount,
-        finalAmount: response.data.final_amount || location.state.totalAmount,
+        finalAmount: response.data.final_amount || 69,
         status: response.data.status || 'pending',
         isPaid: response.data.is_paid || false,
         couponApplied: response.data.coupon_applied || false,
