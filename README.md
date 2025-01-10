@@ -82,7 +82,6 @@ npm run dev
 ## Future Features 🚀
 - Mobile application (iOS & Android)
 - Multi-language support
-- International payment integration
 - Advanced restaurant management system
 
 ## Deployment 🌐
