@@ -10,7 +10,6 @@ import Footer from '../Footer/Footer';
 export default function AboutPage() {
   return (
     <div className="bg-white">
-      <Navbar />
       <AboutHero />
       <MissionSection />
       <StatsSection />

@@ -20,11 +20,11 @@ export default function Footer() {
 
       {/* Footer content */}
       <div className="container mx-auto pt-4 pb-8">
-        <div className="flex justify-around gap-4">
+        {/* <div className="flex justify-around gap-4">
           <div className="relative bottom-20 mt-4 text-xl sm:text-2xl font-bold text-yellow-500">
             PrimeEats
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-around gap-4">
           {/* Links of interest */}
           <div className="flex flex-col p-0 m-1.5">

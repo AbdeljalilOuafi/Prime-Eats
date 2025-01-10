@@ -1,5 +1,6 @@
 import React from 'react';
 import { UtensilsCrossed } from 'lucide-react';
+import navbarAboutPage from '../../assets/hero/navbar-aboutpage.png'
 
 export default function AboutHero() {
   return (
@@ -7,8 +8,8 @@ export default function AboutHero() {
       {/* Hero Image Section */}
       <div className="relative h-[75vh] m-0 w-full overflow-hidden ps-200">
         <img
-          src="./images/navbar-aboutpage.png"
-          alt="Full Image"
+          src={navbarAboutPage}
+          alt="image"
           className="object-contain w-full h-auto"
         />
       </div>
