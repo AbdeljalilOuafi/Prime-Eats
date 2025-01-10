@@ -9,7 +9,7 @@ def main():
     """Run administrative tasks."""
 
     # If we're not on localhost/development machine, use deployment settings
-    settings_module = 'backend.core.deployement_settings'
+    settings_module = 'core.deployement_settings'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
     try:
