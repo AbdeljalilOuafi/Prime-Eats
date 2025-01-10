@@ -66,3 +66,5 @@ DATABASES = {
 }
 
 PAYPAL_MODE = 'live'
+
+print(f'PayPal Mode: {PAYPAL_MODE}')
