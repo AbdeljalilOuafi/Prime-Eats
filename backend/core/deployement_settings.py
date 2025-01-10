@@ -40,6 +40,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY') #MAKE SECRET_KEY AS ENVIRONMENT VARIAB
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
