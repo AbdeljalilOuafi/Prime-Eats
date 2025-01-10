@@ -31,7 +31,7 @@ class ClerkAuthentication(authentication.BaseAuthentication):
             'http://localhost:3000',
             'http://localhost:8000',
             'http://localhost:5173',
-            'https://primeeats.live'
+            'https://primeeats.live',
             'https://api.primeeats.live'
         ]
 
