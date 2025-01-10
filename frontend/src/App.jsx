@@ -63,9 +63,9 @@ function AppContent() {
           <Route path="/aboutPage" element={<AboutPage />} />
           <Route path="/FAQPage" element={<FAQSection />} />
           <Route path="/ContactPage" element={<ContactPage />} />
-          <Route path="/Terms & Conditions" element={<TermsConditions />} />
-          <Route path="/Privacy Policy" element={<PrivacyPolicy />} />
-          <Route path="/Cookies Policy" element={<CookiesPolicy />} />
+          <Route path="/TermsConditions" element={<TermsConditions />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/CookiesPolicy" element={<CookiesPolicy />} />
           
           {/* Protected routes */}
           <Route
