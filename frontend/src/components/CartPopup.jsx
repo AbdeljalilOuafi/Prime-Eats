@@ -1,16 +1,24 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext/CartContext";
-import { X, ShoppingCart, AlertCircle } from "lucide-react";
+import { X, ShoppingCart, AlertCircle, LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useUser } from "@clerk/clerk-react";
 
 const CartPopup = () => {
   const { cart, removeFromCart, closeCart } = useContext(CartContext);
   const navigate = useNavigate();
+  const { isSignedIn } = useUser();
 
   const handleCheckout = () => {
-    closeCart();
-    navigate('/checkout');
+    if (!isSignedIn) {
+      // Store current URL in session storage before redirecting
+      sessionStorage.setItem("prevUrl", "/checkout");
+      navigate("/sign-in");
+    } else {
+      closeCart();
+      navigate('/checkout');
+    }
   };
 
   const formatPrice = (price) => {
@@ -91,11 +99,17 @@ const CartPopup = () => {
                     </button>
                     <button
                       onClick={handleCheckout}
-                      className="bg-white hover:opacity-90 transition-opacity text-orange-600 font-semibold w-full py-2 rounded"
+                      className="bg-white hover:opacity-90 transition-opacity text-orange-600 font-semibold w-full py-2 rounded flex items-center justify-center gap-2"
                     >
-                      Checkout
+                      {!isSignedIn && <LogIn className="w-4 h-4" />}
+                      {isSignedIn ? 'Checkout' : 'Sign in to Checkout'}
                     </button>
                   </div>
+                  {!isSignedIn && (
+                    <p className="text-sm text-white/70 text-center mt-4">
+                      Sign in to complete your order
+                    </p>
+                  )}
                 </div>
               </div>
             )}

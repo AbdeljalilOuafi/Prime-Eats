@@ -241,7 +241,7 @@ const PaymentPage = () => {
       setOrderDetails({
         orderId: response.data.paypal_order_id,
         originalAmount: response.data.original_amount || location.state.totalAmount,
-        finalAmount: response.data.final_amount || 69,
+        finalAmount: response.data.final_amount || 0.01,
         status: response.data.status || 'pending',
         isPaid: response.data.is_paid || false,
         couponApplied: response.data.coupon_applied || false,

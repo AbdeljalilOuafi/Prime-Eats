@@ -1,20 +1,56 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import CartPopup from "../../components/CartPopup";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children, isSignedIn, navigate }) => {
-  const [cart, setCart] = useState([]);
+  // Initialize cart from localStorage if available
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem('foodDeliveryCart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [deliveryInfo, setDeliveryInfo] = useState({
-    address: '',
-    location: { lat: null, lng: null },
-    restaurantLocation: { lat: null, lng: null }
+  const [deliveryInfo, setDeliveryInfo] = useState(() => {
+    const savedDeliveryInfo = localStorage.getItem('deliveryInfo');
+    return savedDeliveryInfo ? JSON.parse(savedDeliveryInfo) : {
+      address: '',
+      location: { lat: null, lng: null },
+      restaurantLocation: { lat: null, lng: null }
+    };
   });
 
+  // Handle post-login navigation
+  useEffect(() => {
+    if (isSignedIn) {
+      const pendingCheckout = sessionStorage.getItem("pendingCheckout");
+      if (pendingCheckout === "true") {
+        sessionStorage.removeItem("pendingCheckout");
+        navigate("/checkout");
+      }
+    }
+  }, [isSignedIn, navigate]);
+
+  // Persist cart to localStorage
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('foodDeliveryCart', JSON.stringify(cart));
+    } else {
+      localStorage.removeItem('foodDeliveryCart');
+    }
+  }, [cart]);
+
+  // Persist delivery info to localStorage
+  useEffect(() => {
+    if (deliveryInfo.address) {
+      localStorage.setItem('deliveryInfo', JSON.stringify(deliveryInfo));
+    } else {
+      localStorage.removeItem('deliveryInfo');
+    }
+  }, [deliveryInfo]);
+
   const addToCart = (item) => {
-    // Also store restaurant location when adding items
     setCart([...cart, item]);
     if (item.restaurantLocation) {
       setDeliveryInfo(prev => ({
@@ -36,12 +72,7 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
   };
 
   const openCart = () => {
-    if (isSignedIn) {
-      setIsCartOpen(true);
-    } else {
-      sessionStorage.setItem("prevUrl", window.location.pathname);
-      navigate("/sign-in");
-    }
+    setIsCartOpen(true);
   };
 
   const closeCart = () => {
@@ -55,6 +86,23 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
       location: { lat: null, lng: null },
       restaurantLocation: { lat: null, lng: null }
     });
+    localStorage.removeItem('foodDeliveryCart');
+    localStorage.removeItem('deliveryInfo');
+  };
+
+  const proceedToCheckout = () => {
+    if (!isSignedIn) {
+      sessionStorage.setItem("pendingCheckout", "true");
+      navigate("/sign-in");
+    } else {
+      closeCart();
+      navigate("/checkout");
+    }
+  };
+
+  const handlePaymentSuccess = () => {
+    clearCart();
+    navigate('/order-tracking');
   };
 
   return (
@@ -67,7 +115,10 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
       deliveryInfo,
       updateDeliveryInfo,
       clearCart,
-      isCartOpen 
+      handlePaymentSuccess,
+      proceedToCheckout,
+      isCartOpen,
+      isSignedIn 
     }}>
       {children}
       {isCartOpen && <CartPopup />}
