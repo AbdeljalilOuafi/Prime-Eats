@@ -65,7 +65,7 @@ class ClerkAuthentication(authentication.BaseAuthentication):
                 'Authorization': f'Bearer {clerk_secret_key}'
             }
 
-            jwks_url = 'https://clerk.primeeats.live/.well-known/jwks.json'
+            jwks_url = 'https://api.clerk.com/v1/jwks'
             jwks_response = requests.get(jwks_url, headers=headers)
 
             if not jwks_response.ok:
@@ -167,7 +167,7 @@ class ClerkAuthentication(authentication.BaseAuthentication):
         #Fetch User data
         clerk_secret_key = config('CLERK_SECRET_KEY')
         headers = {'Authorization': f'Bearer {clerk_secret_key}'}
-        user_info_url = f"https://api.clerk.dev/v1/users/{user_id}"
+        user_info_url = f"https://api.clerk.com/v1/users/{user_id}"
         response = requests.get(user_info_url, headers=headers)
 
         if not response.ok:
