@@ -2,23 +2,37 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext/CartContext';
 import { AddressContext } from '../context/AddressContext/AddressContext';
+import { useUser } from "@clerk/clerk-react";
+import { AlertCircle } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import api from '../services/api';
+import AddressInput from '../components/AddressInput';
 
 const CheckoutPage = () => {
   const { cart, deliveryInfo } = useContext(CartContext);
   const { address } = useContext(AddressContext);
   const navigate = useNavigate();
+  const { isLoaded, isSignedIn } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [couponCode, setCouponCode] = useState('');
+  const [orderProcessing, setOrderProcessing] = useState(false);
 
-  // Redirect to restaurants if cart is empty
+  // Check authentication and cart status
   useEffect(() => {
-    if (cart.length === 0) {
-      navigate('/restaurants');
+    if (isLoaded) {
+      if (!isSignedIn) {
+        sessionStorage.setItem("pendingCheckout", "true");
+        navigate('/sign-in');
+        return;
+      }
+      
+      if (cart.length === 0) {
+        navigate('/restaurants');
+        return;
+      }
     }
-  }, [cart, navigate]);
+  }, [cart, isSignedIn, isLoaded, navigate]);
 
   // Helper function to safely format price
   const formatPrice = (price) => {
@@ -35,13 +49,20 @@ const CheckoutPage = () => {
   };
 
   const handleCheckout = async () => {
+    if (!isSignedIn) {
+      setError('Please sign in to continue with checkout');
+      return;
+    }
+
+    if (!address.fullAddress) {
+      setError('Please provide a delivery address');
+      return;
+    }
+
     try {
       setIsLoading(true);
       setError(null);
-
-      if (!address.fullAddress) {
-        throw new Error('Delivery address is required');
-      }
+      setOrderProcessing(true);
 
       const formattedOrders = cart.reduce((acc, item) => {
         if (!item.restaurantId) {
@@ -58,7 +79,7 @@ const CheckoutPage = () => {
             delivery_address: address.fullAddress,
             delivery_latitude: address.latitude,
             delivery_longitude: address.longitude,
-            coupon_code: couponCode // Add coupon code to the order payload
+            coupon_code: couponCode.trim() || null // Send trimmed coupon code or null
           };
         }
         
@@ -92,18 +113,18 @@ const CheckoutPage = () => {
       });
 
       const results = await Promise.all(orderPromises);
-      console.log('Checkout results:', results);
       
       const orders = results.map(result => ({
         order_id: result.data.order_id,
         totalAmount: result.data.total_amount,
-        originalAmount: result.data.original_amount, 
-        finalAmount: result.data.final_amount,      
+        originalAmount: result.data.original_amount,
+        finalAmount: result.data.final_amount,
         status: result.data.status,
         isPaid: result.data.is_paid,
         message: result.data.message
       }));
 
+      // Navigate to payment page with order details
       navigate('/payment', {
         state: {
           orders: orders,
@@ -114,13 +135,14 @@ const CheckoutPage = () => {
             lng: address.longitude
           },
           restaurantLocation: deliveryInfo.restaurantLocation,
-          couponCode: couponCode // Pass coupon code to payment page
+          couponCode: couponCode.trim() || null
         }
       });
 
     } catch (err) {
       console.error('Checkout error:', err);
-      setError(err.message || 'Failed to process checkout. Please try again.');
+      setError(err.response?.data?.message || 'Failed to process checkout. Please try again.');
+      setOrderProcessing(false);
     } finally {
       setIsLoading(false);
     }
@@ -133,37 +155,55 @@ const CheckoutPage = () => {
         <h1 className="text-3xl font-bold mb-6">Checkout</h1>
         
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 flex items-center gap-2">
+            <AlertCircle className="h-5 w-5" />
+            <span>{error}</span>
           </div>
         )}
 
         {/* Delivery Address Section */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Delivery Address</h2>
-          <p className="text-gray-700">
-            {address.fullAddress || 'No delivery address set'}
-          </p>
+          {!address.fullAddress ? (
+            <div>
+              <div className="text-red-600 flex items-center gap-2">
+                <AlertCircle className="h-5 w-5" />
+                <span>Please set a delivery address to continue</span>
+              </div>
+                <AddressInput />
+            </div>
+          ) : (
+            <p className="text-gray-700">{address.fullAddress}</p>
+          )}
         </div>
 
-        {/* Coupon Code Section */}
+        {/* Simplified Coupon Section */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h2 className="text-xl font-semibold mb-4">Coupon Code</h2>
-            {/* Button to Autofill Coupon Code */}
-          <button
-            onClick={() => setCouponCode("ALX")}
-            className="bg-green-600 text-white py-2 px-4 rounded-md mb-4 hover:bg-green-500 transition"
-          >
-            Use Coupon Code: ALX
-          </button>
-          <div className="flex gap-4">
-            <input
-              type="text"
-              value={couponCode}
-              onChange={(e) => setCouponCode(e.target.value)}
-              placeholder="Enter coupon code"
-              className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            />
+          <h2 className="text-xl font-semibold mb-4">Have a Coupon?</h2>
+          <div className="space-y-4">
+            <div className="flex gap-4">
+              <input
+                type="text"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                placeholder="Enter coupon code"
+                className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200"
+                maxLength={15}
+              />
+            </div>
+
+            {/* Sample Coupons */}
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => setCouponCode("ALX")}
+                className="bg-gray-100 hover:bg-gray-200 text-sm py-1 px-3 rounded-full transition"
+              >
+                Try: ALX
+              </button>
+            </div>
+            <p className="text-sm text-gray-500">
+              * Discount will be applied at Payment Page if the coupon is valid
+            </p>
           </div>
         </div>
 
@@ -183,19 +223,36 @@ const CheckoutPage = () => {
           
           <div className="mt-6 pt-4 border-t">
             <div className="flex justify-between items-center font-bold text-lg">
-              <span>Total:</span>
+              <span>Subtotal:</span>
               <span>${formatPrice(calculateTotal(cart))}</span>
             </div>
+            {couponCode.trim() && (
+              <p className="text-sm text-gray-500 mt-2">
+                * Final total will be calculated after coupon validation
+              </p>
+            )}
           </div>
         </div>
 
+        {/* Proceed to Payment Button */}
         <button
           onClick={handleCheckout}
-          disabled={isLoading || !address.fullAddress}
+          disabled={isLoading || !address.fullAddress || !isSignedIn || orderProcessing}
           className={`w-full bg-yellow-400 text-black py-3 rounded-md font-semibold
-            ${(isLoading || !address.fullAddress) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-500'}`}
+            ${(isLoading || !address.fullAddress || !isSignedIn || orderProcessing) 
+              ? 'opacity-50 cursor-not-allowed' 
+              : 'hover:bg-yellow-500 transition-colors'}`}
         >
-          {isLoading ? 'Processing...' : 'Proceed to Payment'}
+          {isLoading ? 'Processing...' : orderProcessing ? 'Creating Order...' : 'Proceed to Payment'}
+        </button>
+
+        {/* Back to Shopping Button */}
+        <button
+          onClick={() => navigate('/restaurants')}
+          className="w-full mt-4 bg-transparent border border-yellow-400 text-yellow-600 py-3 rounded-md font-semibold
+            hover:bg-yellow-50 transition-colors"
+        >
+          Continue Shopping
         </button>
       </div>
     </div>
