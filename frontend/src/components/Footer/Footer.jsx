@@ -1,4 +1,4 @@
-import { NavLink} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Footer() {
@@ -31,34 +31,31 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Links of interest</h3>
             <ul className="space-y-4">
               <li>
-                <NavLink
+                <Link
                   to="/aboutPage"
-                  target="_blank"
                   className="hover:text-white relative group"
                 >
                     <span>About us</span>
                     <span className="absolute right-0 left-0 top-6 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
+                <Link
                    to="/FAQPage"
-                   target="_blank"
                    className="hover:text-white relative group"
                    >
                     <span>FAQ</span>
                     <span className="absolute right-0 left-0 top-6 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
+                <Link
                     to="/ContactPage"
-                    target="_blank"
                     className="hover:text-white relative group"
                 >
                       <span>Contact us</span>
                       <span className="absolute right-0 left-0 top-6 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </div>
@@ -116,30 +113,27 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-4">
               <li>
-                <NavLink
+                <Link
                   to="/TermsConditions"
-                  target="_blank"
                   className="hover:text-white relative group">
                     <span>Terms & Conditions</span>
                     <span className="absolute left-0 right-0 top-6 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
-                </NavLink></li>
+                </Link></li>
               <li>
-                <NavLink
+                <Link
                     to="/PrivacyPolicy"
-                    target="_blank"
                     className="hover:text-white relative group">
                     <span>Privacy Policy</span>
                     <span className="absolute right-0 left-0 top-6 h-0.5 bg-white scale-x-0 transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
+                <Link
                   to="/CookiesPolicy"
-                  target="_blank"
                   className="hover:text-white relative group">
                     <span>Cookies Policy</span>
                     <span className="absolute right-0 left-0 top-6 h-0.5 scale-x-0 bg-white transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </div>
