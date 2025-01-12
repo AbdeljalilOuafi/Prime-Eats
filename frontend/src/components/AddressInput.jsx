@@ -119,7 +119,7 @@ const AddressInput = ({ onRestaurantsFetched }) => {
       setError(null);
 
       const response = await api.get(
-        `/restaurants/?latitude=${latitude}&longitude=${longitude}&radius=1000`,
+        `/restaurants/?latitude=${latitude}&longitude=${longitude}&radius=500`,
         { signal }
       );
 
