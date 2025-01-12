@@ -5,13 +5,8 @@ import sys
 from django.db import connection
 import dj_database_url
 
-# Debug prints
-print("Script started")
-print("DATABASE_URL in environment:", os.environ.get('DATABASE_URL'))
-print("Python path:", sys.path)
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-print("Current directory:", os.getcwd())
 
 # Set up Django settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.deployement_settings')
@@ -20,8 +15,6 @@ print("Django settings module:", os.environ.get('DJANGO_SETTINGS_MODULE'))
 django.setup()
 
 from django.conf import settings
-print("Database settings:", settings.DATABASES)
-
 from django.core.cache import cache
 from restaurants.models import (
     Restaurant, FetchRestaurant, ChainRestaurant,
@@ -53,19 +46,16 @@ def clear_database():
     """Clear all tables in the database"""
     try:
         print(f"Database engine: {connection.vendor}")
-        print(f"Database settings being used: {connection.settings_dict}")
         
         with connection.cursor() as cursor:
             if connection.vendor == 'postgresql':
                 # Get all tables first
                 tables = get_all_tables()
-                print(f"Tables to clear: {tables}")
                 
                 # Ensure we're not in a transaction
                 cursor.execute("ROLLBACK;")
                 
                 # Try the simple DELETE approach first (most likely to work)
-                print("Attempting DELETE approach without constraints...")
                 try:
                     # Start a new transaction
                     cursor.execute("BEGIN;")
@@ -76,7 +66,6 @@ def clear_database():
                     # Delete in reverse order to handle dependencies
                     for table in reversed(tables):
                         try:
-                            print(f"Clearing table: {table}")
                             cursor.execute(f'DELETE FROM "{table}";')
                         except Exception as table_error:
                             print(f"Error clearing table {table}: {table_error}")
@@ -117,7 +106,6 @@ def clear_database():
             else:
                 # SQLite specific clearing
                 tables = get_all_tables()
-                print(f"Tables to clear: {tables}")
                 cursor.execute('PRAGMA foreign_keys=OFF;')
                 for table in tables:
                     cursor.execute(f'DELETE FROM {table};')
