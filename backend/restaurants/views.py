@@ -6,6 +6,7 @@ from decouple import config
 from rest_framework.permissions import AllowAny
 from .models import ChainRestaurant
 from .serializers import ChainRestaurantSerializer
+from django.core.cache import cache
 
 class RestaurantListView(APIView):
     """
