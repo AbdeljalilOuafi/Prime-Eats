@@ -1,41 +1,43 @@
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import StaticImage from "./StaticImage";
 
 const RestaurantCard = ({ restaurant, isChain = false }) => {
-  // Destructure values with fallbacks for safety
   const { 
     name,
     menu,
     image_url,
     address,
-    rating
+    rating,
+    id
   } = restaurant;
 
-  // Determine image URL based on restaurant type
   const cardImageUrl = isChain 
     ? menu?.image_url 
     : image_url;
 
-  // Determine address display
   const displayAddress = isChain 
     ? "Chain Restaurant - Multiple Locations" 
     : (address || "Address not available");
 
-  // Only show rating for non-chain restaurants
   const displayRating = isChain ? null : rating;
 
   return (
     <motion.div 
-      className="bg-white rounded-xl shadow-lg overflow-hidden"
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
+      className="bg-white shadow-lg rounded-xl overflow-hidden h-full pointer-events-auto"
+      whileHover={{ scale: 1.02 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
     >
       {/* Image Section */}
       <div className="relative h-48">
-        <img
-          src={cardImageUrl || "/placeholder-restaurant.jpg"}
+        <StaticImage
+          src={cardImageUrl}
           alt={`${name} restaurant`}
           className="w-full h-full object-cover"
+          restaurantId={id || name} // Use name as fallback for chain restaurants
         />
         {isChain && (
           <div className="absolute top-4 right-4">
@@ -75,6 +77,7 @@ RestaurantCard.propTypes = {
     address: PropTypes.string,
     rating: PropTypes.number,
     image_url: PropTypes.string,
+    id: PropTypes.string,
     menu: PropTypes.shape({
       image_url: PropTypes.string
     })

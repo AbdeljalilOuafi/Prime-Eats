@@ -8,14 +8,20 @@ import Loader from "../components/Loader";
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const AddressInput = ({ onRestaurantsFetched }) => {
-  const { updateAddress } = useContext(AddressContext);
+  const { address, updateAddress } = useContext(AddressContext);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const autoCompleteRef = useRef(null);
   const inputRef = useRef(null);
+  const abortController = useRef(null);
 
-  const abortController = useRef(null); // Ref to manage AbortController
+  // Initialize input with saved address if it exists
+  useEffect(() => {
+    if (address.fullAddress) {
+      setInput(address.fullAddress);
+    }
+  }, [address.fullAddress]);
 
   // Helper function to handle errors consistently
   const handleError = (errorMessage) => {
@@ -65,20 +71,6 @@ const AddressInput = ({ onRestaurantsFetched }) => {
     };
   }, []);
 
-  // Validate manual address
-  // const validateAddress = async (address) => {
-  //   return new Promise((resolve, reject) => {
-  //     const geocoder = new window.google.maps.Geocoder();
-  //     geocoder.geocode({ address }, (results, status) => {
-  //       if (status === "OK" && results && results.length > 0 && results[0].geometry) {
-  //         resolve(results[0]);
-  //       } else {
-  //         reject(new Error("Invalid address"));
-  //       }
-  //     });
-  //   });
-  // };
-
   // Handle place selection from autocomplete
   const handlePlaceSelect = async () => {
     if (!autoCompleteRef.current) return;
@@ -119,19 +111,21 @@ const AddressInput = ({ onRestaurantsFetched }) => {
       setError(null);
 
       const response = await api.get(
-        `/restaurants/?latitude=${latitude}&longitude=${longitude}&radius=500`,
+        `/restaurants/?latitude=${latitude}&longitude=${longitude}&radius=1500`,
         { signal }
       );
 
-      updateAddress({
+      const addressData = {
         fullAddress,
         latitude,
         longitude,
-      });
+      };
+
+      // Update both context and sessionStorage
+      updateAddress(addressData);
 
       onRestaurantsFetched(response.data);
       setIsLoading(false);
-      console.log("Restaurants fetched:", response.length);
     } catch (err) {
       if (signal.aborted) {
         console.warn("Request was aborted");
@@ -143,34 +137,6 @@ const AddressInput = ({ onRestaurantsFetched }) => {
       console.error("Error fetching restaurants:", err);
     }
   };
-
-  // Handle manual address submission
-  // const handleManualSubmit = async () => {
-  //   if (!input.trim()) {
-  //     handleError("Please enter an address");
-  //     return;
-  //   }
-
-  //   try {
-  //     setIsLoading(true);
-  //     setError(null);
-
-  //     const validatedAddress = await validateAddress(input);
-
-  //     if (!validatedAddress || !validatedAddress.geometry) {
-  //       handleError("Please enter a valid address");
-  //       return;
-  //     }
-
-  //     const lat = validatedAddress.geometry.location.lat();
-  //     const lng = validatedAddress.geometry.location.lng();
-
-  //     await fetchNearbyRestaurants(lat, lng, validatedAddress.formatted_address);
-  //   } catch (err) {
-  //     handleError("Error submitting address");
-  //     console.error("Geocoding error:", err);
-  //   }
-  // };
 
   // Handle geolocation
   const handleLocationClick = () => {
@@ -211,12 +177,13 @@ const AddressInput = ({ onRestaurantsFetched }) => {
       (err) => {
         handleError("Error accessing location. Please enter address manually.");
         console.error("Geolocation error:", err);
+        setIsLoading(false);
       }
     );
   };
 
   return (
-<div className="w-full max-w-4xl mx-auto mb-20 p-4">
+    <div className="w-full max-w-4xl mx-auto mb-20 p-4">
       {isLoading && <Loader />}
       <div className="relative flex items-center">
         <input

@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Alert } from '@/components/ui/alertAlertTitle';
+import { Alert } from '@/components/ui/alert';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Loader } from 'lucide-react';
 import api from '../services/api';
 import Navbar from '../components/Navbar';
 import PropTypes from 'prop-types';
+import { CartContext } from '../context/CartContext/CartContext';
 
 const OrderSummary = ({ orders, orderDetails, formatPrice }) => {
   if (!orders?.length) return null;
@@ -19,9 +21,6 @@ const OrderSummary = ({ orders, orderDetails, formatPrice }) => {
         {orders.map((order, index) => (
           <div key={index} className="mb-4 pb-4 border-b">
             <p className="font-medium">Order #{order.order_id}</p>
-            {/* <p className="text-gray-600">Amount: ${formatPrice(order.totalAmount)}</p>
-            <p className="text-gray-600">Original Amount: ${formatPrice(order.originalAmount)}</p>
-            <p className="text-gray-600">Final Amount: ${formatPrice(order.finalAmount)}</p> */}
           </div>
         ))}
 
@@ -38,7 +37,7 @@ const OrderSummary = ({ orders, orderDetails, formatPrice }) => {
 
           {orderDetails?.couponApplied && (
             <div className="flex justify-between text-green-600">
-              <span>Discount Applied (Code: ALX):</span>
+              <span>Discount Applied:</span>
               <span>
                 -${formatPrice(orderDetails.originalAmount - orderDetails.finalAmount)}
               </span>
@@ -64,7 +63,6 @@ const OrderSummary = ({ orders, orderDetails, formatPrice }) => {
   );
 };
 
-
 OrderSummary.propTypes = {
   orders: PropTypes.arrayOf(
     PropTypes.shape({
@@ -81,7 +79,6 @@ OrderSummary.propTypes = {
   formatPrice: PropTypes.func.isRequired,
 };
 
-
 const PaymentPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -90,6 +87,7 @@ const PaymentPage = () => {
   const [orderDetails, setOrderDetails] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const { clearCart } = useContext(CartContext);
 
   const formatPrice = (price) => {
     const numPrice = Number(price);
@@ -114,7 +112,6 @@ const PaymentPage = () => {
       script.async = true;
       
       script.onload = () => {
-        console.log('PayPal script loaded successfully');
         setScriptLoaded(true);
         setSdkReady(true);
       };
@@ -147,26 +144,44 @@ const PaymentPage = () => {
     };
   }, [location.state, navigate]);
 
+  const handleSuccessfulPayment = (orderId) => {
+    // Clear the cart using context
+    clearCart();
+    
+    // Navigate to order tracking
+    navigate('/order-tracking', {
+      state: {
+        orderId: orderId,
+        restaurantLocation: {
+          lat: location.state.restaurantLocation?.lat ? Number(location.state.restaurantLocation.lat) : null,
+          lng: location.state.restaurantLocation?.lng ? Number(location.state.restaurantLocation.lng) : null
+        },
+        deliveryLocation: {
+          lat: location.state.deliveryLocation?.lat ? Number(location.state.deliveryLocation.lat) : null,
+          lng: location.state.deliveryLocation?.lng ? Number(location.state.deliveryLocation.lng) : null
+        },
+        deliveryAddress: location.state.deliveryAddress
+      }
+    });
+  };
+
   useEffect(() => {
     if (sdkReady && scriptLoaded) {
       const initializePayPalButton = async () => {
         try {
           const container = document.getElementById('paypal-button-container');
-          if (!container) {
-            console.error('PayPal button container not found');
-            return;
-          }
+          if (!container) return;
 
           container.innerHTML = '';
 
           if (window.paypal) {
-            console.log('Rendering PayPal buttons...');
             await window.paypal.Buttons({
               style: {
                 layout: 'vertical',
                 color: 'gold',
                 shape: 'rect',
-                label: 'paypal'
+                label: 'paypal',
+                height: 45 // Set a consistent height
               },
               createOrder: async () => {
                 try {
@@ -198,9 +213,6 @@ const PaymentPage = () => {
                 setError('Payment was cancelled. Please try again.');
               }
             }).render('#paypal-button-container');
-            console.log('PayPal buttons rendered successfully');
-          } else {
-            console.error('PayPal SDK not loaded properly');
           }
         } catch (err) {
           console.error('Error initializing PayPal buttons:', err);
@@ -229,10 +241,7 @@ const PaymentPage = () => {
         coupon_code: location.state?.couponCode || null
       };
   
-      console.log('Creating PayPal order with data:', orderData);
-  
       const response = await api.post('/payments/create-paypal-order/', orderData);
-      console.log('PayPal create order response:', response.data);
   
       if (!response.data.paypal_order_id) {
         throw new Error('Invalid response: Missing PayPal order ID');
@@ -241,7 +250,7 @@ const PaymentPage = () => {
       setOrderDetails({
         orderId: response.data.paypal_order_id,
         originalAmount: response.data.original_amount || location.state.totalAmount,
-        finalAmount: response.data.final_amount || 0.01,
+        finalAmount: response.data.final_amount || location.state.totalAmount,
         status: response.data.status || 'pending',
         isPaid: response.data.is_paid || false,
         couponApplied: response.data.coupon_applied || false,
@@ -251,11 +260,6 @@ const PaymentPage = () => {
       return response.data.paypal_order_id;
       
     } catch (err) {
-      console.error('Create PayPal Order Error:', {
-        message: err.message,
-        response: err.response?.data,
-        status: err.response?.status
-      });
       const errorMessage = err.response?.data?.message || 
                           err.response?.data?.error || 
                           err.message || 
@@ -288,31 +292,14 @@ const PaymentPage = () => {
         coupon_code: location.state?.couponCode || null
       };
   
-      console.log('Capturing PayPal payment:', captureData);
-  
       const response = await api.post('/payments/capture-paypal-order/', captureData);
-      console.log('PayPal capture response:', response.data);
   
       if (response.data.status === 'success') {
-        navigate('/order-tracking', {
-          state: {
-            orderId: originalOrderId,
-            restaurantLocation: {
-              lat: location.state.restaurantLocation?.lat ? Number(location.state.restaurantLocation.lat) : null,
-              lng: location.state.restaurantLocation?.lng ? Number(location.state.restaurantLocation.lng) : null
-            },
-            deliveryLocation: {
-              lat: location.state.deliveryLocation?.lat ? Number(location.state.deliveryLocation.lat) : null,
-              lng: location.state.deliveryLocation?.lng ? Number(location.state.deliveryLocation.lng) : null
-            },
-            deliveryAddress: location.state.deliveryAddress
-          }
-        });
+        handleSuccessfulPayment(originalOrderId);
       } else {
         throw new Error(response.data.message || 'Payment capture failed');
       }
     } catch (err) {
-      console.error('Capture Payment Error:', err);
       const errorMessage = err.response?.data?.message || 
                           err.response?.data?.error || 
                           err.message || 
@@ -324,10 +311,52 @@ const PaymentPage = () => {
     }
   };
 
+  const handleTestPayment = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      if (!location.state?.orders || !location.state.orders.length) {
+        throw new Error('No order information available');
+      }
+
+      const originalOrderId = location.state.orders[0].order_id;
+      const finalAmount = orderDetails?.finalAmount || location.state.totalAmount;
+
+      // Simulate a successful payment response
+      const mockPaymentResponse = {
+        status: 'success',
+        paypal_order_id: `TEST_${Date.now()}`,
+        original_amount: finalAmount,
+        final_amount: finalAmount,
+        is_paid: true,
+        message: 'Test payment successful'
+      };
+
+      setOrderDetails({
+        orderId: mockPaymentResponse.paypal_order_id,
+        originalAmount: mockPaymentResponse.original_amount,
+        finalAmount: mockPaymentResponse.final_amount,
+        status: mockPaymentResponse.status,
+        isPaid: mockPaymentResponse.is_paid,
+        message: mockPaymentResponse.message
+      });
+
+      handleSuccessfulPayment(originalOrderId);
+
+    } catch (err) {
+      console.error('Test Payment Error:', err);
+      setError(err.message || 'Test payment simulation failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 py-8 mt-32">
+      {/* Main content with lower z-index */}
+      <div className="relative z-0 max-w-2xl mx-auto px-4 py-8 mt-32">
         <h1 className="text-3xl font-bold mb-6">Payment</h1>
       
         <OrderSummary 
@@ -359,7 +388,42 @@ const PaymentPage = () => {
               </div>
             )}
 
-            <div id="paypal-button-container" className="min-h-[150px] w-full" />
+            <div className="space-y-6">
+              <div className="flex justify-center">
+                {/* PayPal container with explicit z-index */}
+                <div 
+                  id="paypal-button-container" 
+                  className="w-full max-w-md relative z-0"
+                  style={{ zIndex: 0 }}
+                />
+              </div>
+              
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">Or</span>
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <Button
+                  onClick={handleTestPayment}
+                  disabled={loading}
+                  className="w-full max-w-md bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-md transition-colors"
+                >
+                  {loading ? (
+                    <div className="flex items-center justify-center">
+                      <Loader className="w-4 h-4 animate-spin mr-2" />
+                      Processing...
+                    </div>
+                  ) : (
+                    'Test Payment (Simulated)'
+                  )}
+                </Button>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
