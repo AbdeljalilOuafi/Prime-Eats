@@ -14,6 +14,7 @@ from django.core.cache import cache
 import json
 from django.shortcuts import render
 from orders.tasks import send_order_confirmation_email
+from orders.utils import send_mail
 
 
 
@@ -245,10 +246,8 @@ class CapturePayPalOrderView(APIView):
             order.save()
             
             # Queue the confirmation email task
-            send_order_confirmation_email.delay(
-                order_id=order.id,
-                email=request.user.email
-            )
+            # send_order_confirmation_email(order.id, order.user.email)
+            send_mail(order.id, order.user.email)
             
             # Log successful payment
             logger.info(f"Payment completed for order {order.id}")

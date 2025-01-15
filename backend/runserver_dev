@@ -1,0 +1,5 @@
+#!/bin/bash
+rm db.sqlite3
+./utils/cache_clear.py
+./utils/populate_db.py
+./manage.py runserver
