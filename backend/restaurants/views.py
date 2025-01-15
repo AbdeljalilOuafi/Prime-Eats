@@ -7,15 +7,14 @@ from rest_framework.permissions import AllowAny
 from .models import ChainRestaurant
 from .serializers import ChainRestaurantSerializer
 from django.core.cache import cache
+from asgiref.sync import async_to_sync
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
+@method_decorator(csrf_exempt, name='dispatch')
 class RestaurantListView(APIView):
     """
     Fetch nearby restaurants using coordinates.
-    Steps:
-    1. Check Redis cache for rounded coordinates.
-    2. Check the database.
-    3. Fetch from Google API or Yelp if no data exists.
-    4. Generate fake fallback data as a last resort.
     """
     permission_classes = [AllowAny]
 
@@ -30,17 +29,20 @@ class RestaurantListView(APIView):
                 radius = 1000
             
             if not latitude or not longitude:
-                return Response({'error': 'No location was provided'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error': 'No location was provided'}, 
+                              status=status.HTTP_400_BAD_REQUEST)
 
         except (TypeError, ValueError) as e:
-        # Latitude or longitude failed float conversion, in otherwords its an invalid value
             return Response(
                 {'error': f'Invalid latitude or longitude, {e}'},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
         service = RestaurantDataService(config('GOOGLE_API_KEY'))
-        return service.get_restaurants(latitude, longitude, radius)
+        
+        # Convert the async get_restaurants method to sync
+        sync_get_restaurants = async_to_sync(service.get_restaurants)
+        return sync_get_restaurants(latitude, longitude, radius)
 
 class ChainRestaurantListView(APIView):
     """
