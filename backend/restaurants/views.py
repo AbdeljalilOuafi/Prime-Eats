@@ -24,12 +24,10 @@ class RestaurantListView(APIView):
             # 1. Extract parameters from request
             latitude = float(request.query_params.get("latitude"))
             longitude = float(request.query_params.get("longitude"))
-            try: 
-                radius = int(request.query_params.get("radius"))
-                if radius >= 1000:
-                    raise ValueError('Radius must be less than 1000')
-            except:
-                radius = 500
+            radius = request.query_params.get("radius")
+            
+            if radius:
+                radius = 1000
             
             if not latitude or not longitude:
                 return Response({'error': 'No location was provided'}, status=status.HTTP_400_BAD_REQUEST)
