@@ -13,7 +13,7 @@ from django.core.asgi import get_asgi_application
 
 
 # If we're not on localhost/development machine, use deployment settings
-settings_module = 'core.deployement_settings'
+settings_module = 'core.settings' if os.getenv('ENV')  else 'core.deployement_settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
 application = get_asgi_application()

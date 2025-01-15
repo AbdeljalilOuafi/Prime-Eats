@@ -8,7 +8,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Set up Django settings
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.deployement_settings')
+settings_module = 'core.settings' if os.getenv('ENV')  else 'core.deployement_settings'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 django.setup()
 from restaurants.chains import CHAINS
 from restaurants.menus import MENUS
