@@ -50,3 +50,13 @@ Welcome to Prime Eats! Our platform is a modern, community-driven application wh
 - **File Hosting:** Cloudinary
 
 ---
+
+## Getting Started
+
+Follow these steps to set up Prime Eats on your local machine:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/AbdeljalilOuafi/Prime-Eats.git
+   ```
