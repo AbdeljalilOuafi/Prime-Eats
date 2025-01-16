@@ -69,3 +69,11 @@ Follow these steps to set up Prime Eats on your local machine:
    python utils/populate_db.py
    python manage.py runserver
    ```
+
+3. **Set up the frontend:**
+
+   ```bash
+   cd ../frontend
+   npm install
+   npm run dev
+   ```
