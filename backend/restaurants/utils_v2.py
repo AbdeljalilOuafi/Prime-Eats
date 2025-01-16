@@ -31,50 +31,37 @@ class RestaurantDataService:
         self.google_api_key = google_api_key
         self.logger = logging.getLogger(__name__)
 
-    def get_restaurants(self, latitude, longitude, radius=500):
-        """
-        Main function - keeping it synchronous but handling async operations properly
-        """
+    async def get_restaurants(self, latitude, longitude, radius=500):
         rounded_coords = f"{round(latitude, 3)}:{round(longitude, 3)}"
         cache_key = f"restaurants:{rounded_coords}"
 
         # 1. Check Redis cache
-        cached_data = cache.get(cache_key)
+        cached_data = await sync_to_async(cache.get)(cache_key)
         if cached_data:
             print("Data retrieved from Redis.")
-            return Response(cached_data, status=status.HTTP_200_OK)
+            return cached_data
 
         # 2. Check Database
-        db_results = self.query_db(rounded_coords, cache_key)
+        db_results = await self.query_db(rounded_coords, cache_key)
         if db_results:
             print("Data retrieved from DataBase.")
-            return Response(db_results, status=status.HTTP_200_OK)
+            return db_results
 
         # 3. Try fetching from APIs
         try:
-            # Create and use event loop for async operations
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            
-            api_restaurants, source = loop.run_until_complete(
-                self._fetch_from_apis(latitude, longitude, radius)
-            )
+            api_restaurants, source = await self._fetch_from_apis(latitude, longitude, radius)
             
             if api_restaurants:
-                restaurants = loop.run_until_complete(
-                    self._save_restaurants(api_restaurants, rounded_coords, cache_key, source)
-                )
-                loop.close()
-                return Response(restaurants, status=status.HTTP_200_OK)
+                restaurants = await self._save_restaurants(api_restaurants, rounded_coords, cache_key, source)
+                return restaurants
                 
         except Exception as e:
             print(f'Something went wrong, {e}\nFallback to Chain Restaurants.')
-            restaurants = ChainRestaurantSerializer(ChainRestaurant.objects.all(), many=True).data
-            return Response(restaurants, status=status.HTTP_200_OK)
-        finally:
-            if 'loop' in locals() and not loop.is_closed():
-                loop.close()
-
+            # Fix: Wrap the ChainRestaurant query in sync_to_async
+            chain_restaurants = await sync_to_async(lambda: list(ChainRestaurant.objects.all()))()
+            chain_data = await sync_to_async(lambda: ChainRestaurantSerializer(chain_restaurants, many=True).data)()
+            return {"restaurants": [], "chain_restaurants": chain_data}
+        
     async def _fetch_from_apis(self, latitude, longitude, radius):
         """
         Attempt to fetch restaurants from multiple APIs
@@ -152,39 +139,13 @@ class RestaurantDataService:
     #         for business in businesses
     #     ]
 
-    def query_db(self, rounded_coords, cache_key):
-
-        fetch_entry = FetchRestaurant.objects.filter(rounded_coordinates=rounded_coords).first()
-
-        if fetch_entry:
-            # Serialize data
-            restaurants_data = RestaurantSerializer(fetch_entry.restaurants.all(), many=True).data
-            chain_restaurants_data = ChainRestaurantSerializer(fetch_entry.chain_restaurants.all(), many=True).data
-
-            # Prepare response data
-            response_data = {
-                "restaurants": restaurants_data,
-                "chain_restaurants": chain_restaurants_data
-            }
-
-            # Cache the serialized response
-            cache.set(cache_key, response_data)
-
-            return response_data
-
-        return None
-
-    @transaction.atomic
     async def _save_restaurants(self, api_results, rounded_coords, cache_key, source):
-        """
-        Modified to handle async operations properly
-        """
         restaurants_data, photo_urls = await self.process_restaurants_async(api_results, rounded_coords)
         
         photo_url_iter = iter(photo_urls)
         restaurants = []
         
-        # Create FetchRestaurant instance first
+        # Create FetchRestaurant instance
         fetch_entry = await sync_to_async(FetchRestaurant.objects.create)(rounded_coordinates=rounded_coords)
         
         for (r, cuisine_type) in restaurants_data:
@@ -202,13 +163,13 @@ class RestaurantDataService:
                 except StopIteration:
                     pass
 
-            # Create restaurant with sync_to_async
+            # Create restaurant
             restaurant = await sync_to_async(Restaurant.objects.create)(
                 name=r["name"],
                 latitude=r["geometry"]["location"]["lat"],
                 longitude=r["geometry"]["location"]["lng"],
                 rounded_coordinates=rounded_coords,
-                address=r.get("address", "No address available"),
+                address=r.get("vicinity", "No address available"),
                 rating=r.get("rating", random.uniform(2, 5)),
                 source=source,
                 cuisine_type=cuisine_type,
@@ -218,11 +179,11 @@ class RestaurantDataService:
             restaurants.append(restaurant)
             await sync_to_async(fetch_entry.restaurants.add)(restaurant)
 
-        # Fix: Create serializers synchronously after all async operations
+        # Serialize the results
         restaurants_to_serialize = [r for r in restaurants if not isinstance(r, ChainRestaurant)]
         chain_restaurants_to_serialize = [r for r in restaurants if isinstance(r, ChainRestaurant)]
 
-        # Use sync_to_async with proper serialization
+        # Use sync_to_async for serialization
         restaurants_data = await sync_to_async(lambda: RestaurantSerializer(restaurants_to_serialize, many=True).data)()
         chain_restaurants_data = await sync_to_async(lambda: ChainRestaurantSerializer(chain_restaurants_to_serialize, many=True).data)()
 
@@ -236,18 +197,69 @@ class RestaurantDataService:
         
         return response_data
 
+    async def query_db(self, rounded_coords, cache_key):
+        """Fixed async database querying"""
+        # Convert the filter operation to async
+        fetch_qs = FetchRestaurant.objects.filter(rounded_coordinates=rounded_coords)
+        fetch_entry = await sync_to_async(lambda: fetch_qs.first())()
+
+        if fetch_entry:
+            # Get related restaurants
+            restaurants = await sync_to_async(lambda: RestaurantSerializer(
+                fetch_entry.restaurants.all(), 
+                many=True
+            ).data)()
+            
+            # Get related chain restaurants
+            chain_restaurants = await sync_to_async(lambda: ChainRestaurantSerializer(
+                fetch_entry.chain_restaurants.all(), 
+                many=True
+            ).data)()
+
+            response_data = {
+                "restaurants": restaurants,
+                "chain_restaurants": chain_restaurants
+            }
+
+            # Cache the results
+            await sync_to_async(cache.set)(cache_key, response_data)
+            return response_data
+
+        return None
+
+    
+    async def _is_chain_async(self, name: str) -> bool:
+        """Async version of chain checking"""
+        name = name.lower()
+        return name and name in " ".join(chain.lower() for chain in CHAINS)
+
+    async def _infer_cuisine_async(self, name: str, types: list) -> str:
+        """Async version of cuisine inference"""
+        name = name.lower()
+        types = [t.lower() for t in types] if types else []
+        search_text = f"{name} {' '.join(types)}"
+
+        cuisine_scores = {}
+        for cuisine, keywords in CUISINE_KEYWORDS.items():
+            score = sum(1 for keyword in keywords if keyword in search_text)
+            if score > 0:
+                cuisine_scores[cuisine] = score
+
+        if cuisine_scores:
+            return max(cuisine_scores.items(), key=lambda x: x[1])[0]
+
+        return 'Unknown'
+
     async def process_restaurants_async(self, api_results, rounded_coords):
-        """
-        Asynchronously process restaurants and fetch their photos
-        """
+        """Fixed async restaurant processing"""
         restaurants = []
         photo_tasks = []
         
         async with aiohttp.ClientSession() as session:
             for r in api_results:
-                if self._is_chain(r["name"]):
-                    chain = await sync_to_async(ChainRestaurant.objects.filter)(name=r["name"])
-                    chain = await sync_to_async(chain.first)()
+                if await self._is_chain_async(r["name"]):
+                    chain_qs = ChainRestaurant.objects.filter(name=r["name"])
+                    chain = await sync_to_async(lambda: chain_qs.first())()
                     if chain:
                         restaurants.append((chain, None))
                     continue
@@ -262,11 +274,8 @@ class RestaurantDataService:
                     )
                     photo_tasks.append(photo_task)
                 
-                cuisine_name = self._infer_cuisine(r["name"], r.get("types", []))
-                
-                # Fix: Wrap database operations with sync_to_async
-                cuisine_type = await sync_to_async(CuisineType.objects.get_or_create)(name=cuisine_name)
-                cuisine_type = cuisine_type[0]  # get_or_create returns (object, created) tuple
+                cuisine_name = await self._infer_cuisine_async(r["name"], r.get("types", []))
+                cuisine_type = await sync_to_async(lambda: CuisineType.objects.get_or_create(name=cuisine_name)[0])()
                 
                 restaurants.append((r, cuisine_type))
 

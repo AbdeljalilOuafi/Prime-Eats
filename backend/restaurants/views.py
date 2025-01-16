@@ -7,30 +7,25 @@ from rest_framework.permissions import AllowAny
 from .models import ChainRestaurant
 from .serializers import ChainRestaurantSerializer
 from django.core.cache import cache
-from asgiref.sync import async_to_sync
+from asgiref.sync import sync_to_async, async_to_sync
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
 @method_decorator(csrf_exempt, name='dispatch')
 class RestaurantListView(APIView):
-    """
-    Fetch nearby restaurants using coordinates.
-    """
     permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
         try:
-            # 1. Extract parameters from request
             latitude = float(request.query_params.get("latitude"))
             longitude = float(request.query_params.get("longitude"))
-            radius = request.query_params.get("radius")
-            
-            if radius:
-                radius = 1000
+            radius = request.query_params.get("radius", 1000)
             
             if not latitude or not longitude:
-                return Response({'error': 'No location was provided'}, 
-                              status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {'error': 'No location was provided'}, 
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
         except (TypeError, ValueError) as e:
             return Response(
@@ -39,10 +34,8 @@ class RestaurantListView(APIView):
             )
 
         service = RestaurantDataService(config('GOOGLE_API_KEY'))
-        
-        # Convert the async get_restaurants method to sync
-        sync_get_restaurants = async_to_sync(service.get_restaurants)
-        return sync_get_restaurants(latitude, longitude, radius)
+        result = async_to_sync(service.get_restaurants)(latitude, longitude, radius)
+        return Response(result, status=status.HTTP_200_OK)
 
 class ChainRestaurantListView(APIView):
     """
