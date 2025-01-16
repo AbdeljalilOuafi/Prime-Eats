@@ -40,10 +40,10 @@ export default function FAQSection() {
           ))}
           <p className="flex items-center text-center">if you have another questions can be click at  
             <Link to="/ContactPage"
-              className="text-yellow-500 relative group"
+              className="text-orange-500 relative group"
             >
               <span className="relative z-10 ml-1.5">Contact us</span>
-              <span className="absolute right-0 left-1.5 bottom-0 h-0.5 bg-yellow-500 scale-x-0 transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+              <span className="absolute right-0 left-1.5 bottom-0 h-0.5 bg-orange-500 scale-x-0 transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
             </Link>
           </p>
         </div>
