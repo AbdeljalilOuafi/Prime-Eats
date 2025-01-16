@@ -33,3 +33,20 @@ Welcome to Prime Eats! Our platform is a modern, community-driven application wh
 **🔐 User Authentication:** Secure user management implemented using Clerk.
 
 ---
+
+## Technologies Used
+
+- **Backend Framework:** Django REST Framework (DRF)
+- **Frontend Framework:** React.js
+- **Styling:** Tailwind CSS
+- **Authentication:** Clerk (JWT-based authentication)
+- **API Integration:** Google Places API
+- **Payment Gateway:** PayPal
+- **Database:** PostgreSQL
+- **Caching:** Redis
+- **Deployment:** Render
+- **Testing:** Django Tests (Backend)
+- **CI/CD:** GitHub Actions
+- **File Hosting:** Cloudinary
+
+---
