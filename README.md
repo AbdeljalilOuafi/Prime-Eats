@@ -77,3 +77,10 @@ Follow these steps to set up Prime Eats on your local machine:
    npm install
    npm run dev
    ```
+
+4. **Run the application:**
+
+   - Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
+     ```
+
+---
