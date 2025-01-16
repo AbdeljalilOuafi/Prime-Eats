@@ -5,28 +5,58 @@ import { CartContext } from "../context/CartContext/CartContext";
 import Navbar from "../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
 import { useToast } from "../components/ui/toaster";
+import { Loader2 } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import QuantitySelector from "../components/QuantitySelector";
 
 const MenuItem = ({ item, restaurantId, restaurant, onAddToCart }) => {
   const [adding, setAdding] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const { cart } = useContext(CartContext);
   const { toast } = useToast();
+  
   const price = typeof item.price === 'string' 
     ? parseFloat(item.price) 
     : item.price;
+
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+  };
 
   const handleAddToCart = async () => {
     setAdding(true);
     try {
       const itemWithRestaurant = {
         ...item,
+        quantity,
         restaurantId,
         restaurantName: restaurant?.name || 'Unknown Restaurant'
       };
-      await onAddToCart(itemWithRestaurant);
+
+      // Check if item already exists in cart
+      const existingItemIndex = cart.findIndex(
+        cartItem => cartItem.id === item.id && cartItem.restaurantId === restaurantId
+      );
+
+      if (existingItemIndex !== -1) {
+        // Update existing item quantity
+        const updatedCart = [...cart];
+        updatedCart[existingItemIndex].quantity += quantity;
+        await onAddToCart(updatedCart[existingItemIndex], true);
+      } else {
+        // Add new item
+        await onAddToCart(itemWithRestaurant);
+      }
+
       toast({
         title: "Added to cart",
-        description: `${item.name} has been added to your cart`,
+        description: `${quantity}x ${item.name} has been added to your cart`,
         duration: 2000,
       });
+      
+      // Reset quantity after successful add
+      setQuantity(1);
     } catch (error) {
       toast({
         title: "Error",
@@ -40,18 +70,12 @@ const MenuItem = ({ item, restaurantId, restaurant, onAddToCart }) => {
   };
 
   return (
-    <motion.div 
-      className="bg-white shadow-lg rounded-xl overflow-hidden"
-      whileHover={{ y: -5 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="relative h-48">
+    <Card className="h-full">
+      <div className="aspect-video relative overflow-hidden">
         <img
           src={item.image_url || "/placeholder-food.jpg"}
           alt={item.name}
-          className="w-full h-full object-cover"
+          className="object-cover w-full h-full transition-transform hover:scale-105"
           onError={(e) => {
             e.target.src = "/placeholder-food.jpg";
           }}
@@ -62,49 +86,65 @@ const MenuItem = ({ item, restaurantId, restaurant, onAddToCart }) => {
           </div>
         )}
       </div>
-      
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-gray-800 mb-2">{item.name}</h3>
-        <p className="text-sm text-gray-600 min-h-[3rem]">{item.description}</p>
-        <div className="mt-4 flex items-center justify-between">
-          <span className="text-lg font-bold text-gray-900">
-            ${price.toFixed(2)}
-          </span>
-          <button
-            className="px-4 py-2 bg-yellow-400 text-black rounded-lg
-              hover:bg-yellow-500 transition-colors duration-200
-              disabled:opacity-50 disabled:cursor-not-allowed
-              flex items-center gap-2"
+      <CardContent className="p-4">
+        <h3 className="font-semibold mb-2">{item.name}</h3>
+        <p className="text-sm text-gray-600 mb-4 min-h-[3rem]">
+          {item.description}
+        </p>
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-lg">
+              ${price.toFixed(2)}
+            </span>
+            <QuantitySelector 
+              onQuantityChange={handleQuantityChange}
+              initialQuantity={1}
+            />
+          </div>
+          <Button
             onClick={handleAddToCart}
             disabled={item.is_available === false || adding}
+            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black transition-colors"
           >
             {adding ? (
-              <>
-                <div className="h-4 w-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+              <div className="flex items-center gap-2">
+                <Loader2 className="h-4 w-4 animate-spin" />
                 Adding...
-              </>
+              </div>
             ) : (
-              'Add to Cart'
+              `Add to Cart • $${(price * quantity).toFixed(2)}`
             )}
-          </button>
+          </Button>
         </div>
-      </div>
-    </motion.div>
+      </CardContent>
+    </Card>
   );
 };
 
 MenuItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
     price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     image_url: PropTypes.string,
-    is_available: PropTypes.bool
+    is_available: PropTypes.bool,
+    quantity: PropTypes.number,
+    restaurantLocation: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+    }),
   }).isRequired,
   restaurantId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  restaurant: PropTypes.object.isRequired,
-  onAddToCart: PropTypes.func.isRequired
+  restaurant: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    image_url: PropTypes.string,
+    location: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+    }),
+  }).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
 };
 
 const MenuPage = () => {

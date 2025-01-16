@@ -50,8 +50,38 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
     }
   }, [deliveryInfo]);
 
-  const addToCart = (item) => {
-    setCart([...cart, item]);
+  const addToCart = (item, isUpdate = false) => {
+    setCart(currentCart => {
+      if (isUpdate) {
+        // If updating an existing item
+        return currentCart.map(cartItem => 
+          cartItem.id === item.id && cartItem.restaurantId === item.restaurantId
+            ? { ...item, quantity: Math.max(1, item.quantity) }
+            : cartItem
+        );
+      } else {
+        // Check if item already exists
+        const existingItemIndex = currentCart.findIndex(
+          cartItem => cartItem.id === item.id && cartItem.restaurantId === item.restaurantId
+        );
+
+        if (existingItemIndex !== -1) {
+          // Update existing item quantity
+          return currentCart.map((cartItem, index) => 
+            index === existingItemIndex
+              ? { 
+                  ...cartItem, 
+                  quantity: Math.max(1, cartItem.quantity + (item.quantity || 1))
+                }
+              : cartItem
+          );
+        }
+
+        // Add new item with quantity validation
+        return [...currentCart, { ...item, quantity: Math.max(1, item.quantity || 1) }];
+      }
+    });
+
     if (item.restaurantLocation) {
       setDeliveryInfo(prev => ({
         ...prev,
@@ -60,8 +90,18 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
     }
   };
 
-  const removeFromCart = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+  const updateCartItemQuantity = (itemId, restaurantId, newQuantity) => {
+    setCart(currentCart =>
+      currentCart.map(item =>
+        item.id === itemId && item.restaurantId === restaurantId
+          ? { ...item, quantity: Math.max(1, newQuantity) }
+          : item
+      )
+    );
+  };
+
+  const removeFromCart = (id, restaurantId) => {
+    setCart(cart.filter(item => !(item.id === id && item.restaurantId === restaurantId)));
   };
 
   const updateDeliveryInfo = (info) => {
@@ -90,6 +130,18 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
     localStorage.removeItem('deliveryInfo');
   };
 
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => {
+      const itemPrice = parseFloat(item.price);
+      const quantity = item.quantity || 1;
+      return total + (itemPrice * quantity);
+    }, 0);
+  };
+
+  const getCartItemCount = () => {
+    return cart.reduce((total, item) => total + (item.quantity || 1), 0);
+  };
+
   const proceedToCheckout = () => {
     if (!isSignedIn) {
       sessionStorage.setItem("pendingCheckout", "true");
@@ -108,13 +160,16 @@ export const CartProvider = ({ children, isSignedIn, navigate }) => {
   return (
     <CartContext.Provider value={{ 
       cart, 
-      addToCart, 
+      addToCart,
+      updateCartItemQuantity,
       removeFromCart, 
       openCart, 
       closeCart,
       deliveryInfo,
       updateDeliveryInfo,
       clearCart,
+      getCartTotal,
+      getCartItemCount,
       handlePaymentSuccess,
       proceedToCheckout,
       isCartOpen,
