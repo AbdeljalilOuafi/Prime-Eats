@@ -104,3 +104,14 @@ We welcome contributions from everyone! Follow these steps to contribute:
    git push origin feature/your-feature-name
    ```
 6. **Create a Pull Request:** Submit your pull request to the main repository and await feedback.
+
+---
+
+## Connect With Us
+
+Feel free to connect with our team for any queries, suggestions, or feedback:
+
+- **Abdeljalil Ouafi:** - [abdelajlilouafi55@gmail.com](mailto:joulal1994@gmail.com)
+- **Soukaina Megdani:** - [megdani20soukaina@gmail.com](mailto:megdani20soukaina@gmail.com)
+- **Abdelhakim Joulal:** - [joulal1994@gmail.com](mailto:joulal1994@gmail.com)
+- **Badr Bouzagui:** - [badrbouzagui@gmail.com](mailto:badrbouzagui@gmail.com)
