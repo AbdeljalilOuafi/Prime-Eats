@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext/CartContext';
 import { AddressContext } from '../context/AddressContext/AddressContext';
 import { useUser } from "@clerk/clerk-react";
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, CheckCircle, X, Loader2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import api from '../services/api';
 import AddressInput from '../components/AddressInput';
@@ -16,6 +16,9 @@ const CheckoutPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [couponCode, setCouponCode] = useState('');
+  const [validationStatus, setValidationStatus] = useState(null);
+  const [validationMessage, setValidationMessage] = useState('');
+  const [isValidating, setIsValidating] = useState(false);
   const [orderProcessing, setOrderProcessing] = useState(false);
 
   // Check authentication and cart status
@@ -46,6 +49,41 @@ const CheckoutPage = () => {
       const itemPrice = Number(item.price);
       return sum + (!isNaN(itemPrice) ? itemPrice : 0);
     }, 0);
+  };
+
+  const validateCouponCode = (code) => {
+    // Basic input validation
+    if (!code || code.trim().length === 0) {
+      setValidationStatus('error');
+      setValidationMessage('Please enter a coupon code');
+      return;
+    }
+
+    // Check for unsupported characters (only allow alphanumeric and hyphen)
+    if (!/^[A-Za-z0-9-]+$/.test(code)) {
+      setValidationStatus('error');
+      setValidationMessage('Coupon code contains invalid characters');
+      return;
+    }
+
+    // Simulate validation with setTimeout
+    setIsValidating(true);
+    setValidationStatus(null);
+    setValidationMessage('');
+
+    setTimeout(() => {
+      const trimmedCode = code.trim().toUpperCase();
+      
+      if (trimmedCode === 'ALX') {
+        setValidationStatus('success');
+        setValidationMessage('Special discount applied - Total price: $0.01!');
+      } else {
+        setValidationStatus('error');
+        setValidationMessage('Invalid coupon code');
+      }
+      
+      setIsValidating(false);
+    }, 500);
   };
 
   const handleCheckout = async () => {
@@ -79,7 +117,7 @@ const CheckoutPage = () => {
             delivery_address: address.fullAddress,
             delivery_latitude: address.latitude,
             delivery_longitude: address.longitude,
-            coupon_code: couponCode.trim() || null // Send trimmed coupon code or null
+            coupon_code: validationStatus === 'success' ? couponCode.trim() : null
           };
         }
         
@@ -116,26 +154,25 @@ const CheckoutPage = () => {
       
       const orders = results.map(result => ({
         order_id: result.data.order_id,
-        totalAmount: result.data.total_amount,
+        totalAmount: validationStatus === 'success' ? 0.01 : result.data.total_amount,
         originalAmount: result.data.original_amount,
-        finalAmount: result.data.final_amount,
+        finalAmount: validationStatus === 'success' ? 0.01 : result.data.final_amount,
         status: result.data.status,
         isPaid: result.data.is_paid,
         message: result.data.message
       }));
 
-      // Navigate to payment page with order details
       navigate('/payment', {
         state: {
           orders: orders,
-          totalAmount: calculateTotal(cart),
+          totalAmount: validationStatus === 'success' ? 0.01 : calculateTotal(cart),
           deliveryAddress: address.fullAddress,
           deliveryLocation: {
             lat: address.latitude,
             lng: address.longitude
           },
           restaurantLocation: deliveryInfo.restaurantLocation,
-          couponCode: couponCode.trim() || null
+          couponCode: validationStatus === 'success' ? couponCode.trim() : null
         }
       });
 
@@ -146,6 +183,12 @@ const CheckoutPage = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleClearCoupon = () => {
+    setCouponCode('');
+    setValidationStatus(null);
+    setValidationMessage('');
   };
 
   return (
@@ -170,27 +213,78 @@ const CheckoutPage = () => {
                 <AlertCircle className="h-5 w-5" />
                 <span>Please set a delivery address to continue</span>
               </div>
-                <AddressInput />
+              <AddressInput />
             </div>
           ) : (
             <p className="text-gray-700">{address.fullAddress}</p>
           )}
         </div>
 
-        {/* Simplified Coupon Section */}
+        {/* Coupon Section */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Have a Coupon?</h2>
           <div className="space-y-4">
-            <div className="flex gap-4">
+            <div className="relative">
               <input
                 type="text"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                disabled={isValidating || validationStatus === 'success'}
                 placeholder="Enter coupon code"
-                className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-200"
+                className={`w-full p-2 pr-24 border rounded-md focus:outline-none focus:ring-2 
+                  ${validationStatus === 'success' ? 'border-green-500 focus:ring-green-200' : 
+                    validationStatus === 'error' ? 'border-red-500 focus:ring-red-200' : 
+                    'border-gray-300 focus:ring-yellow-200'}
+                `}
                 maxLength={15}
               />
+              
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                {isValidating ? (
+                  <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
+                ) : validationStatus === 'success' ? (
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                ) : validationStatus === 'error' ? (
+                  <AlertCircle className="h-5 w-5 text-red-500" />
+                ) : null}
+                
+                {(validationStatus === 'success' || couponCode) && (
+                  <button
+                    onClick={handleClearCoupon}
+                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  >
+                    <X className="h-5 w-5 text-gray-500" />
+                  </button>
+                )}
+              </div>
             </div>
+
+            {validationMessage && (
+              <div
+                className={`text-sm flex items-center gap-2 
+                  ${validationStatus === 'success' ? 'text-green-600' : 'text-red-600'}`}
+              >
+                {validationStatus === 'success' ? (
+                  <CheckCircle className="h-4 w-4" />
+                ) : (
+                  <AlertCircle className="h-4 w-4" />
+                )}
+                <span>{validationMessage}</span>
+              </div>
+            )}
+
+            {couponCode && validationStatus !== 'success' && (
+              <button
+                onClick={() => validateCouponCode(couponCode)}
+                disabled={isValidating}
+                className={`w-full py-2 px-4 rounded-md text-sm font-medium
+                  ${isValidating ? 
+                    'bg-gray-100 text-gray-400 cursor-not-allowed' : 
+                    'bg-yellow-400 text-black hover:bg-yellow-500 transition-colors'}`}
+              >
+                {isValidating ? 'Validating...' : 'Apply Coupon'}
+              </button>
+            )}
 
             {/* Sample Coupons */}
             <div className="flex gap-2 flex-wrap">
@@ -201,9 +295,6 @@ const CheckoutPage = () => {
                 Try: ALX
               </button>
             </div>
-            <p className="text-sm text-gray-500">
-              * Discount will be applied at Payment Page if the coupon is valid
-            </p>
           </div>
         </div>
 
@@ -223,14 +314,9 @@ const CheckoutPage = () => {
           
           <div className="mt-6 pt-4 border-t">
             <div className="flex justify-between items-center font-bold text-lg">
-              <span>Subtotal:</span>
-              <span>${formatPrice(calculateTotal(cart))}</span>
+              <span>Total:</span>
+              <span>${validationStatus === 'success' ? '0.01' : formatPrice(calculateTotal(cart))}</span>
             </div>
-            {couponCode.trim() && (
-              <p className="text-sm text-gray-500 mt-2">
-                * Final total will be calculated after coupon validation
-              </p>
-            )}
           </div>
         </div>
 

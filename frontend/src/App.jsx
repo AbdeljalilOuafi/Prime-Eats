@@ -21,6 +21,7 @@ import CookiesPolicy from "./components/CookiesPolicy/CookiesPolicy";
 import CheckoutPage from "./pages/CheckoutPage";
 import { Toaster } from "./components/ui/toaster";
 import ChainMenu from "./components/ChainMenu";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 // Protected route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -110,6 +111,7 @@ function AppContent() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AppContent />
       <Toaster /> 
     </Router>
