@@ -84,3 +84,23 @@ Follow these steps to set up Prime Eats on your local machine:
      ```
 
 ---
+
+## Contribution Guidelines
+
+We welcome contributions from everyone! Follow these steps to contribute:
+
+1. **Fork the Repository:** Click the 'Fork' button on GitHub.
+2. **Create a Feature Branch:**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make Changes:** Develop your feature or fix the bug.
+4. **Commit Your Changes:**
+   ```bash
+   git commit -m "feat: Add your feature description"
+   ```
+5. **Push Your Branch:**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+6. **Create a Pull Request:** Submit your pull request to the main repository and await feedback.
