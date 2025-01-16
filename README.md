@@ -3,7 +3,12 @@
 > An international food delivery platform that connects customers with restaurants worldwide.
 
 ## Description 📝
-PrimeEats is a web application inspired by Glovo, but with a global reach. Our platform enables food delivery services across international borders, making it possible to order food from anywhere in the world.
+PrimeEats is an international food delivery platform that connects customers with local restaurants within their specific zones, ensuring a seamless and localized dining experience. Our platform enables users to discover and order from a variety of eateries in their vicinity, promoting local businesses and delivering fresh meals promptly.
+
+## Key Features
+- Users can view and order from restaurants within their designated delivery zones, ensuring timely deliveries and supporting local economies.
+- Customers can track their orders in real-time, from preparation to delivery, enhancing transparency and trust.
+- Our intuitive design makes it easy for users to browse menus, customize orders, and make secure payments.
 
 ## Tech Stack 🛠️
 
@@ -85,7 +90,7 @@ npm run dev
 - Advanced restaurant management system
 
 ## Deployment 🌐
-Coming soon
+PrimeEats is now live and accessible at https://www.primeeats.live. Our platform is hosted on a robust infrastructure to ensure high availability and performance for our users. We have implemented best practices for site deployment and hosting, including the use of deployment slots for zero-downtime deployments and automated monitoring to ensure the site remains operational 24/7.
 
 ## License 📄
 This project is MIT licensed.
