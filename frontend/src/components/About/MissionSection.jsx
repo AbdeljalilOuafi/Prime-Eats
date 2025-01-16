@@ -22,22 +22,16 @@ const values = [
 
 const MissionSection = () => {
   return (
-    <div className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="fixed inset-0 bg-or pointer-events-auto">
-            <InteractiveGridPattern
-              className="absolute inset-0 w-full h-full [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
-              width={20}
-              height={20}
-              squares={[80, 80]}
-              squaresClassName="hover:fill-orange-500"
-            />
-          </div>
+    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-3 gap-10 relative">
           {values.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={index} className="text-center">
+              <div
+                key={index}
+                className="text-center bg-white shadow-lg p-6 rounded-lg hover:shadow-xl transition-shadow duration-300"
+              >
                 <div className="inline-block p-4 bg-yellow-100 rounded-full mb-4">
                   <Icon className="w-8 h-8 text-yellow-600" />
                 </div>
@@ -48,8 +42,7 @@ const MissionSection = () => {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
-
 export default MissionSection;

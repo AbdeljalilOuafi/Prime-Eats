@@ -1,5 +1,7 @@
 import React from 'react';
 import FAQItem from './FAQItem';
+import ContactPage from '../Contact/ContactPage';
+import { Link } from 'react-router-dom'
 
 const faqs = [
   {
@@ -8,7 +10,7 @@ const faqs = [
   },
   {
     question: "What are the delivery fees?",
-    answer: "Delivery is free for all orders, with no additional charges."
+    answer: "Delivery fees vary based on the distance between the restaurants and the delivery address. For nearby areas, the charges may be minimal, while longer distances might incur higher fees."
   },
   {
     question: "How long does delivery take?",
@@ -22,10 +24,6 @@ const faqs = [
     question: "Do you have a minimum order amount?",
     answer: "Minimum order amounts vary by restaurant. The minimum amount will be clearly displayed before you place your order."
   },
-  {
-    question: "Can I schedule an order in advance?",
-    answer: "Yes! You can schedule orders up to 7 days in advance. Simply select your preferred delivery date and time during checkout."
-  }
 ];
 
 export default function FAQSection() {
@@ -40,6 +38,14 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <FAQItem key={index} question={faq.question} answer={faq.answer} />
           ))}
+          <p className="flex items-center text-center">if you have another questions can be click at  
+            <Link to="/ContactPage"
+              className="text-orange-500 relative group"
+            >
+              <span className="relative z-10 ml-1.5">Contact us</span>
+              <span className="absolute right-0 left-1.5 bottom-0 h-0.5 bg-orange-500 scale-x-0 transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+            </Link>
+          </p>
         </div>
       </div>
     </div>
