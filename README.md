@@ -60,3 +60,12 @@ Follow these steps to set up Prime Eats on your local machine:
    ```bash
    git clone https://github.com/AbdeljalilOuafi/Prime-Eats.git
    ```
+
+2. **Set up the backend:**
+
+   ```bash
+   cd Prime-Eats/backend
+   bash init.sh
+   python utils/populate_db.py
+   python manage.py runserver
+   ```
