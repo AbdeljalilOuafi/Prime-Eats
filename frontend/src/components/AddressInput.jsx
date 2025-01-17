@@ -4,6 +4,8 @@ import { AddressContext } from "../context/AddressContext/AddressContext";
 import PropTypes from "prop-types";
 import { loadGoogleMapsScript } from "../utils/googleMapsLoader";
 import Loader from "../components/Loader";
+import { MapPin } from "lucide-react";
+// import { Loader2, MapPin, Navigation } from "lucide-react";
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -185,28 +187,51 @@ const AddressInput = ({ onRestaurantsFetched }) => {
   return (
     <div className="w-full max-w-4xl mx-auto mb-20 p-4">
       {isLoading && <Loader />}
-      <div className="relative flex items-center">
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="What's your address?"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className={`w-full p-4 pl-12 rounded-full bg-white text-gray-800 shadow-lg ${
-            error ? 'border-red-500' : 'border-transparent'
-          } focus:outline-none`}
-          disabled={isLoading}
-        />
-        <div className="absolute left-4">
-          <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+      <div className="relative flex flex-col sm:flex-row gap-3">
+        <div className="relative flex-grow">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="What's your address?"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className={`w-full p-4 pl-12 rounded-full bg-white text-gray-800 shadow-lg ${
+              error ? 'border-red-500' : 'border-transparent'
+            } focus:outline-none`}
+            disabled={isLoading}
+          />
+          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-500" />
         </div>
+
         <button
           onClick={handleLocationClick}
           disabled={isLoading}
-          className="absolute right-4 px-6 py-2 rounded-full bg-yellow-400 text-black font-semibold hover:bg-yellow-500 focus:outline-none"
+          className={`
+            flex
+            items-center
+            justify-center
+            gap-2
+            px-6
+            py-3
+            sm:py-2
+            w-full
+            sm:w-auto
+            rounded-full
+            bg-yellow-400
+            text-black
+            font-semibold
+            transition-all
+            duration-200
+            hover:bg-yellow-500
+            focus:outline-none
+            focus:ring-2
+            focus:ring-yellow-400/50
+            disabled:opacity-60
+            disabled:cursor-not-allowed
+            whitespace-nowrap
+            shadow-md
+            hover:shadow-lg
+          `}
         >
           Use your current location
         </button>
@@ -217,6 +242,7 @@ const AddressInput = ({ onRestaurantsFetched }) => {
     </div>
   );
 };
+
 
 AddressInput.propTypes = {
   onRestaurantsFetched: PropTypes.func.isRequired,

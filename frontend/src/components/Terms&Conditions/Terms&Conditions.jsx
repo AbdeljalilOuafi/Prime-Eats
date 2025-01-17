@@ -1,11 +1,10 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function TermsConditions() {
     return (
         <div className="bg-gray-50 py-16 px-4">
-            <div className="max-w-5xl mx-auto">
-                <h1 className="text-5xl font-bold text-center mb-8">Terms & Conditions</h1>
+            <div className="max-w-5xl mx-auto px-6">
+                <h1 className="text-5xl font-bold text-center mb-8 mt-24">Terms & Conditions</h1>
                 <p className="text-gray-800 text-lg mb-4 text-center">
                     Welcome to PrimeEats. By using our platform, you agree to comply with and be bound by the following terms and conditions. Please review them carefully.
                 </p>

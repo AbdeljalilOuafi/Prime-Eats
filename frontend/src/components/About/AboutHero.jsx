@@ -1,11 +1,10 @@
-import React from 'react';
 import { UtensilsCrossed } from 'lucide-react';
 import navbarAboutPage from '../../assets/hero/navbar-aboutpage.jpg';
 
 export default function AboutHero() {
   return (
     <div className="relative bg-white">
-      <div className="relative h-[80vh] w-full overflow-hidden">
+      <div className="relative h-[350px] w-full overflow-hidden">
         <img
           src={navbarAboutPage}
           alt="A welcoming dinner table with food and decorations"
