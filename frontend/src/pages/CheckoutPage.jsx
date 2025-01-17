@@ -333,13 +333,13 @@ const CheckoutPage = () => {
         </button>
 
         {/* Back to Shopping Button */}
-        <button
+        {/* <button
           onClick={() => navigate('/restaurants')}
           className="w-full mt-4 bg-transparent border border-yellow-400 text-yellow-600 py-3 rounded-md font-semibold
             hover:bg-yellow-50 transition-colors"
         >
           Continue Shopping
-        </button>
+        </button> */}
       </div>
     </div>
   );

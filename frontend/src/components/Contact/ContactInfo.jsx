@@ -1,4 +1,3 @@
-import React from 'react';
 import { Phone, Mail } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
@@ -49,13 +48,13 @@ const ContactInfo = () => {
       <div className="bg-white p-8 rounded-xl shadow-sm">
         <h2 className="text-2xl font-semibold mb-6">Follow Us</h2>
         <div className="flex gap-4">
-          <a href="#" className="p-3 bg-gray-100 rounded-lg hover:bg-orange-100 transition-colors">
+          <a href="https://github.com/AbdeljalilOuafi/Prime-Eats" target="_blank" className="p-3 bg-gray-100 rounded-lg hover:bg-orange-100 transition-colors">
             <FaFacebook className="w-6 h-6 text-gray-600" />
           </a>
-          <a href="#" className="p-3 bg-gray-100 rounded-lg hover:bg-orange-100 transition-colors">
+          <a href="https://github.com/AbdeljalilOuafi/Prime-Eats" target="_blank" className="p-3 bg-gray-100 rounded-lg hover:bg-orange-100 transition-colors">
             <FaTwitter className="w-6 h-6 text-gray-600" />
           </a>
-          <a href="#" className="p-3 bg-gray-100 rounded-lg hover:bg-orange-100 transition-colors">
+          <a href="https://github.com/AbdeljalilOuafi/Prime-Eats" target="_blank" className="p-3 bg-gray-100 rounded-lg hover:bg-orange-100 transition-colors">
             <FaInstagram className="w-6 h-6 text-gray-600" />
           </a>
         </div>

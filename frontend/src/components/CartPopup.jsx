@@ -1,24 +1,18 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext/CartContext";
-import { X, ShoppingCart, AlertCircle, LogIn, Plus, Minus } from "lucide-react";
+import { X, ShoppingCart, AlertCircle, LogIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useUser } from "@clerk/clerk-react";
-import { Button } from "@/components/ui/button";
 
 const CartPopup = () => {
-  const { 
-    cart, 
-    removeFromCart, 
-    closeCart, 
-    updateCartItemQuantity,
-    getCartTotal 
-  } = useContext(CartContext);
+  const { cart, removeFromCart, closeCart } = useContext(CartContext);
   const navigate = useNavigate();
   const { isSignedIn } = useUser();
 
   const handleCheckout = () => {
     if (!isSignedIn) {
+      // Store current URL in session storage before redirecting
       sessionStorage.setItem("prevUrl", "/checkout");
       navigate("/sign-in");
     } else {
@@ -27,18 +21,16 @@ const CartPopup = () => {
     }
   };
 
-  const handleQuantityChange = (itemId, restaurantId, currentQuantity, increment) => {
-    const newQuantity = increment ? currentQuantity + 1 : Math.max(1, currentQuantity - 1);
-    updateCartItemQuantity(itemId, restaurantId, newQuantity);
-  };
-
-  const handleRemoveItem = (itemId, restaurantId) => {
-    removeFromCart(itemId, restaurantId);
-  };
-
-  const formatPrice = (price, quantity = 1) => {
-    const numPrice = Number(price) * quantity;
+  const formatPrice = (price) => {
+    const numPrice = Number(price);
     return !isNaN(numPrice) ? numPrice.toFixed(2) : "0.00";
+  };
+
+  const calculateTotal = (items) => {
+    return items.reduce((sum, item) => {
+      const itemPrice = Number(item.price);
+      return sum + (!isNaN(itemPrice) ? itemPrice : 0);
+    }, 0);
   };
 
   return (
@@ -59,15 +51,15 @@ const CartPopup = () => {
         >
           <ShoppingCart className="text-white/10 rotate-12 text-[250px] absolute z-0 -top-24 -left-24" />
           <button 
-            className="absolute right-4 top-4 text-white/70 hover:text-white" 
+            className="absolute right-4 top-4 p-2 text-white/70 hover:text-white w-12 h-12 flex items-center justify-center z-50 cursor-pointer"
             onClick={closeCart}
           >
-            <X className="w-6 h-6" />
+            <X className="w-8 h-8"/>
           </button>
           
           <div className="relative z-10">
             <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-orange-600 grid place-items-center mx-auto">
-              <ShoppingCart />
+            <ShoppingCart />
             </div>
             <h2 className="text-3xl font-bold text-center mb-6">Your Cart</h2>
             
@@ -79,47 +71,24 @@ const CartPopup = () => {
             ) : (
               <div>
                 <ul className="mb-6 space-y-4">
-                  {cart.map((item) => (
-                    <li key={`${item.id}-${item.restaurantId}`} className="flex justify-between items-center py-2 border-b border-white/10">
-                      <div className="flex-1">
+                  {cart.map((item, index) => (
+                    <li key={index} className="flex justify-between items-center py-2 border-b border-white/10">
+                      <div>
                         <p className="font-medium">{item.name}</p>
-                        <p className="text-sm text-white/70">
-                          ${formatPrice(item.price, item.quantity)}
-                        </p>
+                        <p className="text-sm text-white/70">${formatPrice(item.price)}</p>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-6 w-6 bg-white/10 hover:bg-white/20 border-none text-white"
-                            onClick={() => handleQuantityChange(item.id, item.restaurantId, item.quantity, false)}
-                          >
-                            <Minus className="h-3 w-3" />
-                          </Button>
-                          <span className="w-8 text-center">{item.quantity}</span>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-6 w-6 bg-white/10 hover:bg-white/20 border-none text-white"
-                            onClick={() => handleQuantityChange(item.id, item.restaurantId, item.quantity, true)}
-                          >
-                            <Plus className="h-3 w-3" />
-                          </Button>
-                        </div>
-                        <button 
-                          onClick={() => handleRemoveItem(item.id, item.restaurantId)}
-                          className="text-white/70 hover:text-white transition-colors"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                      </div>
+                      <button 
+                        onClick={() => removeFromCart(item.id)}
+                        className="text-white/70 hover:text-white transition-colors"
+                      >
+                        Remove
+                      </button>
                     </li>
                   ))}
                 </ul>
                 <div className="mt-4 pt-4 border-t border-white/10">
                   <p className="font-bold text-xl mb-6 text-center">
-                    Total: ${formatPrice(getCartTotal())}
+                    Total: ${formatPrice(calculateTotal(cart))}
                   </p>
                   <div className="flex gap-2">
                     <button

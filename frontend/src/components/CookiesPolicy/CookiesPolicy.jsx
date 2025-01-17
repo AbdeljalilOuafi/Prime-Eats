@@ -1,11 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom"
 
+import { Link } from "react-router-dom"
 export default function CookiesPolicy() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
       <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">Cookies Policy</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-4 mt-24">Cookies Policy</h1>
         <p className="text-gray-600 mb-6">
           Effective Date: January 1, 2025
         </p>
@@ -111,6 +110,7 @@ export default function CookiesPolicy() {
             7. Contact Us
           </h2>
           <p className="text-gray-600">
+
             If you have any questions about this Cookies Policy, please 
             <Link to="/ContactPage"
               className="text-orange-500 relative group"

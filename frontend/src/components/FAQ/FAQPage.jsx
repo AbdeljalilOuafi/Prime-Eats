@@ -1,4 +1,3 @@
-import FAQItem from "./FAQItem";
 import FAQSection from "./FAQSection";
 
 
