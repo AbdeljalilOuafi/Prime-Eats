@@ -41,9 +41,15 @@ const MouseImageTrail = ({
     const selector = `[data-mouse-move-index="${imageIndex}"]`;
 
     const el = document.querySelector(selector);
+    if (!el) return;
 
-    el.style.top = `${lastRenderPosition.current.y}px`;
-    el.style.left = `${lastRenderPosition.current.x}px`;
+    const rect = scope.current.getBoundingClientRect();
+    const relativeX = lastRenderPosition.current.x - rect.left;
+    const relativeY = lastRenderPosition.current.y - rect.top;
+
+    el.style.top = `${relativeY}px`;
+    el.style.left = `${relativeX}px`;
+    el.style.zIndex = imageRenderCount.current.toString();
 
     const rotation = Math.random() * rotationRange;
 
@@ -79,24 +85,22 @@ const MouseImageTrail = ({
   };
 
   return (
-    <div ref={scope} className="relative" onMouseMove={handleMouseMove}>
-      {/* Image container with z-index between background and content */}
-      <div className="absolute inset-0 z-10 overflow-hidden">
-        {images.map((img, index) => (
-          <img
-            className="pointer-events-none absolute left-0 top-0 h-48 w-auto rounded-xl border-2 border-black bg-neutral-900 object-cover"
-            src={img}
-            alt={`Mouse move image ${index}`}
-            key={index}
-            data-mouse-move-index={index}
-          />
-        ))}
-      </div>
-      
-      {/* Content wrapper with higher z-index */}
-      <div className="relative z-20">
-        {children}
-      </div>
+    <div
+      ref={scope}
+      className="relative w-full h-full overflow-visible"
+      onMouseMove={handleMouseMove}
+    >
+      {children}
+
+      {images.map((img, index) => (
+        <img
+          className="pointer-events-none absolute left-0 top-0 h-48 w-auto rounded-xl border-2 border-black bg-neutral-900 object-cover opacity-0"
+          src={img}
+          alt={`Mouse move image ${index}`}
+          key={index}
+          data-mouse-move-index={index}
+        />
+      ))}
     </div>
   );
 };
