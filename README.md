@@ -37,8 +37,10 @@ Welcome to Prime Eats! Our platform is a modern, community-driven application wh
 ## Technologies Used
 
 - **Backend Framework:** Django REST Framework (DRF)
-- **Frontend Framework:** React.js
+- **Frontend Framework:** Vite React.js
+- **HTTP Client Library:** Axios
 - **Styling:** Tailwind CSS
+- **Animation:** Framer Motion
 - **Authentication:** Clerk (JWT-based authentication)
 - **API Integration:** Google Places API
 - **Payment Gateway:** PayPal
@@ -80,8 +82,7 @@ Follow these steps to set up Prime Eats on your local machine:
 
 4. **Run the application:**
 
-   - Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
-     ```
+   - Open your browser and navigate to [http://localhost:3000](http://localhost:5173)
 
 ---
 
