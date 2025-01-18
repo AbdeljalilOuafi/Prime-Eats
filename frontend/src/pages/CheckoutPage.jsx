@@ -43,11 +43,12 @@ const CheckoutPage = () => {
     return !isNaN(numPrice) ? numPrice.toFixed(2) : "0.00";
   };
 
-  // Helper function to safely calculate total
+  // Helper function to safely calculate total with quantities
   const calculateTotal = (items) => {
     return items.reduce((sum, item) => {
       const itemPrice = Number(item.price);
-      return sum + (!isNaN(itemPrice) ? itemPrice : 0);
+      const quantity = item.quantity || 1;
+      return sum + (!isNaN(itemPrice) ? itemPrice * quantity : 0);
     }, 0);
   };
 
@@ -128,7 +129,7 @@ const CheckoutPage = () => {
 
         acc[restaurantId].items.push({
           item_id: parseInt(item.id),
-          quantity: 1
+          quantity: item.quantity || 1
         });
         
         return acc;
@@ -298,24 +299,35 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Order Summary Section */}
+        {/* Order Summary Section with Quantities */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           
           {cart.map((item, index) => (
-            <div key={index} className="flex justify-between items-center py-2 border-b">
-              <div>
+            <div key={`${item.id}-${index}`} className="flex justify-between items-center py-2 border-b">
+              <div className="flex-1">
                 <p className="font-medium">{item.name}</p>
-                <p className="text-sm text-gray-600">${formatPrice(item.price)}</p>
+                <p className="text-sm text-gray-600">
+                  ${formatPrice(item.price)} × {item.quantity || 1}
+                </p>
               </div>
-              <p className="text-gray-600">Quantity: 1</p>
+              <div className="text-right">
+                <p className="font-medium">
+                  ${formatPrice(item.price * (item.quantity || 1))}
+                </p>
+                {item.restaurantName && (
+                  <p className="text-xs text-gray-500">{item.restaurantName}</p>
+                )}
+              </div>
             </div>
           ))}
           
           <div className="mt-6 pt-4 border-t">
             <div className="flex justify-between items-center font-bold text-lg">
               <span>Total:</span>
-              <span>${validationStatus === 'success' ? '0.01' : formatPrice(calculateTotal(cart))}</span>
+              <span>
+                ${validationStatus === 'success' ? '0.01' : formatPrice(calculateTotal(cart))}
+              </span>
             </div>
           </div>
         </div>
@@ -331,15 +343,6 @@ const CheckoutPage = () => {
         >
           {isLoading ? 'Processing...' : orderProcessing ? 'Creating Order...' : 'Proceed to Payment'}
         </button>
-
-        {/* Back to Shopping Button */}
-        {/* <button
-          onClick={() => navigate('/restaurants')}
-          className="w-full mt-4 bg-transparent border border-yellow-400 text-yellow-600 py-3 rounded-md font-semibold
-            hover:bg-yellow-50 transition-colors"
-        >
-          Continue Shopping
-        </button> */}
       </div>
     </div>
   );
