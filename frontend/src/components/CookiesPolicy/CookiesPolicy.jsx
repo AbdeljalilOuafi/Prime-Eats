@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom"
 export default function CookiesPolicy() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
@@ -64,22 +65,22 @@ export default function CookiesPolicy() {
           </p>
           <ul className="list-disc pl-6 text-gray-600">
             <li>
-              <a href="https://support.google.com/chrome/answer/95647" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
+              <a href="https://support.google.com/chrome/answer/95647" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">
                 Google Chrome
               </a>
             </li>
             <li>
-              <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
+              <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">
                 Mozilla Firefox
               </a>
             </li>
             <li>
-              <a href="https://support.apple.com/en-us/HT201265" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
+              <a href="https://support.apple.com/en-us/HT201265" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">
                 Safari
               </a>
             </li>
             <li>
-              <a href="https://support.microsoft.com/en-us/topic/how-to-manage-cookies-in-internet-explorer-9-6e4e4f64-a7d4-78e3-e3b0-a6a0cde4e1e8" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">
+              <a href="https://support.microsoft.com/en-us/topic/how-to-manage-cookies-in-internet-explorer-9-6e4e4f64-a7d4-78e3-e3b0-a6a0cde4e1e8" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">
                 Internet Explorer/Edge
               </a>
             </li>
@@ -109,7 +110,14 @@ export default function CookiesPolicy() {
             7. Contact Us
           </h2>
           <p className="text-gray-600">
-            If you have any questions about this Cookies Policy, please contact us at <a href="mailto:cookies@example.com" className="text-blue-500 underline">support@primeeats.live</a>.
+
+            If you have any questions about this Cookies Policy, please 
+            <Link to="/ContactPage"
+              className="text-orange-500 relative group"
+            >
+              <span className="relative z-10 ml-1.5">Contact us</span>
+              <span className="absolute right-0 left-1.5 bottom-0 h-0.5 bg-orange-500 scale-x-0 transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+            </Link>
           </p>
         </section>
 

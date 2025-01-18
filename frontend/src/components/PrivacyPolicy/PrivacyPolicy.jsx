@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+
 export default function PrivacyPolicy() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
@@ -101,8 +103,15 @@ export default function PrivacyPolicy() {
             8. Contact Us
           </h2>
           <p className="text-gray-600">
-            If you have any questions about this Privacy Policy, please contact
-            us at <a href="mailto:privacy@example.com" className="text-blue-500 underline">privacy@example.com</a>.
+            If you have any questions about this Privacy Policy, please
+            us at 
+            <Link 
+            to="/ContactPage"
+            className="text-orange-500 relative group"
+            >
+              <span className="relative z-10 ml-1.5">Contact us</span>
+              <span className="absolute right-0 left-1.5 bottom-0 h-0.5 scale-x-0 bg-orange-500 transform transition-transform duration-700 ease-in-out group-hover:scale-x-100"></span>
+            </Link>
           </p>
         </section>
 
@@ -113,4 +122,3 @@ export default function PrivacyPolicy() {
     </div>
   );
 };
-
