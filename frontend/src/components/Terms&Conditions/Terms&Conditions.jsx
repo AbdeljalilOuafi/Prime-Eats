@@ -1,11 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function TermsConditions() {
   return (
     <div className="bg-gray-50 py-16 px-4">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-8">Terms & Conditions</h1>
+        <h1 className="text-5xl font-bold text-center mb-8 mt-24">Terms & Conditions</h1>
         <p className="text-gray-800 text-lg mb-8 text-center font-medium">
           Welcome to PrimeEats. These Terms and Conditions govern your use of our website and services. 
           By accessing or using PrimeEats, you agree to be bound by these terms. Please read them carefully.
