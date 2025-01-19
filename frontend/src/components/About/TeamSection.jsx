@@ -1,25 +1,27 @@
-import React from 'react';
-
+import smox from "../../assets/team/smox.png";
+import badr from "../../assets/team/badr.jpg";
+import Soukaina from "../../assets/team/Soukaina.jpeg";
+import ouafi from "../../assets/team/ouafi.jpg";
 const team = [
   {
     name: 'Bouzagui Badr',
     role: 'Frontend Developer',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+    image: badr
   },
   {
-    name: 'Joulal Hakim',
+    name: 'Joulal Abdelhakim',
     role: 'Frontend Developer',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
+    image: smox
   },
   {
     name: 'Ouafi Abdeljalil',
     role: 'Backend Developer',
-    image: 'https://images.unsplash.com/photo-1530268729831-4b0b9e170218?auto=format&fit=crop&w=400&q=80',
+    image: ouafi
   },
   {
     name: 'Soukaina Megdani',
     role: 'Backend Developer',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
+    image: Soukaina
   },
 ];
 
