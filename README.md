@@ -82,7 +82,7 @@ Follow these steps to set up Prime Eats on your local machine:
 
 4. **Run the application:**
 
-   - Open your browser and navigate to [http://localhost:3000](http://localhost:5173)
+   - Open your browser and navigate to [http://localhost:5173](http://localhost:5173)
 
 ---
 
@@ -112,7 +112,7 @@ We welcome contributions from everyone! Follow these steps to contribute:
 
 Feel free to connect with our team for any queries, suggestions, or feedback:
 
-- **Abdeljalil Ouafi:** - [abdelajlilouafi55@gmail.com](mailto:joulal1994@gmail.com)
+- **Abdeljalil Ouafi:** - [abdeljalilouafi55@gmail.com](mailto:abdeljalilouafi55@gmail.com)
 - **Soukaina Megdani:** - [megdani20soukaina@gmail.com](mailto:megdani20soukaina@gmail.com)
 - **Abdelhakim Joulal:** - [joulal1994@gmail.com](mailto:joulal1994@gmail.com)
 - **Badr Bouzagui:** - [badrbouzagui@gmail.com](mailto:badrbouzagui@gmail.com)
