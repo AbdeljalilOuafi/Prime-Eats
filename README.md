@@ -49,6 +49,7 @@ Welcome to Prime Eats! Our platform is a modern, community-driven application wh
 - **Deployment:** Render
 - **Testing:** Django Tests (Backend)
 - **CI/CD:** GitHub Actions
+- **Email Service**: Resend
 - **File Hosting:** Cloudinary
 
 ---
