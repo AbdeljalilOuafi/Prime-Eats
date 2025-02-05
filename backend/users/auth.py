@@ -104,7 +104,8 @@ class ClerkAuthentication(authentication.BaseAuthentication):
                 options={'verify_exp': False}
             )
 
-            # Rest of your validation logic
+            # Clerk handle token expiration time now so no need for this
+            
             # current_time = int(time.time())
             # if decoded.get('exp') < current_time:
             #     raise AuthenticationFailed('Token has expired')
