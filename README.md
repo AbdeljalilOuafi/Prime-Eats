@@ -22,7 +22,7 @@ Welcome to Prime Eats! Our platform is a modern, community-driven application wh
 
 **🌍 Restaurant Search:** Users can search for restaurants near their location with a single click by granting location access.
 
-**📍 Google Places API Integration:** Fetch restaurant details such as name, address, and ratings directly from Google Places API.
+**📍 Google Places API Integration:** Fetch restaurant details such as name, address, photos and ratings directly from Google Places API.
 
 **📋 Static Menus:** While menus are not provided by the API, users can explore static placeholder menus for demonstration purposes.
 
