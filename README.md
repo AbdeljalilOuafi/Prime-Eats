@@ -46,7 +46,7 @@ Welcome to Prime Eats! Our platform is a modern, community-driven application wh
 - **Payment Gateway:** PayPal
 - **Database:** PostgreSQL
 - **Caching:** Redis
-- **Deployment:** Render
+- **Deployment:** Google Cloud ( VM instance ) 
 - **Testing:** Django Tests (Backend)
 - **CI/CD:** GitHub Actions
 - **Email Service**: Resend
